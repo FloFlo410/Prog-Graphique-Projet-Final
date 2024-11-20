@@ -7,7 +7,44 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Helllo Justin</Button>
-    </StackPanel>
+    <NavigationView x:Name="nvSample" IsSettingsVisible="False" PaneDisplayMode="Left">
+
+        <NavigationView.Header>
+            <TextBlock Margin="10" FontSize="20" >Bonjour, Justin</TextBlock>
+        </NavigationView.Header>
+        
+        <NavigationView.MenuItems>
+            <NavigationViewItem Icon="List" Content="Liste Activitées" x:Name="liste_activitees" />
+
+            <StackPanel Orientation="Horizontal" x:Name="seance_user" >
+                            <FontIcon Glyph="&#xE805;" />
+                <TextBlock Margin="10 10 10 10"> Mes séances</TextBlock>
+                
+            </StackPanel>
+
+            <NavigationViewItem Content="Administrateur" Icon="Contact" ToolTipService.ToolTip="Account" >
+                <NavigationViewItem.MenuItems>
+                    <NavigationViewItem Content=" Ajouter Utilisateur" Icon="Mail" ToolTipService.ToolTip="Mail" />
+                    <NavigationViewItem Content="Calendar" Icon="Calendar" ToolTipService.ToolTip="Calendar" />
+                </NavigationViewItem.MenuItems>
+            </NavigationViewItem>
+
+
+
+
+
+
+        </NavigationView.MenuItems>
+
+
+        <!--<NavigationView.PaneFooter>
+            
+        </NavigationView.PaneFooter>-->
+
+        <NavigationView.FooterMenuItems>
+            <NavigationViewItem  Icon="Contact" Content="Connexion" Tag="liste_activitees"/>
+            <NavigationViewItem Icon="Contact" Content="Déconnexion" Tag="liste_activitees" />
+        </NavigationView.FooterMenuItems>
+        <Frame x:Name="contentFrame"/>
+    </NavigationView>
 </Window>
