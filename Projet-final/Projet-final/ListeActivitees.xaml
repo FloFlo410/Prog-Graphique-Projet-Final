@@ -9,7 +9,18 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-
-    </Grid>
+    <StackPanel>
+        <TextBlock>Nos Activités!</TextBlock>
+        <ListView x:Name="lv_Activite">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Activite">
+                    <StackPanel>
+                        <TextBlock Text="{x:Bind Nom}"/>
+                        <TextBlock Text="{x:Bind Type}"/>
+                        <TextBlock Text="{x:Bind PrixVente}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
 </Page>

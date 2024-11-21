@@ -78,6 +78,10 @@ namespace Projet_final
                     deconnexion.Visibility = Visibility.Collapsed;
                     tblock_acceuil_name.Visibility = Visibility.Collapsed;   
                     break;
+
+                case "Liste Activités":
+                    mainWindow.Navigate(typeof(ListeActivitees));
+                    break;
             }
         }
     }

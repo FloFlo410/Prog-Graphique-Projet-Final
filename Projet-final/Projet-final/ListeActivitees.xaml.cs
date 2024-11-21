@@ -26,6 +26,9 @@ namespace Projet_final
         public ListeActivitees()
         {
             this.InitializeComponent();
+            lv_Activite.ItemsSource = SingletonActivite.getInstance().getListeActivites();
         }
+
+
     }
 }
