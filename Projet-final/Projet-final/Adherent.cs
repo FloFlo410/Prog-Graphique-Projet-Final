@@ -8,16 +8,16 @@ namespace Projet_final
 {
     internal class Adherent
     {
-        string NoIdentification { get; set; }
-        string Nom { get; set; }
-        string Prenom { get; set; }
-        string Adresse { get; set; }
-        DateTime DateNaissance { get; set; }
-        int Age { get; set; }
-        string Email { get; set; }
-        string Pseudo { get; set; }
-        string Mdp { get; set; }
-        string Role { get; set; }
+        public string NoIdentification { get; set; }
+        public string Nom { get; set; }
+        public string Prenom { get; set; }
+        public string Adresse { get; set; }
+        public DateTime DateNaissance { get; set; }
+        public int Age { get; set; }
+        public string Email { get; set; }
+        public string Pseudo { get; set; }
+        public string Mdp { get; set; }
+        public string Role { get; set; }
 
         public Adherent(string noIdentification, string nom, string prenom, string adresse, DateTime dateNaissance, int age, string email, string pseudo, string mdp, string role)
         {
