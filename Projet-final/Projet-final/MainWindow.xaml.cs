@@ -51,6 +51,7 @@ namespace Projet_final
                     {
                         connexion.Visibility = Visibility.Collapsed;
                         deconnexion.Visibility = Visibility.Visible;
+                        tblock_acceuil_name.Visibility = Visibility.Visible;
                     }
 
 
@@ -60,7 +61,7 @@ namespace Projet_final
 
                     connexion.Visibility = Visibility.Visible;
                     deconnexion.Visibility = Visibility.Collapsed;
-
+                    tblock_acceuil_name.Visibility = Visibility.Collapsed;   
                     break;
             }
         }

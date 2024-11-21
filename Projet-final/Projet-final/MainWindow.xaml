@@ -9,8 +9,8 @@
 
     <NavigationView x:Name="nvSample" IsSettingsVisible="False" PaneDisplayMode="Top" ItemInvoked="nvSample_ItemInvoked">
 
-        <NavigationView.Header>
-            <TextBlock Margin="10" FontSize="20" >Bonjour, Justin</TextBlock>
+        <NavigationView.Header >
+            <TextBlock x:Name="tblock_acceuil_name" Margin="10" FontSize="20" Visibility="Collapsed">Bonjour, Justin</TextBlock>
         </NavigationView.Header>
 
         <NavigationView.MenuItems>
