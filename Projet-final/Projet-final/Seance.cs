@@ -9,9 +9,9 @@ namespace Projet_final
     internal class Seance
     {
 
-        int idSeance;
-        string activiteNom;
-        string typeActivite;
+       public int idSeance;
+       public string activiteNom;
+       public string typeActivite;
 
         public Seance(int idSeance, string activiteNom, string typeActivite)
         {
