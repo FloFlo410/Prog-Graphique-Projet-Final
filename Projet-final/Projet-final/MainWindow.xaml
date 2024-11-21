@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <NavigationView x:Name="nvSample" IsSettingsVisible="False" PaneDisplayMode="Left">
+    <NavigationView x:Name="nvSample" IsSettingsVisible="False" PaneDisplayMode="Left" SelectionChanged="nvSample_SelectionChanged">
 
         <NavigationView.Header>
             <TextBlock Margin="10" FontSize="20" >Bonjour, Justin</TextBlock>
@@ -22,18 +22,13 @@
                 
             </StackPanel>
 
-            <NavigationViewItem Content="Administrateur" Icon="Contact" ToolTipService.ToolTip="Account" >
+            <NavigationViewItem Content="Administrateur" Icon="Admin" ToolTipService.ToolTip="Account" >
                 <NavigationViewItem.MenuItems>
-                    <NavigationViewItem Content=" Ajouter Utilisateur" Icon="Mail" ToolTipService.ToolTip="Mail" />
-                    <NavigationViewItem Content="Calendar" Icon="Calendar" ToolTipService.ToolTip="Calendar" />
+                    <NavigationViewItem Content="Gestion Activité " Icon="Folder" ToolTipService.ToolTip="Mail" />
+                    <NavigationViewItem Content="Gestion utilisateur" Icon="Contact2" ToolTipService.ToolTip="Calendar" />
+                    <NavigationViewItem Content="Gestion Séance" Icon="Calendar" ToolTipService.ToolTip="Calendar" />
                 </NavigationViewItem.MenuItems>
             </NavigationViewItem>
-
-
-
-
-
-
         </NavigationView.MenuItems>
 
 
@@ -42,9 +37,9 @@
         </NavigationView.PaneFooter>-->
 
         <NavigationView.FooterMenuItems>
-            <NavigationViewItem  Icon="Contact" Content="Connexion" Tag="liste_activitees"/>
-            <NavigationViewItem Icon="Contact" Content="Déconnexion" Tag="liste_activitees" />
+            <NavigationViewItem  Icon="Contact" Content="Connexion" Tag="liste_activitees" x:Name="connexion"/>
+            <NavigationViewItem Icon="Contact" Content="Déconnexion" Tag="liste_activitees" x:Name="deconnexion" />
         </NavigationView.FooterMenuItems>
-        <Frame x:Name="contentFrame"/>
+        <Frame x:Name="mainWindow"/>
     </NavigationView>
 </Window>
