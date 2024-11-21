@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <NavigationView x:Name="nvSample" IsSettingsVisible="False" PaneDisplayMode="LeftCompact" ItemInvoked="nvSample_ItemInvoked">
+    <NavigationView x:Name="nvSample" IsSettingsVisible="False" PaneDisplayMode="Top" ItemInvoked="nvSample_ItemInvoked">
 
         <NavigationView.Header>
             <TextBlock Margin="10" FontSize="20" >Bonjour, Justin</TextBlock>
@@ -19,12 +19,11 @@
             <StackPanel Orientation="Horizontal" x:Name="seance_user" >
                 <FontIcon Glyph="&#xE805;" />
                 <TextBlock Margin="10 10 10 10"> Mes séances</TextBlock>
-
             </StackPanel>
 
             <NavigationViewItem Content="Administrateur" Icon="Admin" ToolTipService.ToolTip="Account" >
                 <NavigationViewItem.MenuItems>
-                    <NavigationViewItem Content="Gestion Activité " Icon="Folder" ToolTipService.ToolTip="Mail" />
+                    <NavigationViewItem Content="Gestion Activité" Icon="Folder" ToolTipService.ToolTip="Mail" />
                     <NavigationViewItem Content="Gestion utilisateur" Icon="Contact2" ToolTipService.ToolTip="Calendar" />
                     <NavigationViewItem Content="Gestion Séance" Icon="Calendar" ToolTipService.ToolTip="Calendar" />
                 </NavigationViewItem.MenuItems>

@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -45,6 +46,21 @@ namespace Projet_final
                     dialog.DefaultButton = ContentDialogButton.Close;
 
                     ContentDialogResult resultat = await dialog.ShowAsync();
+
+                    if (resultat == ContentDialogResult.Primary)
+                    {
+                        connexion.Visibility = Visibility.Collapsed;
+                        deconnexion.Visibility = Visibility.Visible;
+                    }
+
+
+                    break;
+
+                case "Déconnexion":
+
+                    connexion.Visibility = Visibility.Visible;
+                    deconnexion.Visibility = Visibility.Collapsed;
+
                     break;
             }
         }
