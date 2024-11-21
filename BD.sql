@@ -1,7 +1,7 @@
 -- Projet final de BD
 -- Justin Bélanger & Florence Blackburn
 
--- RESET
+-- RESET ------------------------------------------------------------------------------
 DROP TABLE IF EXISTS participation;
 DROP TABLE IF EXISTS adherent;
 DROP TABLE IF EXISTS seance;
@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS activite;
 DROP TABLE IF EXISTS categorie;
 
 
--- CREATE TABLE -> Florence
+-- CREATE TABLE -> Flo ------------------------------------------------------------------------------
 CREATE TABLE categorie(
     nom VARCHAR(155),
     PRIMARY KEY pk_categorie (nom)
@@ -57,10 +57,53 @@ CREATE TABLE participation(
 );
 
 
--- Déclencheurs
+-- Déclencheurs ------------------------------------------------------------------------------
+
+-- Permet de construire le numéro d’identification de l’adhérent lors de son insertion -> Flo
+DROP TRIGGER IF EXISTS generer_noIdentication_adherent;
+DELIMITER //
+CREATE TRIGGER generer_noIdentication_adherent BEFORE INSERT ON adherent FOR EACH ROW
+    BEGIN
+        SET NEW.noIdentification = CONCAT(
+            SUBSTR(NEW.prenom, 1,1),
+            SUBSTR(NEW.nom, 1,1),
+            '-',
+            YEAR(dateNaissance),
+            '-',
+            ROUND((RAND() * (9))),
+            ROUND((RAND() * (9))),
+            ROUND((RAND() * (9)))
+            );
+    end //
+delimiter ;
+
+-- Permet de calculer l'age lors de l'insertion d'un adherent -> Flo
+DROP TRIGGER IF EXISTS calculer_age_adherent;
+DELIMITER //
+CREATE TRIGGER calculer_age_adherent BEFORE INSERT ON adherent FOR EACH ROW
+    BEGIN
+        SET NEW.age = YEAR(DATEDIFF(CURDATE(), dateNaissance));
+    end //
+delimiter ;
+
+-- Permet de gérer le nombre de places disponibles dans chaque séance
+DROP TRIGGER IF EXISTS gerer_nbPlaceDispo_seance;
+DELIMITER //
+CREATE TRIGGER gerer_nbPlaceDispo_seance AFTER INSERT ON participation FOR EACH ROW
+    BEGIN
+
+    end //
+delimiter ;
+
+/*
+ Permet d’insérer les participants dans une séance si le nombre de places maximum n’est pas atteint.
+ Sinon, il affiche un message d’erreur avisant qu’il ne reste plus de places disponibles pour la
+ séance choisie.
+ */
 
 
--- Insertion
+
+-- Insertion -> Justin ------------------------------------------------------------------------------
 INSERT INTO categorie (nom) VALUES
 ('Sports'),
 ('Musique'),
@@ -125,11 +168,16 @@ INSERT INTO participation (idAdherent, idSeance, note) VALUES
 ('I667788990', 9, 3.7),
 ('J223344556', 10, 4.3);
 
--- Vues
+-- Vues ------------------------------------------------------------------------------
 
--- Procédures
+-- Procédures ------------------------------------------------------------------------------
 
--- Fonctions
+
+-- Fonctions ------------------------------------------------------------------------------
+DELIMITER //
+
+
+delimiter ;
 
 
 
