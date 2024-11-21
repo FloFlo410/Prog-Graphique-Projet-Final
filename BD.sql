@@ -176,7 +176,7 @@ INSERT INTO participation (idAdherent, idSeance, note) VALUES
 -- Fonctions ------------------------------------------------------------------------------
 DELIMITER //
 
-
+-- Fonction par rapport a la connexion d'un utilisateur
 delimiter ;
 
 
