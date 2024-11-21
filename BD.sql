@@ -28,8 +28,6 @@ CREATE TABLE seance(
     idSeance INT AUTO_INCREMENT,
     activiteNom VARCHAR(155),
     activiteType VARCHAR(155),
-    coutOrganisation DOUBLE,
-    prixVente DOUBLE,
     PRIMARY KEY pk_seance (idSeance),
     FOREIGN KEY fk_seance_activite (activiteNom, activiteType) REFERENCES activite(nom, type)
 );
