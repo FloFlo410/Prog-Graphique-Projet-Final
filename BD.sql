@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS activite;
 DROP TABLE IF EXISTS categorie;
 
 
--- CREATE TABLE
+-- CREATE TABLE -> Florence
 CREATE TABLE categorie(
     nom VARCHAR(155),
     PRIMARY KEY pk_categorie (nom)
@@ -61,4 +61,15 @@ CREATE TABLE participation(
 
 -- Déclencheurs
 
--- Insertions
+
+-- Insertion
+
+-- Vues
+
+-- Procédures
+
+-- Fonctions
+
+
+
+
