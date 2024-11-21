@@ -32,5 +32,12 @@ namespace Projet_final
             Mdp = mdp;
             Role = role;
         }
+
+
+
+        public override string ToString()
+        {
+            return $"{Prenom} - {Nom} - {Age}";
+        }
     }
 }

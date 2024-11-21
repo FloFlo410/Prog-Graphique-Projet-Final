@@ -26,6 +26,7 @@ namespace Projet_final
         public GestionAdherent()
         {
             this.InitializeComponent();
+            lv_Adherent.ItemsSource = SingletonAdherent.getInstance().Liste_Adherent;
         }
     }
 }

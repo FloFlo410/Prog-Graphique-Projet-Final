@@ -10,5 +10,7 @@
 
     <Grid>
 
+        <TextBlock>afagafgsgsh</TextBlock>
+        <ListView x:Name="lv_Adherent"/>
     </Grid>
 </Page>

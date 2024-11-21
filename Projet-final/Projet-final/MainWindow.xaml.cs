@@ -37,6 +37,14 @@ namespace Projet_final
 
             switch (item)
             {
+
+
+                case "Gestion utilisateur":
+                    mainWindow.Navigate(typeof(GestionAdherent));
+                    nv.Header = null;
+               break;
+
+
                 case "Connexion":
                     Connexion dialog = new Connexion();
                     dialog.XamlRoot = mainWindow.XamlRoot;
@@ -49,10 +57,17 @@ namespace Projet_final
 
                     if (resultat == ContentDialogResult.Primary)
                     {
+
+                        //
+
+
                         connexion.Visibility = Visibility.Collapsed;
                         deconnexion.Visibility = Visibility.Visible;
                         tblock_acceuil_name.Visibility = Visibility.Visible;
                     }
+
+
+
 
 
                     break;
