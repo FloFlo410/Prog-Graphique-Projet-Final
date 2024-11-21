@@ -7,19 +7,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <NavigationView x:Name="nvSample" IsSettingsVisible="False" PaneDisplayMode="Left" SelectionChanged="nvSample_SelectionChanged">
+    <NavigationView x:Name="nvSample" IsSettingsVisible="False" PaneDisplayMode="LeftCompact" ItemInvoked="nvSample_ItemInvoked">
 
         <NavigationView.Header>
             <TextBlock Margin="10" FontSize="20" >Bonjour, Justin</TextBlock>
         </NavigationView.Header>
-        
+
         <NavigationView.MenuItems>
             <NavigationViewItem Icon="List" Content="Liste Activitées" x:Name="liste_activitees" />
 
             <StackPanel Orientation="Horizontal" x:Name="seance_user" >
-                            <FontIcon Glyph="&#xE805;" />
+                <FontIcon Glyph="&#xE805;" />
                 <TextBlock Margin="10 10 10 10"> Mes séances</TextBlock>
-                
+
             </StackPanel>
 
             <NavigationViewItem Content="Administrateur" Icon="Admin" ToolTipService.ToolTip="Account" >
@@ -31,15 +31,11 @@
             </NavigationViewItem>
         </NavigationView.MenuItems>
 
-
-        <!--<NavigationView.PaneFooter>
-            
-        </NavigationView.PaneFooter>-->
-
         <NavigationView.FooterMenuItems>
             <NavigationViewItem  Icon="Contact" Content="Connexion" Tag="liste_activitees" x:Name="connexion"/>
             <NavigationViewItem Icon="Contact" Content="Déconnexion" Tag="liste_activitees" x:Name="deconnexion" />
         </NavigationView.FooterMenuItems>
+
         <Frame x:Name="mainWindow"/>
     </NavigationView>
 </Window>

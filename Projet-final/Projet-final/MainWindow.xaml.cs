@@ -29,26 +29,22 @@ namespace Projet_final
         {
             this.InitializeComponent();
         }
-
-        private async void nvSample_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        private async void nvSample_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            var item = (NavigationViewItem)args.SelectedItem;
+            var item =args.InvokedItem as string;
 
 
-            switch (item.Name)
+            switch (item)
             {
-                case "connexion":
-                   Connexion dialog = new Connexion();
+                case "Connexion":
+                    Connexion dialog = new Connexion();
                     dialog.XamlRoot = mainWindow.XamlRoot;
-                    dialog.Title = "Authentification";
+                    dialog.Title = "Connexion";
                     dialog.PrimaryButtonText = "Se connecter";
                     dialog.CloseButtonText = "Annuler";
                     dialog.DefaultButton = ContentDialogButton.Close;
 
                     ContentDialogResult resultat = await dialog.ShowAsync();
-
-
-
                     break;
             }
         }
