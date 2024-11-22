@@ -145,14 +145,14 @@ INSERT INTO activite (nom, type, coutOrganisation, prixVente) VALUES
 
 INSERT INTO seance (activiteNom, activiteType, dateHeure, nbPlacesDispos) VALUES
 ('Football', 'Sports', '2024-12-01 10:00:00', 20),
-('Yoga', 'Musculation', '2024-12-02 08:30:00', 15),
+('Yoga', 'Musculation', '2024-11-02 08:30:00', 15),
 ('Concert', 'Musique', '2024-12-03 19:00:00', 100),
-('Peinture', 'Art', '2024-12-04 14:00:00', 12),
-('Pâtisserie', 'Cuisine', '2024-12-05 16:30:00', 10),
-('Danse', 'Loisirs créatifs', '2024-12-06 18:00:00', 25),
+('Peinture', 'Art', '2024-11-04 14:00:00', 12),
+('Pâtisserie', 'Cuisine', '2024-04-05 16:30:00', 10),
+('Danse', 'Loisirs créatifs', '2024-02-06 18:00:00', 25),
 ('Programmation', 'Technologie', '2024-12-07 09:00:00', 20),
-('Randonnée', 'Voyages', '2024-12-08 07:00:00', 30),
-('Méditation', 'Santé', '2024-12-09 06:00:00', 15),
+('Randonnée', 'Voyages', '2024-11-08 07:00:00', 30),
+('Méditation', 'Santé', '2024-06-09 06:00:00', 15),
 ('Cours de langue', 'Éducation', '2024-12-10 10:30:00', 18);
 
 
@@ -184,7 +184,57 @@ INSERT INTO participation (idAdherent, idSeance, note) VALUES
 ('IB-1982-852', 9, 3.7),
 ('JR-1980-384', 10, 4.3);
 
+INSERT INTO participation (idAdherent, idSeance, note) VALUES
+('JD-2000-826', 3, 4.5),
+('EM-1996-559', 2, 3.8),
+('ML-1995-110', 3, 4.2),
+('JD-2000-826', 4, 4.7),
+('JD-2000-826', 5, 3.5);
+
 -- Vues ------------------------------------------------------------------------------
+--  Trouver le participant ayant le nombre de séances le plus élevé -> Flo
+CREATE VIEW adherent_plus_seance AS
+SELECT
+    idAdherent
+FROM participation
+GROUP BY idAdherent
+ORDER BY COUNT(idAdherent)  DESC
+LIMIT 1;
+
+-- Trouver le prix moyen par activité pour chaque participant
+
+--  Afficher les notes d’appréciation pour chaque activité -- HEEEELP
+
+
+--  Affiche la moyenne des notes d’appréciations pour toutes les activités -- HEEEELP
+SELECT
+    idSeance,
+    AVG(note) AS 'moyenneNotes'
+FROM participation
+GROUP BY idSeance;
+
+-- Afficher le nombre de participant pour chaque activité -> Flo
+CREATE VIEW nombre_participants_activités AS
+SELECT
+    activiteNom,
+    activiteType,
+    COUNT(activiteNom) AS 'Nombre de participants'
+FROM participation p
+INNER JOIN seance s on p.idSeance = s.idSeance
+INNER JOIN activite a on s.activiteNom = a.nom and s.activiteType = a.type
+GROUP BY activiteNom;
+
+
+--  Afficher le nombre de participant moyen pour chaque mois -> Flo
+CREATE VIEW nbParticipants_mois AS
+SELECT
+    MONTHNAME(dateHeure) AS 'mois',
+    COUNT(*) AS 'nbParticipants'
+FROM participation p
+INNER JOIN seance s ON p.idSeance = s.idSeance
+GROUP BY MONTH(dateHeure)
+ORDER BY MONTH(dateHeure);
+
 
 -- Procédures ------------------------------------------------------------------------------
 
@@ -194,3 +244,8 @@ DELIMITER //
 
 -- Fonction par rapport a la connexion d'un utilisateur
 delimiter ;
+
+
+-- Erreurs ------------------------------------------------------------------------------
+
+-- Empêcher un participant de s'inscrire deux fois à la même séance.
