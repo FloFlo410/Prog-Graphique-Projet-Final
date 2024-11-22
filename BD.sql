@@ -2,8 +2,9 @@
 -- Justin Bélanger & Florence Blackburn
 
 -- RESET ------------------------------------------------------------------------------
-DROP TABLE IF EXISTS participation;
 DROP TABLE IF EXISTS adherent;
+
+DROP TABLE IF EXISTS participation;
 DROP TABLE IF EXISTS seance;
 DROP TABLE IF EXISTS activite;
 DROP TABLE IF EXISTS categorie;
@@ -28,6 +29,8 @@ CREATE TABLE seance(
     idSeance INT AUTO_INCREMENT,
     activiteNom VARCHAR(155),
     activiteType VARCHAR(155),
+    dateHeure DATETIME,
+    nbPlacesDispos INT,
     PRIMARY KEY pk_seance (idSeance),
     FOREIGN KEY fk_seance_activite (activiteNom, activiteType) REFERENCES activite(nom, type)
 );
@@ -37,7 +40,7 @@ CREATE TABLE adherent(
     nom VARCHAR(155),
     prenom VARCHAR(155),
     adresse VARCHAR(255),
-    dateNaissance DATETIME,
+    dateNaissance DATE,
     age INT,
     email VARCHAR(255),
     pseudo VARCHAR(155),
@@ -68,7 +71,7 @@ CREATE TRIGGER generer_noIdentication_adherent BEFORE INSERT ON adherent FOR EAC
             SUBSTR(NEW.prenom, 1,1),
             SUBSTR(NEW.nom, 1,1),
             '-',
-            YEAR(dateNaissance),
+            YEAR(NEW.dateNaissance),
             '-',
             ROUND((RAND() * (9))),
             ROUND((RAND() * (9))),
@@ -82,7 +85,7 @@ DROP TRIGGER IF EXISTS calculer_age_adherent;
 DELIMITER //
 CREATE TRIGGER calculer_age_adherent BEFORE INSERT ON adherent FOR EACH ROW
     BEGIN
-        SET NEW.age = YEAR(DATEDIFF(CURDATE(), dateNaissance));
+        SET NEW.age = (YEAR(CURDATE())- YEAR(NEW.dateNaissance));
     end //
 delimiter ;
 
@@ -91,7 +94,9 @@ DROP TRIGGER IF EXISTS gerer_nbPlaceDispo_seance;
 DELIMITER //
 CREATE TRIGGER gerer_nbPlaceDispo_seance AFTER INSERT ON participation FOR EACH ROW
     BEGIN
-
+        UPDATE seance
+            SET nbPlacesDispos = nbPlacesDispos-1
+        WHERE idSeance = NEW.idSeance;
     end //
 delimiter ;
 
@@ -100,6 +105,16 @@ delimiter ;
  Sinon, il affiche un message d’erreur avisant qu’il ne reste plus de places disponibles pour la
  séance choisie.
  */
+DELIMITER //
+CREATE TRIGGER verifier_dispos BEFORE INSERT ON participation FOR EACH ROW
+    BEGIN
+        DECLARE nbPlacesDisposSeance INT;
+    SELECT nbPlacesDispos FROM seance WHERE seance.idSeance = NEW.idSeance INTO nbPlacesDisposSeance;
+        IF (nbPlacesDisposSeance<=0) THEN
+            SIGNAL SQLSTATE '45000' SET message_text="Il n'y a plus de places pour cette séance.";
+        end if ;
+    end //
+delimiter ;
 
 
 
@@ -117,56 +132,57 @@ INSERT INTO categorie (nom) VALUES
 ('Éducation');
 
 INSERT INTO activite (nom, type, coutOrganisation, prixVente) VALUES
-('Football', 'Sports', 1000.00, 50.00),
-('Yoga', 'Musculation', 500.00, 30.00),
-('Concert', 'Musique', 2000.00, 100.00),
-('Peinture', 'Art', 300.00, 20.00),
-('Pâtisserie', 'Cuisine', 400.00, 40.00),
-('Danse', 'Loisirs créatifs', 600.00, 35.00),
-('Programmation', 'Technologie', 800.00, 75.00),
-('Randonnée', 'Voyages', 300.00, 20.00),
-('Méditation', 'Santé', 150.00, 25.00),
-('Cours de langue', 'Éducation', 700.00, 45.00);
+('Football', 'Sports', 10.00, 50.00),
+('Yoga', 'Musculation', 5.00, 30.00),
+('Concert', 'Musique', 20.00, 100.00),
+('Peinture', 'Art', 10.00, 20.00),
+('Pâtisserie', 'Cuisine', 20.00, 40.00),
+('Danse', 'Loisirs créatifs', 15.00, 35.00),
+('Programmation', 'Technologie', 15.00, 75.00),
+('Randonnée', 'Voyages', 5.00, 20.00),
+('Méditation', 'Santé', 8.00, 25.00),
+('Cours de langue', 'Éducation', 20.00, 45.00);
 
-INSERT INTO seance (activiteNom, activiteType) VALUES
-('Football', 'Sports'),
-('Yoga', 'Musculation'),
-('Concert', 'Musique'),
-('Peinture', 'Art'),
-('Pâtisserie', 'Cuisine'),
-('Danse', 'Loisirs créatifs'),
-('Programmation', 'Technologie'),
-('Randonnée', 'Voyages'),
-('Méditation', 'Santé'),
-('Cours de langue', 'Éducation');
-
-
+INSERT INTO seance (activiteNom, activiteType, dateHeure, nbPlacesDispos) VALUES
+('Football', 'Sports', '2024-12-01 10:00:00', 20),
+('Yoga', 'Musculation', '2024-12-02 08:30:00', 15),
+('Concert', 'Musique', '2024-12-03 19:00:00', 100),
+('Peinture', 'Art', '2024-12-04 14:00:00', 12),
+('Pâtisserie', 'Cuisine', '2024-12-05 16:30:00', 10),
+('Danse', 'Loisirs créatifs', '2024-12-06 18:00:00', 25),
+('Programmation', 'Technologie', '2024-12-07 09:00:00', 20),
+('Randonnée', 'Voyages', '2024-12-08 07:00:00', 30),
+('Méditation', 'Santé', '2024-12-09 06:00:00', 15),
+('Cours de langue', 'Éducation', '2024-12-10 10:30:00', 18);
 
 
-INSERT INTO adherent (noIdentification, nom, prenom, adresse, dateNaissance, age, email, pseudo, mdp, role) VALUES
-('A123456789', 'Dupont', 'Pierre', '123 rue des Fleurs', '1990-05-12', 34, 'pierre.dupont@email.com', 'pierreD', 'mdp123', 'administrateur'),
-('B987654321', 'Martin', 'Claire', '456 avenue des Champs', '1985-08-20', 39, 'claire.martin@email.com', 'claireM', 'mdp456', 'utilisateur'),
-('C246810121', 'Durand', 'Julien', '789 boulevard Saint-Michel', '2000-01-15', 24, 'julien.durand@email.com', 'julienD', 'mdp789', 'utilisateur'),
-('D135791113', 'Lemoine', 'Sophie', '234 rue de la Paix', '1993-11-10', 31, 'sophie.lemoine@email.com', 'sophieL', 'mdp321', 'administrateur'),
-('E246802468', 'Girard', 'Thomas', '567 rue du Parc', '1992-04-25', 32, 'thomas.girard@email.com', 'thomasG', 'mdp654', 'utilisateur'),
-('F112233445', 'Petit', 'Alice', '890 avenue de la Liberté', '1988-02-12', 36, 'alice.petit@email.com', 'aliceP', 'mdp987', 'utilisateur'),
-('G998877665', 'Lopez', 'Marco', '123 avenue de l’Industrie', '1995-09-30', 29, 'marco.lopez@email.com', 'marcoL', 'mdp123', 'utilisateur'),
-('H334455667', 'Bernard', 'Isabelle', '456 rue des Lilas', '1982-07-14', 42, 'isabelle.bernard@email.com', 'isabelleB', 'mdp456', 'administrateur'),
-('I667788990', 'Roux', 'Jean', '789 rue de la République', '1980-06-02', 44, 'jean.roux@email.com', 'jeanR', 'mdp789', 'utilisateur'),
-('J223344556', 'Moreau', 'Emilie', '234 rue des Tilleuls', '1996-11-30', 28, 'emilie.moreau@email.com', 'emilieM', 'mdp321', 'utilisateur');
+
+
+
+INSERT INTO adherent (noIdentification, nom, prenom, adresse, dateNaissance, email, pseudo, mdp, role) VALUES
+('1', 'Dupont', 'Pierre', '123 rue des Fleurs', '1990-05-12',  'pierre.dupont@email.com', 'pierreD', 'mdp123', 'administrateur'),
+('2', 'Martin', 'Claire', '456 avenue des Champs', '1985-08-20', 'claire.martin@email.com', 'claireM', 'mdp456', 'utilisateur'),
+('3', 'Durand', 'Julien', '789 boulevard Saint-Michel', '2000-01-15',  'julien.durand@email.com', 'julienD', 'mdp789', 'utilisateur'),
+('4', 'Lemoine', 'Sophie', '234 rue de la Paix', '1993-11-10',  'sophie.lemoine@email.com', 'sophieL', 'mdp321', 'administrateur'),
+('5', 'Girard', 'Thomas', '567 rue du Parc', '1992-04-25',  'thomas.girard@email.com', 'thomasG', 'mdp654', 'utilisateur'),
+('6', 'Petit', 'Alice', '890 avenue de la Liberté', '1988-02-12',  'alice.petit@email.com', 'aliceP', 'mdp987', 'utilisateur'),
+('7', 'Lopez', 'Marco', '123 avenue de l’Industrie', '1995-09-30',  'marco.lopez@email.com', 'marcoL', 'mdp123', 'utilisateur'),
+('8', 'Bernard', 'Isabelle', '456 rue des Lilas', '1982-07-14',  'isabelle.bernard@email.com', 'isabelleB', 'mdp456', 'administrateur'),
+('9', 'Roux', 'Jean', '789 rue de la République', '1980-06-02',  'jean.roux@email.com', 'jeanR', 'mdp789', 'utilisateur'),
+('10', 'Moreau', 'Emilie', '234 rue des Tilleuls', '1996-11-30',  'emilie.moreau@email.com', 'emilieM', 'mdp321', 'utilisateur');
 
 
 INSERT INTO participation (idAdherent, idSeance, note) VALUES
-('A123456789', 1, 4.5),
-('B987654321', 2, 3.8),
-('C246810121', 3, 4.2),
-('D135791113', 4, 4.7),
-('E246802468', 5, 3.5),
-('F112233445', 6, 4.1),
-('G998877665', 7, 3.9),
-('H334455667', 8, 4.6),
-('I667788990', 9, 3.7),
-('J223344556', 10, 4.3);
+('JD-2000-826', 1, 4.5),
+('EM-1996-559', 2, 3.8),
+('ML-1995-110', 3, 4.2),
+('SL-1993-603', 4, 4.7),
+('TG-1992-377', 5, 3.5),
+('PD-1990-426', 6, 4.1),
+('AP-1988-767', 7, 3.9),
+('CM-1985-656', 8, 4.6),
+('IB-1982-852', 9, 3.7),
+('JR-1980-384', 10, 4.3);
 
 -- Vues ------------------------------------------------------------------------------
 
@@ -178,7 +194,3 @@ DELIMITER //
 
 -- Fonction par rapport a la connexion d'un utilisateur
 delimiter ;
-
-
-
-
