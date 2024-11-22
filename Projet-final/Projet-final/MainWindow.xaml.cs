@@ -29,6 +29,7 @@ namespace Projet_final
         public MainWindow()
         {
             this.InitializeComponent();
+            mainWindow.Navigate(typeof(ListeActivitees));
         }
         private async void nvSample_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
@@ -58,13 +59,13 @@ namespace Projet_final
                     if (resultat == ContentDialogResult.Primary)
                     {
 
-                        //
-
-
-                        connexion.Visibility = Visibility.Collapsed;
-                        deconnexion.Visibility = Visibility.Visible;
-                        tblock_acceuil_name.Visibility = Visibility.Visible;
+                            if (SingletonAdherent.getInstance().IsConnect){ 
+                                connexion.Visibility = Visibility.Collapsed;
+                                deconnexion.Visibility = Visibility.Visible;
+                                tblock_acceuil_name.Visibility = Visibility.Visible;
+                            }
                     }
+
 
 
 

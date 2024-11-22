@@ -23,6 +23,15 @@ namespace Projet_final
         public Connexion()
         {
             this.InitializeComponent();
+            tbox_nomUtilisateur_error.Text = string.Empty;
+        }
+
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            if (!SingletonAdherent.getInstance().Connexion(tbox_nomUtilisateur.Text, tbox_motDePasse.Text))
+            {
+                tbox_nomUtilisateur_error.Text = "Le Pseudo ou le mot de passe n'est pas correct";
+            }
         }
     }
 }
