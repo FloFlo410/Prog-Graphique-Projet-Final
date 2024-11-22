@@ -30,7 +30,15 @@ namespace Projet_final
         {
             if (!SingletonAdherent.getInstance().Connexion(tbox_nomUtilisateur.Text, tbox_motDePasse.Text))
             {
-                tbox_nomUtilisateur_error.Text = "Le Pseudo ou le mot de passe n'est pas correct";
+                tbox_nomUtilisateur_error.Text = "Le pseudo ou le mot de passe n'est pas correct";
+            }
+        }
+
+        private void ContentDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
+        {
+            if (!SingletonAdherent.getInstance().IsConnect && args.Result == ContentDialogResult.Primary)
+            {
+                args.Cancel = true;
             }
         }
     }

@@ -58,22 +58,18 @@ namespace Projet_final
 
                     if (resultat == ContentDialogResult.Primary)
                     {
-
                             if (SingletonAdherent.getInstance().IsConnect){ 
                                 connexion.Visibility = Visibility.Collapsed;
                                 deconnexion.Visibility = Visibility.Visible;
                                 tblock_acceuil_name.Visibility = Visibility.Visible;
-                            }
+                        }
                     }
-
-
-
-
-
-
                     break;
 
                 case "Déconnexion":
+
+
+                    SingletonAdherent.getInstance().Deconnexion();
 
                     connexion.Visibility = Visibility.Visible;
                     deconnexion.Visibility = Visibility.Collapsed;

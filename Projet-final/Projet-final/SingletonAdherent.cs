@@ -7,6 +7,7 @@ using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.VoiceCommands;
 
 namespace Projet_final
 {
@@ -80,6 +81,9 @@ namespace Projet_final
 
 
 
+
+
+          //Connexion/UserOnline
         public bool Connexion(string username, string mot_de_passe)
         {
 
@@ -96,14 +100,33 @@ namespace Projet_final
             while(r.Read()){
                     adherentConnect = new Adherent(r[0].ToString(), r[1].ToString(), r[2].ToString(), r[3].ToString(), (DateTime)r[4], (int)r[5], r[6].ToString(), r[7].ToString(), r[8].ToString(), r[9].ToString());
             }
+
                 isConnect = true;
                 return true;
-            }else{
+
+                r.Close();
+                con.Close();
+            }
+            else{
+                r.Close();
+                con.Close();
+
                 return false;
 
             }
 
         }
+        
+
+
+        public void Deconnexion()
+        {
+            isConnect = false;
+            adherentConnect = null;
+        }
+
+
+
 
 
     }

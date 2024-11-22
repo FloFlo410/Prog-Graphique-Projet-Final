@@ -34,7 +34,7 @@
 
         <NavigationView.FooterMenuItems>
             <NavigationViewItem  Icon="Contact" Content="Connexion" Tag="liste_activitees" x:Name="connexion"/>
-            <NavigationViewItem Icon="Contact" Content="Déconnexion" Tag="liste_activitees" x:Name="deconnexion" />
+            <NavigationViewItem Icon="Contact" Content="Déconnexion" Tag="liste_activitees" x:Name="deconnexion" Visibility="Collapsed" />
         </NavigationView.FooterMenuItems>
 
         <Frame x:Name="mainWindow"/>
