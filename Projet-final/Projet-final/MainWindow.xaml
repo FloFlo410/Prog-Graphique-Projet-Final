@@ -5,12 +5,14 @@
     xmlns:local="using:Projet_final"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    
+    >
 
     <NavigationView x:Name="nv" IsSettingsVisible="False" PaneDisplayMode="Top" ItemInvoked="nvSample_ItemInvoked">
 
         <NavigationView.Header>
-            <TextBlock x:Name="tblock_acceuil_name" Margin="10" FontSize="20" Visibility="Collapsed">Bonjour, Justin</TextBlock>
+            <TextBlock x:Name="tblock_acceuil_name" Margin="10" FontSize="20">Bonjour, Justin</TextBlock>
         </NavigationView.Header>
 
         <NavigationView.MenuItems>

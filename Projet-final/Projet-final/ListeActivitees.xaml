@@ -9,18 +9,33 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel>
-        <TextBlock>Nos Activités!</TextBlock>
-        <ListView x:Name="lv_Activite">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:Activite">
-                    <StackPanel>
-                        <TextBlock Text="{x:Bind Nom}"/>
-                        <TextBlock Text="{x:Bind Type}"/>
-                        <TextBlock Text="{x:Bind PrixVente}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+   
+    <StackPanel Background="White" Grid.Row="0">
+        <TextBlock FontSize="40" HorizontalAlignment="Center">Activités disponibles</TextBlock>
     </StackPanel>
+
+     <ScrollViewer Width="auto" Height="auto"  Background="White" VerticalScrollBarVisibility="Visible">
+        <GridView x:Name="gv_activite" Margin="20" Grid.Row="1" Height="650" >
+            <GridView.ItemTemplate  >
+                <DataTemplate x:DataType="local:Activite">
+                    <StackPanel Orientation="Vertical" Width="100" Height="auto" Margin="20">
+                        <TextBlock Text="{x:Bind Nom}" Width="auto" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{x:Bind Type}" Width="auto" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{x:Bind PrixVente}" Width="auto" HorizontalAlignment="Center"/>
+                    </StackPanel>
+
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+     </ScrollViewer>
+    
+    
+    </Grid>
 </Page>
