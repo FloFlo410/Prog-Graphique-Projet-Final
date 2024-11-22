@@ -193,6 +193,7 @@ INSERT INTO participation (idAdherent, idSeance, note) VALUES
 
 -- Vues ------------------------------------------------------------------------------
 --  Trouver le participant ayant le nombre de séances le plus élevé -> Flo
+DROP VIEW IF EXISTS adherent_plus_seance;
 CREATE VIEW adherent_plus_seance AS
 SELECT
     idAdherent
@@ -201,7 +202,7 @@ GROUP BY idAdherent
 ORDER BY COUNT(idAdherent)  DESC
 LIMIT 1;
 
--- Trouver le prix moyen par activité pour chaque participant
+-- Trouver le prix moyen par activité pour chaque participant -- HEEELP
 
 --  Afficher les notes d’appréciation pour chaque activité -- HEEEELP
 
@@ -214,7 +215,8 @@ FROM participation
 GROUP BY idSeance;
 
 -- Afficher le nombre de participant pour chaque activité -> Flo
-CREATE VIEW nombre_participants_activités AS
+DROP VIEW IF EXISTS nombre_participants_activites;
+CREATE VIEW nombre_participants_activites AS
 SELECT
     activiteNom,
     activiteType,
@@ -226,6 +228,7 @@ GROUP BY activiteNom;
 
 
 --  Afficher le nombre de participant moyen pour chaque mois -> Flo
+DROP VIEW IF EXISTS nbParticipants_mois;
 CREATE VIEW nbParticipants_mois AS
 SELECT
     MONTHNAME(dateHeure) AS 'mois',
@@ -237,12 +240,36 @@ ORDER BY MONTH(dateHeure);
 
 
 -- Procédures ------------------------------------------------------------------------------
-
+-- Affiche les informations d'un adhérent selon son idAdherent -> Flo
+DROP PROCEDURE IF EXISTS affiche_adherent;
+DELIMITER /
+CREATE PROCEDURE affiche_adherent (IN _idAdherent VARCHAR(11))
+BEGIN
+    SELECT *
+    FROM adherent
+    WHERE noIdentification = _idAdherent;
+end /
+delimiter ;
 
 -- Fonctions ------------------------------------------------------------------------------
-DELIMITER //
 
--- Fonction par rapport a la connexion d'un utilisateur
+
+-- Retourne l'idAdherent si les informations de connexions sont bonnes -> Flo
+DROP FUNCTION IF EXISTS retourne_adherent_connexion;
+DELIMITER //
+CREATE FUNCTION retourne_adherent_connexion(
+    _pseudo VARCHAR(155),
+    _mdp VARCHAR(155)
+)
+RETURNS VARCHAR(11)
+BEGIN
+    DECLARE idAdherent VARCHAR(11);
+    SELECT noIdentification
+    FROM adherent
+    WHERE pseudo = _pseudo AND mdp = _mdp INTO idAdherent;
+
+    RETURN (idAdherent);
+end //
 delimiter ;
 
 
