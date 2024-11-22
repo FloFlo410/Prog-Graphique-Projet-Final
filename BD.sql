@@ -275,4 +275,31 @@ delimiter ;
 
 -- Erreurs ------------------------------------------------------------------------------
 
--- Empêcher un participant de s'inscrire deux fois à la même séance.
+-- Empêcher un participant de s'inscrire deux fois à la même séance. -> Flo
+DROP TRIGGER IF EXISTS empecher_participation_doublons;
+DELIMITER //
+CREATE TRIGGER empecher_participation_doublons BEFORE INSERT ON participation FOR EACH ROW
+    BEGIN
+        IF ((SELECT idParticipation
+        FROM participation
+        WHERE idAdherent = NEW.idAdherent AND
+        idSeance = NEW.idSeance) IS NOT NULL) THEN
+            SIGNAL SQLSTATE '45000' SET message_text="Cet adhérent est déjà incrit à cette séance.";
+        end if ;
+
+    end //
+delimiter ;
+
+
+
+-- Empêcher un adherent d'être moins de 18 ans -> Flo
+DROP TRIGGER IF EXISTS adherent_moins_18ans_erreur;
+DELIMITER //
+CREATE TRIGGER adherent_moins_18ans_erreur BEFORE INSERT ON adherent FOR EACH ROW
+    BEGIN
+        IF(NEW.age < 18) THEN
+            SIGNAL SQLSTATE '45000' SET message_text="Un adherent ne peut pas être mineur.";
+        end if ;
+    end //
+delimiter ;
+
