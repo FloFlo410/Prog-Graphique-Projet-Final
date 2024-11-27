@@ -9,8 +9,16 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock>afagafgsgsh</TextBlock>
         <ListView x:Name="lv_Adherent"/>
+        <Button Grid.Row="1" x:Name="btn_ajouter_adherent" Click="btn_ajouter_adherent_Click">Ajouter Adhérent</Button>
+        
     </Grid>
 </Page>

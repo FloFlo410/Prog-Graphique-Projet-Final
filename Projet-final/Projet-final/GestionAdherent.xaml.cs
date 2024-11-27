@@ -28,5 +28,14 @@ namespace Projet_final
             this.InitializeComponent();
             lv_Adherent.ItemsSource = SingletonAdherent.getInstance().Liste_Adherent;
         }
+
+        private void btn_ajouter_adherent_Click(object sender, RoutedEventArgs e)
+        {
+            var mainwindow = SingletonAdherent.getInstance().getMainwindow();
+
+            mainwindow.Navigate(typeof(AjouterAdherent));
+
+
+        }
     }
 }

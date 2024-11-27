@@ -1,7 +1,9 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.UI.Xaml.Controls;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography;
@@ -19,11 +21,22 @@ namespace Projet_final
         bool isConnect = false;
         Adherent adherentConnect;
 
+        public static Frame mainWindow;
+
         public ObservableCollection<Adherent> Liste_Adherent
         {
             get { return liste_Adherent; }
         }
 
+        public void setMainwindow(Frame _main)
+        {
+            mainWindow = _main;
+        }
+
+        public Frame getMainwindow()
+        {
+            return mainWindow;
+        }
         public bool IsConnect
         {
             get { return isConnect; }
@@ -45,7 +58,7 @@ namespace Projet_final
         public SingletonAdherent()
         {
             liste_Adherent = new ObservableCollection<Adherent>();
-            get_table();
+            loadDataInList();
 
         }
 
@@ -58,13 +71,55 @@ namespace Projet_final
             return instance;
         }
 
+        public void ajouterAdherent(Adherent adherent)
+        {
+            string prenom = adherent.Prenom;
+            string nom = adherent.Nom;
+            string adresse = adherent.Adresse;
+            DateTime dateNaissance = adherent.DateNaissance;
+            string email = adherent.Email;
+            string pseudo = adherent.Pseudo;
+            string mdp = adherent.Mdp;
+            string role = adherent.Role;
+
+            var inputBytes = Encoding.UTF8.GetBytes(mdp);
+            var inputHash = SHA256.HashData(inputBytes);
+            string mdpHashe = Convert.ToHexString(inputHash);
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "Insert into adherent (nom, prenom, adresse, dateNaissance, email, pseudo, mdp, role) VALUES (@nom, @prenom, @adresse, @dateNaissance, @email, @pseudo, @mdp, @role)";
+
+                commande.Parameters.AddWithValue("@nom", nom);
+                commande.Parameters.AddWithValue("@prenom", prenom);
+                commande.Parameters.AddWithValue("@dateNaissance", dateNaissance.ToString());
+                commande.Parameters.AddWithValue("@adresse", adresse);
+                commande.Parameters.AddWithValue("@email", email);
+                commande.Parameters.AddWithValue("@pseudo", pseudo);
+                commande.Parameters.AddWithValue("@mdp", mdpHashe);
+                commande.Parameters.AddWithValue("@role", role);
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+
+                loadDataInList();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+        }
 
 
-
-        public void get_table()
+        public void loadDataInList()
         {  
             liste_Adherent.Clear();
-
+        
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
             commande.CommandText = "Select * from adherent";

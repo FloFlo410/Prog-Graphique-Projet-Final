@@ -33,7 +33,17 @@ namespace Projet_final
             Role = role;
         }
 
-
+        public Adherent(string nom, string prenom, string adresse, DateTime dateNaissance, string email, string pseudo, string mdp, string role)
+        {
+            Nom = nom;
+            Prenom = prenom;
+            Adresse = adresse;
+            DateNaissance = dateNaissance;
+            Email = email;
+            Pseudo = pseudo;
+            Mdp = mdp;
+            Role = role;
+        }
 
         public override string ToString()
         {

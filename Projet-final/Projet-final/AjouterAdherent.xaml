@@ -1,0 +1,77 @@
+﻿<Page
+    x:Class="Projet_final.AjouterAdherent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Projet_final"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical">
+            <TextBox x:Name="tbx_prenom" Header="Prenom:"/>
+            <TextBlock x:Name="tbl_prenom_err"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="0" Grid.Column="1">
+            <TextBox x:Name="tbx_nom" Header="Nom:"/>
+            <TextBlock x:Name="tbl_nom_err"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="1" Grid.Column="0">
+            <CalendarDatePicker x:Name="cldr_dateNaissance" Header="Date de naissance:"/>
+            <TextBlock x:Name="tbl_dateNaissance_err"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="2" Grid.Column="0">
+            <TextBox x:Name="tbx_adresse" Header="Adresse:"/>
+            <TextBlock x:Name="tbl_adresse_err"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="2" Grid.Column="1">
+            <TextBox x:Name="tbx_email" Header="Email:"/>
+            <TextBlock x:Name="tbl_email_err"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="3" Grid.Column="0">
+            <TextBox x:Name="tbx_pseudo" Header="Pseudo"/>
+            <TextBlock x:Name="tbl_pseudo_err"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="3" Grid.Column="1">
+            <TextBox x:Name="tbx_mdp" Header="Mot de passe:"/>
+            <TextBlock x:Name="tbl_mdp_err"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="4" Grid.Column="0">
+            <TextBox x:Name="tbx_role" Header="Rôle:"/>
+            <TextBlock x:Name="tbl_role_err"/>
+        </StackPanel>
+
+        <Button
+            Grid.Row="5" Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            x:Name="btn_ajouter" Click="btn_ajouter_Click">Ajouter</Button>
+    </Grid>
+</Page>

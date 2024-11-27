@@ -30,6 +30,8 @@ namespace Projet_final
         {
             this.InitializeComponent();
             mainWindow.Navigate(typeof(ListeActivitees));
+
+            SingletonAdherent.getInstance().setMainwindow(this.mainWindow);
         }
         private async void nvSample_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
