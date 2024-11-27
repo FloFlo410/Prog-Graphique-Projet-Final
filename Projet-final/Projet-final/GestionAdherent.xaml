@@ -16,9 +16,86 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <ListView x:Name="lv_Adherent"/>
+        <ListView x:Name="lv_Adherent" SelectionChanged="lv_Adherent_SelectionChanged"/>
+        <StackPanel 
+            x:Name="stck_infoAdherent"
+            Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Background="AliceBlue">
+            <TextBlock FontSize="35" HorizontalAlignment="Center" FontWeight="Bold">Adhérent</TextBlock>
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical">
+                    <TextBox x:Name="tbx_prenom" Header="Prenom:"/>
+                    <TextBlock x:Name="tbl_prenom_err"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                    Grid.Row="0" Grid.Column="1">
+                    <TextBox x:Name="tbx_nom" Header="Nom:"/>
+                    <TextBlock x:Name="tbl_nom_err"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                    Grid.Row="1" Grid.Column="0">
+                    <CalendarDatePicker x:Name="cldr_dateNaissance" Header="Date de naissance:"/>
+                    <TextBlock x:Name="tbl_dateNaissance_err"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                    Grid.Row="1" Grid.Column="1">
+                    <TextBlock x:Name="tbl_age"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                    Grid.Row="2" Grid.Column="0">
+                    <TextBox x:Name="tbx_adresse" Header="Adresse:"/>
+                    <TextBlock x:Name="tbl_adresse_err"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                    Grid.Row="2" Grid.Column="1">
+                    <TextBox x:Name="tbx_email" Header="Email:"/>
+                    <TextBlock x:Name="tbl_email_err"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                    Grid.Row="3" Grid.Column="0">
+                    <TextBox x:Name="tbx_pseudo" Header="Pseudo"/>
+                    <TextBlock x:Name="tbl_pseudo_err"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                    Grid.Row="3" Grid.Column="1">
+                    <TextBox x:Name="tbx_mdp" Header="Mot de passe:"/>
+                    <TextBlock x:Name="tbl_mdp_err"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                    Grid.Row="4" Grid.Column="0">
+                    <TextBox x:Name="tbx_role" Header="Rôle:"/>
+                    <TextBlock x:Name="tbl_role_err"/>
+                </StackPanel>
+
+                <Button
+            Grid.Row="5" Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            x:Name="btn_modifier" Click="btn_modifier_Click">Modifier</Button>
+            </Grid>
+        </StackPanel>
         <Button Grid.Row="1" x:Name="btn_ajouter_adherent" Click="btn_ajouter_adherent_Click">Ajouter Adhérent</Button>
         <Button Grid.Row="2" x:Name="btn_supprimer_adherent" Click="btn_supprimer_adherent_Click">Supprimer adhérent</Button>
 
