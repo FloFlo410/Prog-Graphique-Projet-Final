@@ -14,7 +14,6 @@
   <ItemGroup>
     <None Remove="AjouterAdherent.xaml" />
     <None Remove="Connexion.xaml" />
-    <None Remove="GestionActivite.xaml" />
     <None Remove="GestionAdherent.xaml" />
     <None Remove="ListeActivitees.xaml" />
   </ItemGroup>
@@ -45,11 +44,7 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
     <Page Update="AjouterAdherent.xaml">
-=======
-    <Page Update="GestionActivite.xaml">
->>>>>>> Stashed changes
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

@@ -20,10 +20,5 @@ namespace Projet_final
             CoutOrganisation = coutOrganisation;
             PrixVente = prixVente;
         }
-
-        public override string ToString()
-        {
-            return $"{Nom} - {Type}";
-        }
     }
 }

@@ -47,11 +47,6 @@ namespace Projet_final
                     nv.Header = null;
                break;
 
-                case "Gestion Activité":
-                    mainWindow.Navigate(typeof(GestionActivite));
-                    nv.Header = null;
-                  break;
-
 
                 case "Connexion":
                     Connexion dialog = new Connexion();
