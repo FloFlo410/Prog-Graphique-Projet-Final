@@ -110,11 +110,37 @@ namespace Projet_final
             }
             catch(Exception ex)
             {
+                con.Close();
                 Console.WriteLine(ex.Message);
             }
             
         }
 
+
+        public void supprimerAdherent(string noIdentification)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "delete from adherent where noIdentification=@noIdentification";
+                commande.Parameters.AddWithValue("@noIdentification", noIdentification);
+                con.Open();
+                commande.Prepare();
+
+                commande.ExecuteNonQuery();
+
+                con.Close();
+                loadDataInList();
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                Console.WriteLine(ex.Message);
+
+            }
+
+        }
 
         public void loadDataInList()
         {  

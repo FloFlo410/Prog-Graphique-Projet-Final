@@ -37,5 +37,12 @@ namespace Projet_final
 
 
         }
+
+        private void btn_supprimer_adherent_Click(object sender, RoutedEventArgs e)
+        {
+            Adherent adherent = (Adherent) lv_Adherent.SelectedItem;
+            if (adherent != null)
+                SingletonAdherent.getInstance().supprimerAdherent(adherent.NoIdentification);
+        }
     }
 }
