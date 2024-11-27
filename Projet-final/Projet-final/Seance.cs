@@ -12,6 +12,10 @@ namespace Projet_final
        public int idSeance;
        public string activiteNom;
        public string typeActivite;
+       public string activiteType;
+        public int nbPlacesDispos;
+
+
 
         public Seance(int idSeance, string activiteNom, string typeActivite)
         {
@@ -38,6 +42,19 @@ namespace Projet_final
             get { return typeActivite; }
             set { typeActivite = value; }
         }
-    
+
+        public string ActiteType
+        {
+            get { return activiteType; }
+            set { activiteType = value; }
+        }
+
+        public int NbPlacesDispos
+        {
+            get { return nbPlacesDispos; }
+            set { nbPlacesDispos = value; }
+        }
+
+
     }
 }
