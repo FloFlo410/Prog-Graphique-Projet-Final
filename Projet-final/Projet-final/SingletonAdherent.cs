@@ -84,7 +84,7 @@ namespace Projet_final
 
 
           //Connexion/UserOnline
-        public bool Connexion(string username, string mot_de_passe)
+        public void Connexion(string username, string mot_de_passe)
         {
 
             var inputBytes = Encoding.UTF8.GetBytes(mot_de_passe);
@@ -102,32 +102,22 @@ namespace Projet_final
             }
 
                 isConnect = true;
-                return true;
-
                 r.Close();
                 con.Close();
             }
             else{
                 r.Close();
                 con.Close();
-
-                return false;
+                isConnect = false;
 
             }
 
         }
-        
-
 
         public void Deconnexion()
         {
             isConnect = false;
             adherentConnect = null;
         }
-
-
-
-
-
     }
 }

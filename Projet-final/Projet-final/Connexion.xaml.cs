@@ -28,7 +28,8 @@ namespace Projet_final
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            if (!SingletonAdherent.getInstance().Connexion(tbox_nomUtilisateur.Text, tbox_motDePasse.Text))
+            SingletonAdherent.getInstance().Connexion(tbox_nomUtilisateur.Text, tbox_motDePasse.Text);
+            if (!SingletonAdherent.getInstance().IsConnect)
             {
                 tbox_nomUtilisateur_error.Text = "Le pseudo ou le mot de passe n'est pas correct";
             }
