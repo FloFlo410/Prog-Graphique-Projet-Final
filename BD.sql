@@ -251,13 +251,6 @@ INNER JOIN seance s ON p.idSeance = s.idSeance
 GROUP BY MONTH(dateHeure)
 ORDER BY MONTH(dateHeure);
 
-
--- les notes par activitées
-
-
--- moyenne des notes pas activitée
-
-
 -- Procédures ------------------------------------------------------------------------------
 -- Affiche les informations d'un adhérent selon son idAdherent -> Flo
 DROP PROCEDURE IF EXISTS affiche_adherent;
@@ -332,6 +325,8 @@ end //
 delimiter ;
 
 -- Retournes les types  
+
+
 
 
 -- Erreurs ------------------------------------------------------------------------------
