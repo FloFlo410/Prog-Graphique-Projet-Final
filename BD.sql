@@ -270,6 +270,46 @@ BEGIN
 end /
 delimiter ;
 
+-- Ajouter un adherant a l'aide de procédure
+DROP PROCEDURE IF EXISTS ajouter_adherant;
+DELIMITER //
+CREATE PROCEDURE ajouter_adherant(IN _nom VARCHAR(155),IN _prenom VARCHAR(155),IN _adresse VARCHAR(255),IN _dateNaissance DATE,IN _age INT, IN _email VARCHAR(255), IN _pseudo VARCHAR(155), IN _mdp VARCHAR(255),IN _role VARCHAR(155) )
+BEGIN
+    INSERT INTO adherent ( nom, prenom, adresse, dateNaissance, age, email, pseudo, mdp, role) VALUES (_nom, _prenom, _adresse, _dateNaissance, _age, _email, _pseudo, _mdp, _role);
+end //
+DELIMITER ;
+
+-- Ajouter une séance
+DROP PROCEDURE IF EXISTS ajouter_seance;
+DELIMITER //
+CREATE PROCEDURE ajouter_seance( IN _activiteNom VARCHAR(155),IN _activiteType VARCHAR(155),IN _dateHeure DATETIME,IN _nbPlacesDispos INT)
+BEGIN
+    INSERT INTO seance (activiteNom, activiteType, dateHeure, nbPlacesDispos) VALUES (_activiteNom, _activiteType, _dateHeure, _nbPlacesDispos);
+end //
+DELIMITER ;
+
+--ajouter une participation
+DROP PROCEDURE IF EXISTS ajouter_participation;
+DELIMITER //
+CREATE PROCEDURE ajouter_participation(IN _idAdherent VARCHAR(11),IN  _idSeance INT,IN  _note DOUBLE)
+BEGIN
+    INSERT INTO participation (idAdherent, idSeance, note) VALUES (_idAdherent, _idSeance, _note);
+end //
+DELIMITER ;
+
+
+-- ajouter une activité
+DROP PROCEDURE IF EXISTS ajouter_activite;
+DELIMITER //
+CREATE PROCEDURE ajouter_activite( IN _nom VARCHAR(155),IN _type VARCHAR(155),IN _coutOrganisation DOUBLE,IN _prixVente DOUBLE)
+BEGIN
+    INSERT INTO activite (nom, type, coutOrganisation, prixVente) VALUES (_nom, _type, _coutOrganisation, _prixVente);
+end //
+DELIMITER ;
+
+
+
+
 -- Fonctions ------------------------------------------------------------------------------
 
 
@@ -290,6 +330,8 @@ BEGIN
     RETURN (idAdherent);
 end //
 delimiter ;
+
+-- Retournes les types  
 
 
 -- Erreurs ------------------------------------------------------------------------------
