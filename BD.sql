@@ -204,15 +204,28 @@ LIMIT 1;
 
 -- Trouver le prix moyen par activité pour chaque participant -- HEEELP
 
---  Afficher les notes d’appréciation pour chaque activité -- HEEEELP
-
-
---  Affiche la moyenne des notes d’appréciations pour toutes les activités -- HEEEELP
+--  Afficher les notes d’appréciation pour chaque activité 
+DROP VIEW IF EXISTS notes_appreciations_activite;
+CREATE VIEW notes_appreciations_activite AS
 SELECT
-    idSeance,
-    AVG(note) AS 'moyenneNotes'
+    note,
+    nom
 FROM participation
-GROUP BY idSeance;
+INNER JOIN seance s on participation.idSeance = s.idSeance
+INNER JOIN activite a on s.activiteNom = a.nom and s.activiteType = a.type
+;
+
+--  Affiche la moyenne des notes d’appréciations pour toutes les activités
+DROP VIEW IF EXISTS moyenne_notes_appreciations_activite;
+CREATE VIEW moyenne_notes_appreciations_activite AS
+SELECT
+    ROUND(AVG(note),2) moyenne_note,
+    nom nom_activite
+FROM participation
+INNER JOIN seance s on participation.idSeance = s.idSeance
+INNER JOIN activite a on s.activiteNom = a.nom and s.activiteType = a.type
+GROUP BY nom;
+;
 
 -- Afficher le nombre de participant pour chaque activité -> Flo
 DROP VIEW IF EXISTS nombre_participants_activites;
@@ -237,6 +250,12 @@ FROM participation p
 INNER JOIN seance s ON p.idSeance = s.idSeance
 GROUP BY MONTH(dateHeure)
 ORDER BY MONTH(dateHeure);
+
+
+-- les notes par activitées
+
+
+-- moyenne des notes pas activitée
 
 
 -- Procédures ------------------------------------------------------------------------------
@@ -302,4 +321,8 @@ CREATE TRIGGER adherent_moins_18ans_erreur BEFORE INSERT ON adherent FOR EACH RO
         end if ;
     end //
 delimiter ;
+
+
+
+
 
