@@ -204,15 +204,28 @@ LIMIT 1;
 
 -- Trouver le prix moyen par activité pour chaque participant -- HEEELP
 
---  Afficher les notes d’appréciation pour chaque activité -- HEEEELP
-
-
---  Affiche la moyenne des notes d’appréciations pour toutes les activités -- HEEEELP
+--  Afficher les notes d’appréciation pour chaque activité 
+DROP VIEW IF EXISTS notes_appreciations_activite;
+CREATE VIEW notes_appreciations_activite AS
 SELECT
-    idSeance,
-    AVG(note) AS 'moyenneNotes'
+    note,
+    nom
 FROM participation
-GROUP BY idSeance;
+INNER JOIN seance s on participation.idSeance = s.idSeance
+INNER JOIN activite a on s.activiteNom = a.nom and s.activiteType = a.type
+;
+
+--  Affiche la moyenne des notes d’appréciations pour toutes les activités
+DROP VIEW IF EXISTS moyenne_notes_appreciations_activite;
+CREATE VIEW moyenne_notes_appreciations_activite AS
+SELECT
+    ROUND(AVG(note),2) moyenne_note,
+    nom nom_activite
+FROM participation
+INNER JOIN seance s on participation.idSeance = s.idSeance
+INNER JOIN activite a on s.activiteNom = a.nom and s.activiteType = a.type
+GROUP BY nom;
+;
 
 -- Afficher le nombre de participant pour chaque activité -> Flo
 DROP VIEW IF EXISTS nombre_participants_activites;
@@ -239,6 +252,12 @@ GROUP BY MONTH(dateHeure)
 ORDER BY MONTH(dateHeure);
 
 
+-- les notes par activitées
+
+
+-- moyenne des notes pas activitée
+
+
 -- Procédures ------------------------------------------------------------------------------
 -- Affiche les informations d'un adhérent selon son idAdherent -> Flo
 DROP PROCEDURE IF EXISTS affiche_adherent;
@@ -250,6 +269,46 @@ BEGIN
     WHERE noIdentification = _idAdherent;
 end /
 delimiter ;
+
+-- Ajouter un adherant a l'aide de procédure
+DROP PROCEDURE IF EXISTS ajouter_adherant;
+DELIMITER //
+CREATE PROCEDURE ajouter_adherant(IN _nom VARCHAR(155),IN _prenom VARCHAR(155),IN _adresse VARCHAR(255),IN _dateNaissance DATE,IN _age INT, IN _email VARCHAR(255), IN _pseudo VARCHAR(155), IN _mdp VARCHAR(255),IN _role VARCHAR(155) )
+BEGIN
+    INSERT INTO adherent ( nom, prenom, adresse, dateNaissance, age, email, pseudo, mdp, role) VALUES (_nom, _prenom, _adresse, _dateNaissance, _age, _email, _pseudo, _mdp, _role);
+end //
+DELIMITER ;
+
+-- Ajouter une séance
+DROP PROCEDURE IF EXISTS ajouter_seance;
+DELIMITER //
+CREATE PROCEDURE ajouter_seance( IN _activiteNom VARCHAR(155),IN _activiteType VARCHAR(155),IN _dateHeure DATETIME,IN _nbPlacesDispos INT)
+BEGIN
+    INSERT INTO seance (activiteNom, activiteType, dateHeure, nbPlacesDispos) VALUES (_activiteNom, _activiteType, _dateHeure, _nbPlacesDispos);
+end //
+DELIMITER ;
+
+--ajouter une participation
+DROP PROCEDURE IF EXISTS ajouter_participation;
+DELIMITER //
+CREATE PROCEDURE ajouter_participation(IN _idAdherent VARCHAR(11),IN  _idSeance INT,IN  _note DOUBLE)
+BEGIN
+    INSERT INTO participation (idAdherent, idSeance, note) VALUES (_idAdherent, _idSeance, _note);
+end //
+DELIMITER ;
+
+
+-- ajouter une activité
+DROP PROCEDURE IF EXISTS ajouter_activite;
+DELIMITER //
+CREATE PROCEDURE ajouter_activite( IN _nom VARCHAR(155),IN _type VARCHAR(155),IN _coutOrganisation DOUBLE,IN _prixVente DOUBLE)
+BEGIN
+    INSERT INTO activite (nom, type, coutOrganisation, prixVente) VALUES (_nom, _type, _coutOrganisation, _prixVente);
+end //
+DELIMITER ;
+
+
+
 
 -- Fonctions ------------------------------------------------------------------------------
 
@@ -271,6 +330,8 @@ BEGIN
     RETURN (idAdherent);
 end //
 delimiter ;
+
+-- Retournes les types  
 
 
 -- Erreurs ------------------------------------------------------------------------------
@@ -302,4 +363,8 @@ CREATE TRIGGER adherent_moins_18ans_erreur BEFORE INSERT ON adherent FOR EACH RO
         end if ;
     end //
 delimiter ;
+
+
+
+
 
