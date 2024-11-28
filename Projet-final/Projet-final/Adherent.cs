@@ -45,9 +45,22 @@ namespace Projet_final
             Role = role;
         }
 
+        public Adherent(string noIdentification, string nom, string prenom, string adresse, DateTime dateNaissance, string email, string pseudo, string mdp, string role)
+        {
+            NoIdentification = noIdentification;
+            Nom = nom;
+            Prenom = prenom;
+            Adresse = adresse;
+            DateNaissance = dateNaissance;
+            Email = email;
+            Pseudo = pseudo;
+            Mdp = mdp;
+            Role = role;
+        }
+
         public override string ToString()
         {
-            return $"{Prenom} - {Nom} - {Age}";
+            return $"{NoIdentification} ; {Nom} ; {Prenom} ; {Adresse} ; {DateNaissance} ; {Email} ; {Pseudo} ; {Mdp} ; {Role}";
         }
     }
 }
