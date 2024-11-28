@@ -26,7 +26,7 @@
 
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin=" 70 10 0 0">
                 <TextBlock HorizontalAlignment="Center" FontSize="17" Margin=" 0 0 0 7">Ajouter une activité</TextBlock>
-                <Button x:Name="btn_ajoute" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15">+ ajouter</Button>
+                <Button x:Name="btn_ajoute" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" Click="btn_ajoute_Click">+ ajouter</Button>
             </StackPanel>
 
 

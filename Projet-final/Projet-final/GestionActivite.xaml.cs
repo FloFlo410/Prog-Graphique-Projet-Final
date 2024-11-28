@@ -93,5 +93,10 @@ namespace Projet_final
 
 
         }
+
+        private void btn_ajoute_Click(object sender, RoutedEventArgs e)
+        {
+            SingletonAdherent.getInstance().getMainwindow().Navigate(typeof(AjoutActivite));
+        }
     }
 }
