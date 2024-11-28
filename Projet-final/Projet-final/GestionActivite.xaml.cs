@@ -82,5 +82,16 @@ namespace Projet_final
                 tblock_error.Text = result;
             
         }
+
+        private void btn_sup_Click(object sender, RoutedEventArgs e)
+        {
+            int index = lv_activites.SelectedIndex;
+            Activite activite = SingletonActivite.getInstance().getListeActivites()[index];
+
+            SingletonActivite.getInstance().supprimer(activite);
+
+
+
+        }
     }
 }

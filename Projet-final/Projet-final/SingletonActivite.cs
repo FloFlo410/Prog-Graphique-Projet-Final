@@ -88,5 +88,28 @@ namespace Projet_final
 
         }
 
+
+
+        public void supprimer(Activite activite)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = $"DELETE FROM activite WHERE nom ='{activite.Nom}' AND type = '{activite.Type}'";
+
+                con.Open();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+                loadDataInList();
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+
+            }
+        }
+
     }
 }
