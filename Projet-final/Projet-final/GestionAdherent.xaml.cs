@@ -49,7 +49,23 @@ namespace Projet_final
 
         private void btn_modifier_Click(object sender, RoutedEventArgs e)
         {
+            if(lv_Adherent.SelectedItem != null)
+            {
+                string noIdentification = tbl_noIdentification.Text;
+                string prenom = tbx_prenom.Text;
+                string nom = tbx_nom.Text;
+                string adresse = tbx_adresse.Text;
+                DateTime dateNaissance = (DateTime)cldr_dateNaissance.Date.Value.DateTime;
+                string email = tbx_email.Text;
+                string pseudo = tbx_pseudo.Text;
+                string mdp = tbx_mdp.Text;
+                string role = tbx_role.Text;
 
+                Adherent adherent = new Adherent(noIdentification, nom, prenom, adresse, dateNaissance, email, pseudo, mdp, role);
+
+                SingletonAdherent.getInstance().modifierAdherent(adherent);
+            }
+            
         }
 
         private void lv_Adherent_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -58,6 +74,7 @@ namespace Projet_final
             if (adherent != null)
             {
                 stck_infoAdherent.Visibility = Visibility.Visible;
+                tbl_noIdentification.Text = adherent.NoIdentification;
                 tbx_prenom.Text = adherent.Prenom;
                 tbx_nom.Text = adherent.Nom;
                 cldr_dateNaissance.Date = adherent.DateNaissance;
@@ -73,6 +90,11 @@ namespace Projet_final
             {
                 stck_infoAdherent.Visibility= Visibility.Collapsed;
             }
+        }
+
+        private void btn_exporter_adherent_Click(object sender, RoutedEventArgs e)
+        {
+            SingletonAdherent.getInstance().exporterAdherentCsv();
         }
     }
 }
