@@ -49,6 +49,8 @@ namespace Projet_final
             {
                 string item = activite.Nom + "\t" + activite.Type + "\t Nombre participation: ";
                 item += SingletonAdherent.getInstance().nbTotalAdherentSelonActivite(activite.Nom, activite.Type);
+                item += "\t Note moyenne: ";
+                item += SingletonActivite.getInstance().moyenneNoteParActivite(activite.Nom, activite.Type);
 
                 lv_activites.Items.Add(item);
             }

@@ -353,7 +353,7 @@ BEGIN
 end //
 delimiter ;
 
--- Retourne le nombre d'adherent pour une activite particuliere
+-- Retourne le nombre d'adherent pour une activite particuliere -> Flo
 DROP FUNCTION IF EXISTS nombre_total_adherent_selon_activite;
 DELIMITER //
 CREATE FUNCTION nombre_total_adherent_selon_activite(
@@ -372,8 +372,26 @@ BEGIN
 end //
 delimiter ;
 
+-- Retourne la moyenne des évaluations pour une activite particuliere -> Flo
+DROP FUNCTION IF EXISTS moyenne_evaluation_selon_activite;
+DELIMITER //
+CREATE FUNCTION moyenne_evaluation_selon_activite(
+    _nomActivite VARCHAR(155),
+    _typeActivite VARCHAR(155)
+)
+RETURNS DOUBLE
+BEGIN
+    DECLARE nb DOUBLE;
+    SELECT AVG(note) INTO nb
+    FROM participation p
+    INNER JOIN seance s on p.idSeance = s.idSeance
+    INNER JOIN activite a on s.activiteNom = a.nom and s.activiteType = a.type
+    WHERE nom = _nomActivite AND  type = _typeActivite;
+    RETURN (nb);
+end //
+delimiter ;
 
-SELECT nombre_total_adherent_selon_activite()
+
 -- Erreurs ------------------------------------------------------------------------------
 
 -- Empêcher un participant de s'inscrire deux fois à la même séance. -> Flo
