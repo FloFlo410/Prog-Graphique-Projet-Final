@@ -281,7 +281,7 @@ BEGIN
 end //
 DELIMITER ;
 
---ajouter une participation
+-- ajouter une participation
 DROP PROCEDURE IF EXISTS ajouter_participation;
 DELIMITER //
 CREATE PROCEDURE ajouter_participation(IN _idAdherent VARCHAR(11),IN  _idSeance INT,IN  _note DOUBLE)
@@ -326,6 +326,19 @@ delimiter ;
 
 -- Retournes les types  
 
+
+-- Retourne le nombre d'adherent -> Flo
+DROP FUNCTION IF EXISTS retourne_adherent_connexion;
+DELIMITER //
+CREATE FUNCTION nombre_total_adherent()
+RETURNS VARCHAR(11)
+BEGIN
+    DECLARE nb INT;
+    SELECT COUNT(*) INTO nb
+    FROM adherent;
+    RETURN (nb);
+end //
+delimiter ;
 
 
 
