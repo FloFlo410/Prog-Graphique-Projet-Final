@@ -23,6 +23,7 @@ CREATE TABLE activite(
     prixVente DOUBLE,
     PRIMARY KEY pk_activite (nom, type),
     FOREIGN KEY fk_activite_categorie (type) REFERENCES categorie (nom)
+    ON UPDATE CASCADE
 );
 
 CREATE TABLE seance(
@@ -33,7 +34,8 @@ CREATE TABLE seance(
     nbPlacesDispos INT,
     PRIMARY KEY pk_seance (idSeance),
     FOREIGN KEY fk_seance_activite (activiteNom, activiteType) REFERENCES activite(nom, type)
-);
+    ON UPDATE CASCADE
+    );
 
 CREATE TABLE adherent(
     noIdentification VARCHAR(11),
@@ -57,7 +59,8 @@ CREATE TABLE participation(
     PRIMARY KEY pk_participation (idParticipation),
     FOREIGN KEY fk_participation_adherent (idAdherent) REFERENCES adherent(noIdentification),
     FOREIGN KEY fk_participation_seance (idSeance) REFERENCES seance(idSeance)
-);
+    ON UPDATE CASCADE
+    );
 
 
 -- Déclencheurs ------------------------------------------------------------------------------
