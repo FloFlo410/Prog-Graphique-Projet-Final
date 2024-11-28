@@ -88,5 +88,18 @@ namespace Projet_final
 
         }
 
+        // Statistiques
+        public int nbTotalActivite()
+        {
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select nombre_total_activite()";
+            con.Open();
+            int i = Int32.Parse(commande.ExecuteScalar().ToString());
+            con.Close();
+            return i;
+        }
+
     }
 }

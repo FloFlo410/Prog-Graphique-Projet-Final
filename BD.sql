@@ -328,7 +328,7 @@ delimiter ;
 
 
 -- Retourne le nombre d'adherent -> Flo
-DROP FUNCTION IF EXISTS retourne_adherent_connexion;
+DROP FUNCTION IF EXISTS nombre_total_adherent;
 DELIMITER //
 CREATE FUNCTION nombre_total_adherent()
 RETURNS VARCHAR(11)
@@ -340,6 +340,18 @@ BEGIN
 end //
 delimiter ;
 
+-- Retourne le nombre d'activités
+DROP FUNCTION IF EXISTS nombre_total_activite;
+DELIMITER //
+CREATE FUNCTION nombre_total_activite()
+RETURNS VARCHAR(11)
+BEGIN
+    DECLARE nb INT;
+    SELECT COUNT(*) INTO nb
+    FROM activite;
+    RETURN (nb);
+end //
+delimiter ;
 
 
 -- Erreurs ------------------------------------------------------------------------------

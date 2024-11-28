@@ -27,8 +27,12 @@ namespace Projet_final
         {
             this.InitializeComponent();
 
-            tbl_nbTotalAdherents.Text = "Nombre total d'adhérent: ";
+            tbl_nbTotalAdherents.Text = "Nombre total d'adhérents: ";
             tbl_nbTotalAdherents.Text += SingletonAdherent.getInstance().nbTotalAdherent();
+
+            tbl_nbTotalActivites.Text = "Nombre total d'activités: ";
+            tbl_nbTotalActivites.Text += SingletonActivite.getInstance().nbTotalActivite();
+
         }
     }
 }
