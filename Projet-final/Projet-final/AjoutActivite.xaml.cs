@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,10 +36,6 @@ namespace Projet_final
             
         }
 
-        private void btn_modif_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
@@ -53,6 +50,67 @@ namespace Projet_final
                 tbox_categories.Visibility = Visibility.Collapsed;
                 cbox_categories.Visibility = Visibility.Visible;
             }
+        }
+
+        private void btn_ajout_Click(object sender, RoutedEventArgs e)
+        {
+            if (Validation())
+            {            
+                string categorie;
+                if (switch_choix.IsOn)
+                {
+                    categorie = tbox_categories.Text;
+                    tblock_error.Text = SingletonCategories.getInstance().ajouter(new Categorie(categorie));
+                }
+                else
+                {
+                    categorie = cbox_categories.SelectedValue.ToString();
+                }
+
+                string result = SingletonActivite.getInstance().ajouter(new Activite(tbox_nom.Text, categorie, Convert.ToInt32(num_prix_org.Text), Convert.ToInt32(num_prix_client.Text)));
+                if(result == "réussi")
+                {
+                    SingletonAdherent.getInstance().getMainwindow().Navigate(typeof(GestionActivite));
+                }
+                else
+                {
+                    tblock_error.Text = result;
+                }
+
+            }
+
+
+
+        }
+
+
+
+        private bool Validation() {
+
+            restart();
+            bool valide = true;
+
+
+            if (string.IsNullOrWhiteSpace(tbox_nom.Text))
+            {
+                valide = false;
+                tbox_nom_error.Text = "Le nom ne peut pas être vide";
+
+            }
+            return valide;
+        
+        
+        }
+
+
+
+        private void restart()
+        {
+            num_prix_client_error.Text =String.Empty;
+            num_prix_org_error.Text = String.Empty;
+            tbox_nom_error.Text = String.Empty;
+            cbox_categories_error.Text = String.Empty;
+
         }
     }
 }

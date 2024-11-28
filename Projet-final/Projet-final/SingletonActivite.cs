@@ -111,5 +111,48 @@ namespace Projet_final
             }
         }
 
+        public string ajouter(Activite activite){
+
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "insert into activite values(@nom,@type,@coutOrganisation,@prixVente) ";
+                commande.Parameters.AddWithValue("@nom", activite.Nom);
+                commande.Parameters.AddWithValue("@type", activite.Type);
+                commande.Parameters.AddWithValue("@coutOrganisation", activite.CoutOrganisation);
+                commande.Parameters.AddWithValue("@prixVente", activite.PrixVente);
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+                con.Close();
+                loadDataInList();
+                return "réussi";
+
+
+
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                if (ex.Message.Contains("Duplicate"))
+                {
+                    return "Cette activité existe déjà avec la même catégorie";
+                }
+
+
+            }
+
+
+
+
+
+
+
+            return "erreur";
+        }
+
     }
 }
