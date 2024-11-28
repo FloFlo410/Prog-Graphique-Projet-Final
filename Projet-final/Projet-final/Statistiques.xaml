@@ -12,6 +12,12 @@
         <StackPanel>
             <TextBlock x:Name="tbl_nbTotalAdherents"/>
             <TextBlock x:Name="tbl_nbTotalActivites"/>
+
+            <ScrollViewer Grid.Row="1" Margin=" 0 20 0 0">
+                <ListView x:Name="lv_activites">
+                    
+                </ListView>
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Page>

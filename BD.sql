@@ -331,7 +331,7 @@ delimiter ;
 DROP FUNCTION IF EXISTS nombre_total_adherent;
 DELIMITER //
 CREATE FUNCTION nombre_total_adherent()
-RETURNS VARCHAR(11)
+RETURNS INT
 BEGIN
     DECLARE nb INT;
     SELECT COUNT(*) INTO nb
@@ -344,7 +344,7 @@ delimiter ;
 DROP FUNCTION IF EXISTS nombre_total_activite;
 DELIMITER //
 CREATE FUNCTION nombre_total_activite()
-RETURNS VARCHAR(11)
+RETURNS INT
 BEGIN
     DECLARE nb INT;
     SELECT COUNT(*) INTO nb
@@ -353,7 +353,27 @@ BEGIN
 end //
 delimiter ;
 
+-- Retourne le nombre d'adherent pour une activite particuliere
+DROP FUNCTION IF EXISTS nombre_total_adherent_selon_activite;
+DELIMITER //
+CREATE FUNCTION nombre_total_adherent_selon_activite(
+    _nomActivite VARCHAR(155),
+    _typeActivite VARCHAR(155)
+)
+RETURNS INT
+BEGIN
+    DECLARE nb INT;
+    SELECT COUNT(*) INTO nb
+    FROM participation p
+    INNER JOIN seance s on p.idSeance = s.idSeance
+    INNER JOIN activite a on s.activiteNom = a.nom and s.activiteType = a.type
+    WHERE nom = _nomActivite AND  type = _typeActivite;
+    RETURN (nb);
+end //
+delimiter ;
 
+
+SELECT nombre_total_adherent_selon_activite()
 -- Erreurs ------------------------------------------------------------------------------
 
 -- Empêcher un participant de s'inscrire deux fois à la même séance. -> Flo

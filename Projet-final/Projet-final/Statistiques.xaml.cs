@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -32,6 +33,25 @@ namespace Projet_final
 
             tbl_nbTotalActivites.Text = "Nombre total d'activités: ";
             tbl_nbTotalActivites.Text += SingletonActivite.getInstance().nbTotalActivite();
+
+            nbAdherentActivites();
+
+        }
+
+        public void nbAdherentActivites()
+        {
+            ObservableCollection<Activite> liste_activites = SingletonActivite.getInstance().getListeActivites();
+
+
+
+
+            foreach (Activite activite in liste_activites)
+            {
+                string item = activite.Nom + "\t" + activite.Type + "\t Nombre participation: ";
+                item += SingletonAdherent.getInstance().nbTotalAdherentSelonActivite(activite.Nom, activite.Type);
+
+                lv_activites.Items.Add(item);
+            }
 
         }
     }
