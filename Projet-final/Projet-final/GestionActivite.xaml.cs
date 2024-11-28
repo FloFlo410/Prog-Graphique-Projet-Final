@@ -12,6 +12,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -33,13 +34,20 @@ namespace Projet_final
         private void lv_activites_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int index = lv_activites.SelectedIndex;
-
+            int indexComboBox = -1;
             if (index != -1)
             {
                 stp_detail.Visibility = Visibility.Visible;
                 Activite activite = SingletonActivite.getInstance().getListeActivites()[index];
+                
+                for(int i =0; i<cbox_categories.Items.Count; i++)
+                {
+                    if (cbox_categories.Items[i].ToString() == activite.Type)
+                    {
+                        indexComboBox = i;
+                    }
 
-                int indexComboBox = cbox_categories.Items.IndexOf(activite.Type);
+                }
 
                 tblock_nom.Text = activite.Nom;
                 tbox_nom.Text = activite.Nom;
@@ -48,7 +56,7 @@ namespace Projet_final
 
                 if (indexComboBox != -1)
                 {
-                    cbox_categories.SelectedItem = indexComboBox;
+                    cbox_categories.SelectedItem = cbox_categories.Items[indexComboBox];
                 }
 
 
