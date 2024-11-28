@@ -58,7 +58,7 @@ namespace Projet_final
                 DateTime dateNaissance = (DateTime)cldr_dateNaissance.Date.Value.DateTime;
                 string email = tbx_email.Text;
                 string pseudo = tbx_pseudo.Text;
-                string mdp = tbx_mdp.Text;
+                string mdp = tbx_mdp.Password;
                 string role = tbx_role.Text;
 
                 Adherent adherent = new Adherent(noIdentification, nom, prenom, adresse, dateNaissance, email, pseudo, mdp, role);
@@ -82,7 +82,7 @@ namespace Projet_final
                 tbx_adresse.Text = adherent.Adresse;
                 tbx_email.Text = adherent.Email;
                 tbx_pseudo.Text = adherent.Pseudo;
-                tbx_mdp.Text = adherent.Mdp;
+                tbx_mdp.Password = adherent.Mdp;
                 tbx_role.Text = adherent.Role;
 
             }

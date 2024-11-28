@@ -318,6 +318,7 @@ namespace Projet_final
             }
 
                 isConnect = true;
+                mainWindow_Window.setNomAccueil();
                 r.Close();
                 con.Close();
             }
@@ -333,6 +334,7 @@ namespace Projet_final
         public void Deconnexion()
         {
             isConnect = false;
+            mainWindow_Window.setNomAccueil();
             adherentConnect = null;
         }
     }

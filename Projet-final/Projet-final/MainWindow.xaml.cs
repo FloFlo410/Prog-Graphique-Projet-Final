@@ -33,6 +33,8 @@ namespace Projet_final
 
             SingletonAdherent.getInstance().setMainwindow(this.mainWindow);
             SingletonAdherent.getInstance().setMainwindowWindow(this);
+
+            setNomAccueil();
         }
         private async void nvSample_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
@@ -90,6 +92,14 @@ namespace Projet_final
                     mainWindow.Navigate(typeof(ListeActivitees));
                     break;
             }
+        }
+
+        public void setNomAccueil()
+        {
+            if (SingletonAdherent.getInstance().IsConnect)
+                tblock_acceuil_name.Text = "Bonjour, " + SingletonAdherent.getInstance().AdhrentConnect.Prenom;
+            else
+                tblock_acceuil_name.Text = "Bonjour";
         }
     }
 }
