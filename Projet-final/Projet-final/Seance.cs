@@ -11,15 +11,16 @@ namespace Projet_final
 
        public int idSeance;
        public string activiteNom;
-       public string typeActivite;
+        public string activiteType;
+        public int nbPlacesDispos;
 
-        public Seance(int idSeance, string activiteNom, string typeActivite)
+        public Seance(int idSeance, string activiteNom, string activiteType, int nbPlacesDispos)
         {
             this.idSeance = idSeance;
             this.activiteNom = activiteNom;
-            this.typeActivite = typeActivite;
+            this.activiteType = activiteType;
+            this.nbPlacesDispos = nbPlacesDispos;
         }
-
 
         public int IdSeance
         {
@@ -32,12 +33,17 @@ namespace Projet_final
             get { return activiteNom; }
             set { activiteNom = value; }
         }
-    
-        public string TypeActivite
+
+        public string ActiteType
         {
-            get { return typeActivite; }
-            set { typeActivite = value; }
+            get { return activiteType; }
+            set { activiteType = value; }
         }
-    
+
+        public int NbPlacesDispos
+        {
+            get { return nbPlacesDispos; }
+            set { nbPlacesDispos = value; }
+        }
     }
 }
