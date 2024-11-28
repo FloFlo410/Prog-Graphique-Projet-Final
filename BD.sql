@@ -120,6 +120,23 @@ CREATE TRIGGER verifier_dispos BEFORE INSERT ON participation FOR EACH ROW
 delimiter ;
 
 
+-- Supprimer tout les enfants d'une activité relier
+DELIMITER //
+CREATE TRIGGER supprimer_activite
+    BEFORE DELETE
+    ON activite
+    FOR EACH ROW
+    BEGIN
+
+        DELETE FROM participation WHERE idSeance  IN(SELECT idSeance FROM seance
+                                                            WHERE activiteNom = OLD.nom AND activiteType = OLD.type);
+
+        DELETE FROM seance WHERE activiteNom = OLD.nom AND activiteType = OLD.type;
+
+    end //
+DELIMITER ;
+
+
 
 -- Insertion -> Justin ------------------------------------------------------------------------------
 INSERT INTO categorie (nom) VALUES
