@@ -41,7 +41,9 @@ namespace Projet_final
 
             switch (item)
             {
-
+                case "Statistiques":
+                    mainWindow.Navigate(typeof(Statistiques));
+                    break;
 
                 case "Gestion utilisateur":
                     mainWindow.Navigate(typeof(GestionAdherent));

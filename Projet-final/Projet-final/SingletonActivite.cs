@@ -88,5 +88,31 @@ namespace Projet_final
 
         }
 
+        // Statistiques
+        public int nbTotalActivite()
+        {
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select nombre_total_activite()";
+            con.Open();
+            int i = Int32.Parse(commande.ExecuteScalar().ToString());
+            con.Close();
+            return i;
+        }
+
+        public double moyenneNoteParActivite(string nomActivite, string typeActivite)
+        {
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select moyenne_evaluation_selon_activite(@nomActivite, @typeActivite)";
+            commande.Parameters.AddWithValue("@nomActivite", nomActivite);
+            commande.Parameters.AddWithValue("@typeActivite", typeActivite);
+            con.Open();
+            double i = Double.Parse(commande.ExecuteScalar().ToString());
+            con.Close();
+            return i;
+        }
+
     }
 }

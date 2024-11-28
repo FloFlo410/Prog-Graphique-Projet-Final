@@ -301,7 +301,7 @@ BEGIN
 end //
 DELIMITER ;
 
---ajouter une participation
+-- ajouter une participation
 DROP PROCEDURE IF EXISTS ajouter_participation;
 DELIMITER //
 CREATE PROCEDURE ajouter_participation(IN _idAdherent VARCHAR(11),IN  _idSeance INT,IN  _note DOUBLE)
@@ -347,6 +347,69 @@ delimiter ;
 -- Retournes les types  
 
 
+-- Retourne le nombre d'adherent -> Flo
+DROP FUNCTION IF EXISTS nombre_total_adherent;
+DELIMITER //
+CREATE FUNCTION nombre_total_adherent()
+RETURNS INT
+BEGIN
+    DECLARE nb INT;
+    SELECT COUNT(*) INTO nb
+    FROM adherent;
+    RETURN (nb);
+end //
+delimiter ;
+
+-- Retourne le nombre d'activités
+DROP FUNCTION IF EXISTS nombre_total_activite;
+DELIMITER //
+CREATE FUNCTION nombre_total_activite()
+RETURNS INT
+BEGIN
+    DECLARE nb INT;
+    SELECT COUNT(*) INTO nb
+    FROM activite;
+    RETURN (nb);
+end //
+delimiter ;
+
+-- Retourne le nombre d'adherent pour une activite particuliere -> Flo
+DROP FUNCTION IF EXISTS nombre_total_adherent_selon_activite;
+DELIMITER //
+CREATE FUNCTION nombre_total_adherent_selon_activite(
+    _nomActivite VARCHAR(155),
+    _typeActivite VARCHAR(155)
+)
+RETURNS INT
+BEGIN
+    DECLARE nb INT;
+    SELECT COUNT(*) INTO nb
+    FROM participation p
+    INNER JOIN seance s on p.idSeance = s.idSeance
+    INNER JOIN activite a on s.activiteNom = a.nom and s.activiteType = a.type
+    WHERE nom = _nomActivite AND  type = _typeActivite;
+    RETURN (nb);
+end //
+delimiter ;
+
+-- Retourne la moyenne des évaluations pour une activite particuliere -> Flo
+DROP FUNCTION IF EXISTS moyenne_evaluation_selon_activite;
+DELIMITER //
+CREATE FUNCTION moyenne_evaluation_selon_activite(
+    _nomActivite VARCHAR(155),
+    _typeActivite VARCHAR(155)
+)
+RETURNS DOUBLE
+BEGIN
+    DECLARE nb DOUBLE;
+    SELECT AVG(note) INTO nb
+    FROM participation p
+    INNER JOIN seance s on p.idSeance = s.idSeance
+    INNER JOIN activite a on s.activiteNom = a.nom and s.activiteType = a.type
+    WHERE nom = _nomActivite AND  type = _typeActivite;
+    RETURN (nb);
+end //
+delimiter ;
 
 
 -- Erreurs ------------------------------------------------------------------------------
