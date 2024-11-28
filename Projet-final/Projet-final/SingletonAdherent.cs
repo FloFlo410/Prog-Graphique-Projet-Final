@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,6 +23,7 @@ namespace Projet_final
         Adherent adherentConnect;
 
         public static Frame mainWindow;
+        public static MainWindow mainWindow_Window;
 
         public ObservableCollection<Adherent> Liste_Adherent
         {
@@ -32,6 +34,12 @@ namespace Projet_final
         {
             mainWindow = _main;
         }
+
+        public void setMainwindowWindow(MainWindow _main)
+        {
+            mainWindow_Window = _main;
+        }
+
 
         public Frame getMainwindow()
         {
@@ -116,6 +124,83 @@ namespace Projet_final
             
         }
 
+        public bool checkIfPasswordHasChanged(string noIdentification, string mdp)
+        {
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select * from adherent WHERE noIdentification='"+ noIdentification+"' AND mdp='"+mdp+"';";
+            con.Open();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            if (r.Read())
+            {
+                con.Close();
+                return false;
+            }
+            con.Close();
+            return true;
+        }
+
+        public void modifierAdherent(Adherent adherent)
+        {
+            string no_identification = adherent.NoIdentification;
+
+            string prenom = adherent.Prenom;
+            string nom = adherent.Nom;
+            string adresse = adherent.Adresse;
+            DateTime dateNaissance = adherent.DateNaissance;
+            string email = adherent.Email;
+            string pseudo = adherent.Pseudo;
+            string mdp = adherent.Mdp;
+            string role = adherent.Role;
+
+            bool passwordHasChanged = checkIfPasswordHasChanged(no_identification, mdp);
+            if(passwordHasChanged)
+            {
+                var inputBytes = Encoding.UTF8.GetBytes(mdp);
+                var inputHash = SHA256.HashData(inputBytes);
+                mdp = Convert.ToHexString(inputHash);
+            }
+            
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                if (passwordHasChanged)
+                {
+                    commande.CommandText = "UPDATE adherent SET nom = @nom, prenom = @prenom, dateNaissance = @dateNaissance, adresse = @adresse, email = @email, pseudo = @pseudo, mdp = @mdp, role = @role WHERE noIdentification = @noIdentification";
+                    commande.Parameters.AddWithValue("@mdp", mdp);
+
+                }
+                else
+                {
+                    commande.CommandText = "UPDATE adherent SET nom = @nom, prenom = @prenom, dateNaissance = @dateNaissance, adresse = @adresse, email = @email, pseudo = @pseudo, role = @role WHERE noIdentification = @noIdentification";
+                }
+                commande.Parameters.AddWithValue("@noIdentification", no_identification);
+
+                commande.Parameters.AddWithValue("@nom", nom);
+                commande.Parameters.AddWithValue("@prenom", prenom);
+                commande.Parameters.AddWithValue("@dateNaissance", dateNaissance.ToString());
+                commande.Parameters.AddWithValue("@adresse", adresse);
+                commande.Parameters.AddWithValue("@email", email);
+                commande.Parameters.AddWithValue("@pseudo", pseudo);
+                commande.Parameters.AddWithValue("@role", role);
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+
+                loadDataInList();
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                Console.WriteLine(ex.Message);
+            }
+        }
+
 
         public void supprimerAdherent(string noIdentification)
         {
@@ -159,12 +244,37 @@ namespace Projet_final
             con.Close();
         }
 
+        public async void exporterAdherentCsv()
+        {
+            try
+            {
+                var picker = new Windows.Storage.Pickers.FileSavePicker();
+
+                var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(mainWindow_Window);
+                WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+                picker.SuggestedFileName = "adherents";
+                picker.FileTypeChoices.Add("Csv", new List<string>() { ".csv" });
+
+                //crée le fichier
+                Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+
+                if(monFichier != null)
+                    await Windows.Storage.FileIO.WriteLinesAsync(monFichier, liste_Adherent.ToList<Adherent>().ConvertAll(x => x.ToString()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+
+        }
 
 
 
 
-
-          //Connexion/UserOnline
+        //Connexion/UserOnline
         public void Connexion(string username, string mot_de_passe)
         {
 
