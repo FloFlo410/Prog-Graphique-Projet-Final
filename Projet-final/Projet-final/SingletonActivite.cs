@@ -64,7 +64,7 @@ namespace Projet_final
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = $"update activite set nom ='{newActivite.Nom}', type = '{newActivite.Type}', coutOrganisation={newActivite.CoutOrganisation}, prixVente ={newActivite.PrixVente} where nom ='{oldActivite.Nom}' AND type = '{oldActivite.Type}' ";
+                commande.CommandText = $" update activite set nom ='{newActivite.Nom}', type = '{newActivite.Type}', coutOrganisation={newActivite.CoutOrganisation}, prixVente ={newActivite.PrixVente} where nom ='{oldActivite.Nom}' AND type = '{oldActivite.Type}' ";
 
                 con.Open();
                 int i = commande.ExecuteNonQuery();
@@ -76,7 +76,7 @@ namespace Projet_final
             catch (Exception ex)
             {
                 con.Close();
-                if(ex.HResult == -2147467259)
+                if (ex.Message.Contains("Duplicate"))
                 {
                     return "Cette activité existe déjà avec la même catégorie";
                 }

@@ -47,13 +47,5 @@ namespace Projet_final
             con.Close();
         }
 
-
-
-
-        public void modifier_activite(Activite newActivite, Activite oldActivite)
-        {
-
-
-        }
     }
 }
