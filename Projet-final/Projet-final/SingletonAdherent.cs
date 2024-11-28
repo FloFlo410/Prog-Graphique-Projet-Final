@@ -271,7 +271,18 @@ namespace Projet_final
 
         }
 
+        //Statistiques
+        public int nbTotalAdherent()
+        {
 
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select nombre_total_adherent()";
+            con.Open();
+            int i = Int32.Parse(commande.ExecuteScalar().ToString());
+            con.Close();
+            return i;
+        }
 
 
         //Connexion/UserOnline

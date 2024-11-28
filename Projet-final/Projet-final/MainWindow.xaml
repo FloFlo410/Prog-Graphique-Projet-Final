@@ -17,6 +17,7 @@
 
         <NavigationView.MenuItems>
             <NavigationViewItem Icon="List" Content="Liste Activités" x:Name="liste_activitees" />
+            <NavigationViewItem Icon="List" Content="Statistiques" x:Name="statistiques" />
 
             <StackPanel Orientation="Horizontal" x:Name="seance_user" >
                 <FontIcon Glyph="&#xE805;" />
