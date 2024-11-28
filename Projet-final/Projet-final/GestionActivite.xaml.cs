@@ -67,5 +67,20 @@ namespace Projet_final
                 stp_detail.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void btn_modif_Click(object sender, RoutedEventArgs e)
+        {
+
+            int index = lv_activites.SelectedIndex;
+            Activite newActivite = new Activite(tbox_nom.Text, cbox_categories.SelectedValue.ToString(), num_prix_org.Value, num_prix_client.Value);
+            Activite oldActivite = SingletonActivite.getInstance().getListeActivites()[index];
+            string result = SingletonActivite.getInstance().modifier(newActivite,oldActivite);
+
+            if(result == "réussi")
+                tblock_error.Text = string.Empty;
+            else
+                tblock_error.Text = result;
+            
+        }
     }
 }

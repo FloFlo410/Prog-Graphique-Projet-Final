@@ -56,5 +56,37 @@ namespace Projet_final
             con.Close();
         }
 
+
+
+        public string modifier(Activite newActivite, Activite oldActivite)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = $"update activite set nom ='{newActivite.Nom}', type = '{newActivite.Type}', coutOrganisation={newActivite.CoutOrganisation}, prixVente ={newActivite.PrixVente} where nom ='{oldActivite.Nom}' AND type = '{oldActivite.Type}' ";
+
+                con.Open();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+                loadDataInList();
+                return "réussi";
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                if(ex.HResult == -2147467259)
+                {
+                    return "Cette activité existe déjà avec la même catégorie";
+                }
+                
+            }
+
+            return "erreur";
+
+
+        }
+
     }
 }

@@ -54,8 +54,6 @@ namespace Projet_final
             r.Close();
             con.Close();
 
-
-
         }
 
     }
