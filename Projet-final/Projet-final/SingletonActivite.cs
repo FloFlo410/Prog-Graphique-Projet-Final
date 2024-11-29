@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -117,6 +118,33 @@ namespace Projet_final
             con.Close();
 
             return seances;
+        }
+
+        public void reserverSeanceActivite(string noIdentification, int idSeance)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "INSERT INTO participation (idAdherent, idSeance VALUES (@idAdherent, @idSeance)";
+
+                commande.Parameters.AddWithValue("@idAdherent", noIdentification);
+                commande.Parameters.AddWithValue("@idSeance", idSeance);
+               
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+
+                loadDataInList();
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                Console.WriteLine(ex.Message);
+            }
         }
 
         // Statistiques

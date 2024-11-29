@@ -38,7 +38,7 @@
                     <ListView x:Name="lv_seance">
                         
                     </ListView>
-                    <Button>Choisir cette session</Button>
+                    <Button x:Name="btn_reserver_seance" Click="btn_reserver_seance_Click" >Choisir cette session</Button>
                 </StackPanel>
                 
                 
