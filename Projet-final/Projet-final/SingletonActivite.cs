@@ -12,6 +12,7 @@ namespace Projet_final
     {
         static SingletonActivite instance = null;
         ObservableCollection<Activite> liste_activites;
+        static Activite activiteSelectionne;
 
         MySqlConnection con = new MySqlConnection(
              "Server=cours.cegep3r.info;Database=a2024_420335ri_eq4;Uid=2356591;Pwd=2356591;");
@@ -27,6 +28,15 @@ namespace Projet_final
                 instance = new SingletonActivite();
 
             return instance;
+        }
+
+        public void setActiviteSelectione(Activite activite)
+        {
+            activiteSelectionne = activite;
+        }
+        public Activite getActiviteSelectione()
+        {
+            return activiteSelectionne;
         }
 
         public ObservableCollection<Activite> getListeActivites()
@@ -86,6 +96,27 @@ namespace Projet_final
             return "erreur";
 
 
+        }
+
+        public ObservableCollection<Seance> getSeancesPourActivite(string nomActivite, string typeActivite)
+        {
+            ObservableCollection<Seance> seances = new ObservableCollection<Seance>();
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select * from seance Where activiteNom = @nomActivite AND activiteType = @typeActivite";
+            commande.Parameters.AddWithValue("@nomActivite", nomActivite);
+            commande.Parameters.AddWithValue("@typeActivite", typeActivite);
+            con.Open();
+            MySqlDataReader r = commande.ExecuteReader();
+            while (r.Read())
+            {
+                Seance seance = new Seance(Int32.Parse(r[0].ToString()), r[1].ToString(), r[2].ToString(), (DateTime) r[3] ,Int32.Parse(r[4].ToString()));
+                seances.Add(seance);
+            }
+            r.Close();
+            con.Close();
+
+            return seances;
         }
 
         // Statistiques

@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         
    
-    <StackPanel Background="White" Grid.Row="0">
+    <StackPanel Background="Blue" Grid.Row="0">
         <TextBlock FontSize="40" HorizontalAlignment="Center">Activités disponibles</TextBlock>
     </StackPanel>
 
@@ -35,7 +35,10 @@
             </GridView.ItemTemplate>
         </GridView>
      </ScrollViewer>
-    
-    
+
+        <Button x:Name="btn_reserver" Click="btn_reserver_Click">Réserver</Button>
+
+
+
     </Grid>
 </Page>
