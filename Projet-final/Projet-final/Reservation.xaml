@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="Projet_final.Reservation"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Projet_final"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid >
+        <StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="2">
+                    <TextBlock x:Name="tblock_nom" FontSize="40"></TextBlock>
+                </StackPanel>
+
+                <TextBlock x:Name="tbl_nom" Grid.Row="1" Grid.Column="0" Margin="0 20 30 0" FontSize="20"></TextBlock>
+
+
+                <TextBlock x:Name="tbl_prix_client" Margin="0 20 30 0" Grid.Row="2" FontSize="20"/>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Margin="0 20 30 0">
+                    <TextBlock>Séance disponible</TextBlock>
+                    <ListView x:Name="lv_seance">
+                        
+                    </ListView>
+                    <Button x:Name="btn_reserver_seance" Click="btn_reserver_seance_Click" >Choisir cette session</Button>
+                    <TextBlock x:Name="tbl_err_reservation" />
+                </StackPanel>
+                
+                
+
+
+
+
+
+
+
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</Page>

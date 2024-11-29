@@ -12,6 +12,7 @@ namespace Projet_final
        public int idSeance;
        public string activiteNom;
         public string activiteType;
+        public DateTime dateHeure;
         public int nbPlacesDispos;
 
         public Seance(int idSeance, string activiteNom, string activiteType, int nbPlacesDispos)
@@ -19,6 +20,15 @@ namespace Projet_final
             this.idSeance = idSeance;
             this.activiteNom = activiteNom;
             this.activiteType = activiteType;
+            this.nbPlacesDispos = nbPlacesDispos;
+        }
+
+        public Seance(int idSeance, string activiteNom, string activiteType,DateTime dateHeure ,int nbPlacesDispos)
+        {
+            this.idSeance = idSeance;
+            this.activiteNom = activiteNom;
+            this.activiteType = activiteType;
+            this.dateHeure = dateHeure;
             this.nbPlacesDispos = nbPlacesDispos;
         }
 
@@ -44,6 +54,17 @@ namespace Projet_final
         {
             get { return nbPlacesDispos; }
             set { nbPlacesDispos = value; }
+        }
+
+        public DateTime DateHeure
+        {
+            get { return dateHeure; }
+            set { dateHeure = value; }
+        }
+
+        public override string ToString()
+        {
+            return $"{ActiviteNom} - {DateHeure} - Places Restantes: {NbPlacesDispos}";
         }
     }
 }

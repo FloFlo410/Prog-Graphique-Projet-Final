@@ -17,6 +17,7 @@
     <None Remove="GestionActivite.xaml" />
     <None Remove="GestionAdherent.xaml" />
     <None Remove="ListeActivitees.xaml" />
+    <None Remove="Reservation.xaml" />
     <None Remove="Statistiques.xaml" />
   </ItemGroup>
 
@@ -44,6 +45,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Reservation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Statistiques.xaml">

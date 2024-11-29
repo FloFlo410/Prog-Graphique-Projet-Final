@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace Projet_final
     {
         static SingletonActivite instance = null;
         ObservableCollection<Activite> liste_activites;
+        static Activite activiteSelectionne;
 
         MySqlConnection con = new MySqlConnection(
              "Server=cours.cegep3r.info;Database=a2024_420335ri_eq4;Uid=2356591;Pwd=2356591;");
@@ -27,6 +29,15 @@ namespace Projet_final
                 instance = new SingletonActivite();
 
             return instance;
+        }
+
+        public void setActiviteSelectione(Activite activite)
+        {
+            activiteSelectionne = activite;
+        }
+        public Activite getActiviteSelectione()
+        {
+            return activiteSelectionne;
         }
 
         public ObservableCollection<Activite> getListeActivites()
@@ -86,6 +97,62 @@ namespace Projet_final
             return "erreur";
 
 
+        }
+
+        public ObservableCollection<Seance> getSeancesPourActivite(string nomActivite, string typeActivite)
+        {
+            ObservableCollection<Seance> seances = new ObservableCollection<Seance>();
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select * from seance Where activiteNom = @nomActivite AND activiteType = @typeActivite";
+            commande.Parameters.AddWithValue("@nomActivite", nomActivite);
+            commande.Parameters.AddWithValue("@typeActivite", typeActivite);
+            con.Open();
+            MySqlDataReader r = commande.ExecuteReader();
+            while (r.Read())
+            {
+                Seance seance = new Seance(Int32.Parse(r[0].ToString()), r[1].ToString(), r[2].ToString(), (DateTime) r[3] ,Int32.Parse(r[4].ToString()));
+                seances.Add(seance);
+            }
+            r.Close();
+            con.Close();
+
+            return seances;
+        }
+
+        public int reserverSeanceActivite(string noIdentification, int idSeance)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "INSERT INTO participation (idAdherent, idSeance) VALUES (@idAdherent, @idSeance)";
+
+                commande.Parameters.AddWithValue("@idAdherent", noIdentification);
+                commande.Parameters.AddWithValue("@idSeance", idSeance);
+               
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+
+                loadDataInList();
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+
+                con.Close();
+                Console.WriteLine(ex.Message);
+                if (ex.Message == "Cet adhérent est déjà incrit à cette séance.")
+                    return -2;
+                else if (ex.Message == "Il n'y a plus de places pour cette séance.")
+                    return -3;
+                return -1;
+            }
         }
 
         // Statistiques
