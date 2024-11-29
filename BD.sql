@@ -222,7 +222,17 @@ GROUP BY idAdherent
 ORDER BY COUNT(idAdherent)  DESC
 LIMIT 1;
 
--- Trouver le prix moyen par activité pour chaque participant -- HEEELP
+-- Trouver le prix moyen par activité pour chaque participant
+DROP VIEW IF EXISTS moyenne_prix_adhrents;
+CREATE VIEW moyenne_prix_adhrents AS
+SELECT
+    prenom,
+    ROUND(AVG(prixVente),2) prix_moyen
+FROM adherent
+INNER JOIN participation p on adherent.noIdentification = p.idAdherent
+INNER JOIN a2024_420335ri_eq4.seance s on p.idSeance = s.idSeance
+INNER JOIN a2024_420335ri_eq4.activite a on s.activiteNom = a.nom and s.activiteType = a.type
+GROUP BY noIdentification;
 
 --  Afficher les notes d’appréciation pour chaque activité 
 DROP VIEW IF EXISTS notes_appreciations_activite;
