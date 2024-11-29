@@ -56,5 +56,36 @@ namespace Projet_final
 
         }
 
+        public string ajouter(Categorie categorie)
+        {
+            try
+            {
+
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "insert into categorie values(@nom) ";
+                commande.Parameters.AddWithValue("@nom", categorie.Nom);
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+                con.Close();
+                putDataInCollection();
+                return "réussi";
+
+
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                if (ex.Message.Contains("Duplicate"))
+                {
+                    return "Cette activité existe déjà avec la même catégorie";
+                }
+            }
+
+            return "erreur";
+        }
+
     }
 }

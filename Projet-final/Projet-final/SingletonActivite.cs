@@ -182,5 +182,55 @@ namespace Projet_final
             return i;
         }
 
+        public void supprimer(Activite activite)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = $"DELETE FROM activite WHERE nom ='{activite.Nom}' AND type = '{activite.Type}'";
+
+                con.Open();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+                loadDataInList();
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+
+            }
+        }
+
+
+        public string ajouter(Activite activite)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("ajouter_activite");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("_nom", activite.Nom);
+                commande.Parameters.AddWithValue("_type", activite.Type);
+                commande.Parameters.AddWithValue("_coutOrganisation", activite.CoutOrganisation);
+                commande.Parameters.AddWithValue("_prixVente", activite.PrixVente);
+
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+                con.Close();
+                loadDataInList();
+                return "réussi";
+
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                return ex.Message;
+            }
+        }
+
     }
 }

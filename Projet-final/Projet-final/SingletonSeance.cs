@@ -48,12 +48,5 @@ namespace Projet_final
         }
 
 
-
-
-        public void modifier_activite(Activite newActivite, Activite oldActivite)
-        {
-
-
-        }
     }
 }
