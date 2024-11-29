@@ -33,12 +33,13 @@
 
                 <TextBlock x:Name="tbl_prix_client" Margin="0 20 30 0" Grid.Row="2" FontSize="20"/>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Margin="0 20 30 0">
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Margin="0 20 30 0">
                     <TextBlock>Séance disponible</TextBlock>
                     <ListView x:Name="lv_seance">
                         
                     </ListView>
                     <Button x:Name="btn_reserver_seance" Click="btn_reserver_seance_Click" >Choisir cette session</Button>
+                    <TextBlock x:Name="tbl_err_reservation" />
                 </StackPanel>
                 
                 

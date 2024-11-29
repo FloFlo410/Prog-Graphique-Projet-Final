@@ -120,13 +120,13 @@ namespace Projet_final
             return seances;
         }
 
-        public void reserverSeanceActivite(string noIdentification, int idSeance)
+        public int reserverSeanceActivite(string noIdentification, int idSeance)
         {
             try
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "INSERT INTO participation (idAdherent, idSeance VALUES (@idAdherent, @idSeance)";
+                commande.CommandText = "INSERT INTO participation (idAdherent, idSeance) VALUES (@idAdherent, @idSeance)";
 
                 commande.Parameters.AddWithValue("@idAdherent", noIdentification);
                 commande.Parameters.AddWithValue("@idSeance", idSeance);
@@ -139,11 +139,19 @@ namespace Projet_final
                 con.Close();
 
                 loadDataInList();
+
+                return 0;
             }
             catch (Exception ex)
             {
+
                 con.Close();
                 Console.WriteLine(ex.Message);
+                if (ex.Message == "Cet adhérent est déjà incrit à cette séance.")
+                    return -2;
+                else if (ex.Message == "Il n'y a plus de places pour cette séance.")
+                    return -3;
+                return -1;
             }
         }
 

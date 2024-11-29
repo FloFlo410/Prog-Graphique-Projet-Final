@@ -50,6 +50,34 @@ namespace Projet_final
 
         private void btn_reserver_seance_Click(object sender, RoutedEventArgs e)
         {
+            if (SingletonAdherent.getInstance().IsConnect)
+            {
+                Adherent adherent = SingletonAdherent.getInstance().AdhrentConnect;
+                if (lv_seance.SelectedItem != null)
+                {
+                    Seance seance = lv_seance.SelectedItem as Seance;
+                    int statut = SingletonActivite.getInstance().reserverSeanceActivite(adherent.NoIdentification, seance.IdSeance);
+                    if(statut == 0) 
+                        tbl_err_reservation.Text = "Vous avez réserver cette séance.";
+                    else if (statut == -2)
+                        tbl_err_reservation.Text = "Vous êtes déjà inscrit(e).";
+                    else if (statut == -3)
+                        tbl_err_reservation.Text = "Il n'y a plus de place disponibles";
+                    else
+                        tbl_err_reservation.Text = "Une erreur s'est produite.";
+
+                    afficherSeances();
+                }
+                else
+                {
+
+                    tbl_err_reservation.Text = "Veuillez choisir une séance.";
+                }
+            }
+            else
+            {
+                tbl_err_reservation.Text = "Veuillez vous connecter avant de réserver une séance.";
+            }
 
         }
     }
