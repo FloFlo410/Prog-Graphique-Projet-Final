@@ -324,9 +324,13 @@ DELIMITER ;
 -- ajouter une activité -> Justin
 DROP PROCEDURE IF EXISTS ajouter_activite;
 DELIMITER //
-CREATE PROCEDURE ajouter_activite( IN _nom VARCHAR(155),IN _type VARCHAR(155),IN _coutOrganisation DOUBLE,IN _prixVente DOUBLE)
+CREATE PROCEDURE ajouter_activite(IN _nom varchar(155), IN _type varchar(155), IN _coutOrganisation double, IN _prixVente double)
 BEGIN
-    INSERT INTO activite (nom, type, coutOrganisation, prixVente) VALUES (_nom, _type, _coutOrganisation, _prixVente);
+    DECLARE CONTINUE HANDLER FOR 1062
+    BEGIN
+       SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Ce nom d\'activité existe déjà pour cette catégorie';
+    end ;
+     INSERT INTO activite (nom, type, coutOrganisation, prixVente) VALUES (_nom, _type, _coutOrganisation, _prixVente);
 end //
 DELIMITER ;
 
@@ -423,6 +427,9 @@ delimiter ;
 
 
 -- Erreurs ------------------------------------------------------------------------------
+
+-- UNE À LA PROCÉDURE D'AJOUT D'ACTVITÉ
+
 
 -- Empêcher un participant de s'inscrire deux fois à la même séance. -> Flo
 DROP TRIGGER IF EXISTS empecher_participation_doublons;
