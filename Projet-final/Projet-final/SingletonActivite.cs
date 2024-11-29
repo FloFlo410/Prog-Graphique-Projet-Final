@@ -109,7 +109,8 @@ namespace Projet_final
             commande.Parameters.AddWithValue("@nomActivite", nomActivite);
             commande.Parameters.AddWithValue("@typeActivite", typeActivite);
             con.Open();
-            double i = Double.Parse(commande.ExecuteScalar().ToString());
+            double i = 0;
+            Double.TryParse(commande.ExecuteScalar().ToString(), out i);
             con.Close();
             return i;
         }
