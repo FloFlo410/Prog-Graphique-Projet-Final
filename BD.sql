@@ -176,7 +176,23 @@ INSERT INTO seance (activiteNom, activiteType, dateHeure, nbPlacesDispos) VALUES
 ('Cours de langue', 'Éducation', '2024-12-10 10:30:00', 18);
 
 
-
+INSERT INTO seance (activiteNom, activiteType, dateHeure, nbPlacesDispos)
+VALUES
+    ('Pâtisserie', 'Cuisine', '2024-12-01 13:00:00', 20),
+    ('Pâtisserie', 'Cuisine', '2024-12-03 10:00:00', 20),
+    ('Pâtisserie', 'Cuisine', '2024-12-03 13:00:00', 20),
+    ('Peinture', 'Art', '2024-11-04 16:00:00', 12),
+    ('Peinture', 'Art', '2024-11-04 19:00:00', 12),
+    ('Peinture', 'Art', '2024-11-05 12:00:00', 12),
+    ('Danse', 'Loisirs créatifs', '2024-02-06 18:00:00', 25),
+    ('Danse', 'Loisirs créatifs', '2024-02-06 18:00:00', 18),
+    ('Danse', 'Loisirs créatifs', '2024-02-07 15:30:00', 25),
+    ('Danse', 'Loisirs créatifs', '2024-02-07 18:00:00', 25),
+    ('Danse', 'Loisirs créatifs', '2024-02-08 10:45:00', 25),
+    ('Cours de langue', 'Éducation', '2024-11-02 09:30:00', 15),
+    ('Cours de langue', 'Éducation', '2024-11-02 10:30:00', 15),
+    ('Cours de langue', 'Éducation', '2024-11-09 10:30:00', 15),
+    ('Randonnée', 'Voyages', '2024-12-08 07:00:00', 10);
 
 
 INSERT INTO adherent (noIdentification, nom, prenom, adresse, dateNaissance, email, pseudo, mdp, role) VALUES
