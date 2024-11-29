@@ -235,7 +235,7 @@ INNER JOIN seance s on participation.idSeance = s.idSeance
 INNER JOIN activite a on s.activiteNom = a.nom and s.activiteType = a.type
 ;
 
---  Affiche la moyenne des notes d’appréciations pour toutes les activités
+--  Affiche la moyenne des notes d’appréciations pour toutes les activités ->Justin
 DROP VIEW IF EXISTS moyenne_notes_appreciations_activite;
 CREATE VIEW moyenne_notes_appreciations_activite AS
 SELECT
@@ -283,7 +283,7 @@ BEGIN
 end /
 delimiter ;
 
--- Ajouter un adherant a l'aide de procédure
+-- Ajouter un adherant a l'aide de procédure -> Justin
 DROP PROCEDURE IF EXISTS ajouter_adherant;
 DELIMITER //
 CREATE PROCEDURE ajouter_adherant(IN _nom VARCHAR(155),IN _prenom VARCHAR(155),IN _adresse VARCHAR(255),IN _dateNaissance DATE,IN _age INT, IN _email VARCHAR(255), IN _pseudo VARCHAR(155), IN _mdp VARCHAR(255),IN _role VARCHAR(155) )
@@ -292,7 +292,7 @@ BEGIN
 end //
 DELIMITER ;
 
--- Ajouter une séance
+-- Ajouter une séance -> Justin
 DROP PROCEDURE IF EXISTS ajouter_seance;
 DELIMITER //
 CREATE PROCEDURE ajouter_seance( IN _activiteNom VARCHAR(155),IN _activiteType VARCHAR(155),IN _dateHeure DATETIME,IN _nbPlacesDispos INT)
@@ -301,7 +301,7 @@ BEGIN
 end //
 DELIMITER ;
 
--- ajouter une participation
+-- ajouter une participation -> Justin
 DROP PROCEDURE IF EXISTS ajouter_participation;
 DELIMITER //
 CREATE PROCEDURE ajouter_participation(IN _idAdherent VARCHAR(11),IN  _idSeance INT,IN  _note DOUBLE)
@@ -311,7 +311,7 @@ end //
 DELIMITER ;
 
 
--- ajouter une activité
+-- ajouter une activité -> Justin
 DROP PROCEDURE IF EXISTS ajouter_activite;
 DELIMITER //
 CREATE PROCEDURE ajouter_activite( IN _nom VARCHAR(155),IN _type VARCHAR(155),IN _coutOrganisation DOUBLE,IN _prixVente DOUBLE)
@@ -344,7 +344,7 @@ BEGIN
 end //
 delimiter ;
 
--- Retournes les types  
+
 
 
 -- Retourne le nombre d'adherent -> Flo
