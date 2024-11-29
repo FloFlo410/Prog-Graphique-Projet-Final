@@ -47,5 +47,10 @@ namespace Projet_final
             ObservableCollection<Seance> seances = SingletonActivite.getInstance().getSeancesPourActivite(activite.Nom, activite.Type);
             lv_seance.ItemsSource = seances;
         }
+
+        private void btn_reserver_seance_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
