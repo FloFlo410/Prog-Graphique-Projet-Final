@@ -32,7 +32,7 @@
 
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin=" 70 10 0 0">
                 <TextBlock HorizontalAlignment="Center" FontSize="17" Margin=" 0 0 0 7">Exporté CSV</TextBlock>
-                <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15">Exporté</Button>
+                <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" x:Name="export_csv" Click="export_csv_Click">Exporté</Button>
             </StackPanel>
         </StackPanel>
 

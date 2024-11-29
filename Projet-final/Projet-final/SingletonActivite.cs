@@ -116,13 +116,14 @@ namespace Projet_final
 
             try
             {
-                MySqlCommand commande = new MySqlCommand();
+                MySqlCommand commande = new MySqlCommand("ajouter_activite");
                 commande.Connection = con;
-                commande.CommandText = "insert into activite values(@nom,@type,@coutOrganisation,@prixVente) ";
-                commande.Parameters.AddWithValue("@nom", activite.Nom);
-                commande.Parameters.AddWithValue("@type", activite.Type);
-                commande.Parameters.AddWithValue("@coutOrganisation", activite.CoutOrganisation);
-                commande.Parameters.AddWithValue("@prixVente", activite.PrixVente);
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("_nom", activite.Nom);
+                commande.Parameters.AddWithValue("_type", activite.Type);
+                commande.Parameters.AddWithValue("_coutOrganisation", activite.CoutOrganisation);
+                commande.Parameters.AddWithValue("_prixVente", activite.PrixVente);
+                
 
                 con.Open();
                 commande.Prepare();
@@ -131,28 +132,17 @@ namespace Projet_final
                 loadDataInList();
                 return "réussi";
 
-
-
             }
             catch (Exception ex)
             {
                 con.Close();
-                if (ex.Message.Contains("Duplicate"))
-                {
-                    return "Cette activité existe déjà avec la même catégorie";
-                }
-
-
+                 return ex.Message;
             }
-
-
-
-
-
-
-
-            return "erreur";
         }
+
+
+
+
 
     }
 }

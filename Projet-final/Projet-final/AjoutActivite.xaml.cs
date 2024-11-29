@@ -90,19 +90,49 @@ namespace Projet_final
             restart();
             bool valide = true;
 
-
             if (string.IsNullOrWhiteSpace(tbox_nom.Text))
             {
                 valide = false;
                 tbox_nom_error.Text = "Le nom ne peut pas être vide";
 
             }
-            return valide;
-        
+
+            if (string.IsNullOrWhiteSpace(num_prix_client.Text))
+            {
+                valide = false;
+                num_prix_client_error.Text = "Le nombre ne peut pas être vide";
+
+            }
+            if (string.IsNullOrWhiteSpace(num_prix_org.Text))
+            {
+                valide = false;
+                num_prix_org_error.Text = "Le nombre ne peut pas être vide";
+            }
+
+
+            if (!switch_choix.IsOn)
+            {
+                if (cbox_categories.SelectedItem == null)
+                {
+                    valide = false;
+                    cbox_categories_error.Text = "La catégorie ne peut pas être vide";
+
+                }
+                
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(tbox_categories.Text))
+                {
+                    valide = false;
+                    cbox_categories_error.Text = "La catégorie ne peut pas être vide";
+                }
+                    
+            }
+
+        return valide;
         
         }
-
-
 
         private void restart()
         {

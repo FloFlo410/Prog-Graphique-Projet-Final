@@ -45,6 +45,11 @@ namespace Projet_final
         {
             return mainWindow;
         }
+
+        public MainWindow getMAin_mainWindows()
+        {
+            return mainWindow_Window;
+        }
         public bool IsConnect
         {
             get { return isConnect; }

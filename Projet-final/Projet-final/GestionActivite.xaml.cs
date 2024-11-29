@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
@@ -97,6 +98,24 @@ namespace Projet_final
         private void btn_ajoute_Click(object sender, RoutedEventArgs e)
         {
             SingletonAdherent.getInstance().getMainwindow().Navigate(typeof(AjoutActivite));
+        }
+
+        private async void export_csv_Click(object sender, RoutedEventArgs e)
+        {
+            var picker = new Windows.Storage.Pickers.FileSavePicker();
+
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(SingletonAdherent.getInstance().getMAin_mainWindows());
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+            picker.SuggestedFileName = "Liste_Activite";
+            picker.FileTypeChoices.Add("Csv", new List<string>() { ".csv" });
+
+            //crée le fichier
+            Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+
+            if (monFichier != null)
+                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, SingletonActivite.getInstance().getListeActivites().ToList<Activite>().ConvertAll(x => x.ToString()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+
         }
     }
 }
