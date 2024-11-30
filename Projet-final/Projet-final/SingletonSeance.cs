@@ -35,7 +35,7 @@ namespace Projet_final
             liste_Seance.Clear();
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
-            commande.CommandText = "Select * from activite";
+            commande.CommandText = "Select * from seance";
             con.Open();
             MySqlDataReader r = commande.ExecuteReader();
             while (r.Read())
@@ -45,6 +45,28 @@ namespace Projet_final
             }
             r.Close();
             con.Close();
+        }
+
+        public Seance getSeanceByID(int id) { 
+        
+        {
+            Seance seance = null;
+
+
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = $"Select * from seance where idSeance = '{id}'";
+                con.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read()) { 
+                    seance = new Seance( (int) r[0], r[1].ToString(), r[1].ToString(),(int) r[1]);
+                }
+
+                r.Close();
+                con.Close();
+                return seance;
+
+
         }
 
 

@@ -35,6 +35,11 @@ namespace Projet_final
             mainWindow = _main;
         }
 
+        public MainWindow getMAin_mainWindows()
+        {
+            return mainWindow_Window;
+        }
+
         public void setMainwindowWindow(MainWindow _main)
         {
             mainWindow_Window = _main;
@@ -73,7 +78,7 @@ namespace Projet_final
 
         public static SingletonAdherent getInstance()
         {
-            if (instance == null) 
+            if (instance == null)
                 instance = new SingletonAdherent();
 
             return instance;
@@ -116,12 +121,36 @@ namespace Projet_final
 
                 loadDataInList();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 con.Close();
                 Console.WriteLine(ex.Message);
             }
+
+        }
+
+
+        public Adherent getAdherantByID(string id)
+        {
+            Adherent adherant = null;
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select * from adherent WHERE noIdentification='"+id+"'";
+            con.Open();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+                adherant = new Adherent(r[1].ToString(), r[2].ToString(), r[3].ToString(),(DateTime) r[4], r[5].ToString(), r[6].ToString(), r[7].ToString(), r[8].ToString());
+            }
+           
+            con.Close();
             
+
+
+
+            return adherant;
         }
 
         public bool checkIfPasswordHasChanged(string noIdentification, string mdp)
