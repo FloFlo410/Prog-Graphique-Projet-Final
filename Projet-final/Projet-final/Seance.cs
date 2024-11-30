@@ -15,13 +15,13 @@ namespace Projet_final
         public DateTime dateHeure;
         public int nbPlacesDispos;
 
-        public Seance(int idSeance, string activiteNom, string activiteType, int nbPlacesDispos)
-        {
-            this.idSeance = idSeance;
-            this.activiteNom = activiteNom;
-            this.activiteType = activiteType;
-            this.nbPlacesDispos = nbPlacesDispos;
-        }
+        //public Seance(int idSeance, string activiteNom, string activiteType, int nbPlacesDispos)
+        //{
+        //    this.idSeance = idSeance;
+        //    this.activiteNom = activiteNom;
+        //    this.activiteType = activiteType;
+        //    this.nbPlacesDispos = nbPlacesDispos;
+        //}
 
         public Seance(int idSeance, string activiteNom, string activiteType,DateTime dateHeure ,int nbPlacesDispos)
         {

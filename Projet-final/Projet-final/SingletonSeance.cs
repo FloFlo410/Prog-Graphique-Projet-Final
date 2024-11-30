@@ -40,14 +40,14 @@ namespace Projet_final
             MySqlDataReader r = commande.ExecuteReader();
             while (r.Read())
             {
-                Seance seance = new Seance(Convert.ToInt32(r[0]), r[1].ToString(), r[2].ToString(), Convert.ToInt32(r[3].ToString()));
+                Seance seance = new Seance(Convert.ToInt32(r[0]), r[1].ToString(), r[2].ToString(), (DateTime)r[3], (int)r[4]);
                 liste_Seance.Add(seance);
             }
             r.Close();
             con.Close();
         }
 
-        public Seance getSeanceByID(int id) { 
+        public Seance getSeanceByID(int id)  
         
         {
             Seance seance = null;
@@ -59,7 +59,7 @@ namespace Projet_final
                 con.Open();
                 MySqlDataReader r = commande.ExecuteReader();
                 while (r.Read()) { 
-                    seance = new Seance( (int) r[0], r[1].ToString(), r[1].ToString(),(int) r[1]);
+                    seance = new Seance(Convert.ToInt32(r[0]), r[1].ToString(), r[2].ToString(), (DateTime)r[3], (int)r[4]);
                 }
 
                 r.Close();

@@ -47,6 +47,11 @@ namespace Projet_final
                     mainWindow.Navigate(typeof(Statistiques));
                     break;
 
+                case "Mes participations":
+                    mainWindow.Navigate(typeof(Participation_adherant_connecter));
+                    nv.Header = null;
+                    break;
+
                 case "Gestion utilisateur":
                     mainWindow.Navigate(typeof(GestionAdherent));
                     nv.Header = null;

@@ -19,10 +19,7 @@
             <NavigationViewItem Icon="List" Content="Liste Activités" x:Name="liste_activitees" />
             <NavigationViewItem Icon="Document" Content="Statistiques" x:Name="statistiques" />
 
-            <StackPanel Orientation="Horizontal" x:Name="seance_user" >
-                <FontIcon Glyph="&#xE805;" />
-                <TextBlock Margin="10 10 10 10"> Mes participations</TextBlock>
-            </StackPanel>
+            <NavigationViewItem Icon="CalendarDay" Content="Mes participations" x:Name="participation" />
 
             <NavigationViewItem Content="Administrateur" Icon="Admin" ToolTipService.ToolTip="Account" >
                 <NavigationViewItem.MenuItems>
