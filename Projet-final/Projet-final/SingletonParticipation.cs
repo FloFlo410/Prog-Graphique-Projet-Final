@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,9 @@ namespace Projet_final
 
         public void loadDataInList()
         {
+
+            Participation participation;
+            
             liste_Participation.Clear();
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
@@ -47,19 +51,52 @@ namespace Projet_final
             MySqlDataReader r = commande.ExecuteReader();
             while (r.Read())
             {
-                if (r[3] == null)
+                if (r[3].Equals(System.DBNull.Value))
                 {
-
+                    participation = new Participation((int)r[0], r[1].ToString(), (int)r[2], -1);
                 }
                 else
                 {
-
+                    Debug.WriteLine(r[3].GetType());
+                   participation = new Participation((int)r[0], r[1].ToString(), (int)r[2], (double)r[3]);
                 }
-                Participation participation = new Participation((int)r[0], r[1].ToString(), (int)r[2], (double)r[3]);
+                
                 liste_Participation.Add(participation);
             }
             r.Close();
             con.Close();
+        }
+
+
+        public ObservableCollection<Participation> getParticipationByAdherant(Adherent adherent){
+        
+            ObservableCollection<Participation> liste_Participants = new ObservableCollection<Participation>();
+            Participation participation;
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"Select * from participation where idAdherent = '{adherent.NoIdentification}'";
+            con.Open();
+            MySqlDataReader r = commande.ExecuteReader();
+            while (r.Read())
+            {
+                if (r[3].Equals(System.DBNull.Value))
+                {
+                    participation = new Participation((int)r[0], r[1].ToString(), (int)r[2], -1);
+                }
+                else
+                {
+                    Debug.WriteLine(r[3].GetType());
+                    participation = new Participation((int)r[0], r[1].ToString(), (int)r[2], (double)r[3]);
+                }
+
+                liste_Participation.Add(participation);
+            }
+            r.Close();
+            con.Close();
+
+
+            return liste_Participants;
         }
     }
 }

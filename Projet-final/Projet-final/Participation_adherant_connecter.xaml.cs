@@ -26,7 +26,7 @@ namespace Projet_final
         public Participation_adherant_connecter()
         {
             this.InitializeComponent();
-            lv_participation.ItemsSource = SingletonParticipation.getInstance().Liste_Participation;
+            lv_participation.ItemsSource = SingletonParticipation.getInstance().getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect);
         }
     }
 }

@@ -9,7 +9,7 @@
     
     >
 
-    <NavigationView x:Name="nv" IsSettingsVisible="False" PaneDisplayMode="Top" ItemInvoked="nvSample_ItemInvoked">
+    <NavigationView x:Name="nv" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" PaneDisplayMode="Top" ItemInvoked="nvSample_ItemInvoked">
 
         <NavigationView.Header>
             <TextBlock x:Name="tblock_acceuil_name" Margin="10" FontSize="20">Bonjour, Justin</TextBlock>
@@ -17,12 +17,13 @@
 
         <NavigationView.MenuItems>
             <NavigationViewItem Icon="List" Content="Liste Activités" x:Name="liste_activitees" />
-            <NavigationViewItem Icon="Document" Content="Statistiques" x:Name="statistiques" />
+            
 
             <NavigationViewItem Icon="CalendarDay" Content="Mes participations" x:Name="participation" />
 
-            <NavigationViewItem Content="Administrateur" Icon="Admin" ToolTipService.ToolTip="Account" >
+            <NavigationViewItem Content="Administrateur" Icon="Admin" ToolTipService.ToolTip="Account" Visibility="Collapsed" x:Name="menu_admin" >
                 <NavigationViewItem.MenuItems>
+                    <NavigationViewItem Icon="Document" Content="Statistiques" x:Name="statistiques" />
                     <NavigationViewItem Content="Gestion Activité" Icon="Folder" ToolTipService.ToolTip="Mail" />
                     <NavigationViewItem Content="Gestion utilisateur" Icon="Contact2" ToolTipService.ToolTip="Calendar" />
                     <NavigationViewItem Content="Gestion Séance" Icon="Calendar" ToolTipService.ToolTip="Calendar" />

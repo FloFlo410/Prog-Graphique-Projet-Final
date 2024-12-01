@@ -48,8 +48,34 @@ namespace Projet_final
                     break;
 
                 case "Mes participations":
+
+                    if (SingletonAdherent.getInstance().IsConnect)
+                    {
                     mainWindow.Navigate(typeof(Participation_adherant_connecter));
                     nv.Header = null;
+                    }
+                    else
+                    {
+                        Connexion dialog1 = new Connexion();
+                        dialog1.XamlRoot = mainWindow.XamlRoot;
+                        dialog1.Title = "Connexion";
+                        dialog1.PrimaryButtonText = "Se connecter";
+                        dialog1.CloseButtonText = "Annuler";
+                        dialog1.DefaultButton = ContentDialogButton.Close;
+
+                        ContentDialogResult resultat1 = await dialog1.ShowAsync();
+
+                        if (resultat1 == ContentDialogResult.Primary)
+                        {
+                            if (SingletonAdherent.getInstance().IsConnect)
+                            {
+                                connexion.Visibility = Visibility.Collapsed;
+                                deconnexion.Visibility = Visibility.Visible;
+                                tblock_acceuil_name.Visibility = Visibility.Visible;
+                            }
+                        }
+                    }
+
                     break;
 
                 case "Gestion utilisateur":
@@ -79,7 +105,11 @@ namespace Projet_final
                                 connexion.Visibility = Visibility.Collapsed;
                                 deconnexion.Visibility = Visibility.Visible;
                                 tblock_acceuil_name.Visibility = Visibility.Visible;
-                        }
+                                if (SingletonAdherent.getInstance().AdhrentConnect.Role == "administrateur")
+                                {
+                                    menu_admin.Visibility = Visibility.Visible;
+                                }
+                            }
                     }
                     break;
 
@@ -90,7 +120,8 @@ namespace Projet_final
 
                     connexion.Visibility = Visibility.Visible;
                     deconnexion.Visibility = Visibility.Collapsed;
-                    tblock_acceuil_name.Visibility = Visibility.Collapsed;   
+                    tblock_acceuil_name.Visibility = Visibility.Collapsed;
+                    menu_admin.Visibility = Visibility.Collapsed;
                     break;
 
                 case "Liste Activités":
