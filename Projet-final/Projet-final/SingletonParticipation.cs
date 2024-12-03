@@ -90,7 +90,7 @@ namespace Projet_final
                     participation = new Participation((int)r[0], r[1].ToString(), (int)r[2], (double)r[3]);
                 }
 
-                liste_Participation.Add(participation);
+                liste_Participants.Add(participation);
             }
             r.Close();
             con.Close();
@@ -98,5 +98,18 @@ namespace Projet_final
 
             return liste_Participants;
         }
+
+        public void supprimer(Participation participation)
+        {
+
+
+
+
+        }
+
+
+
+
+
     }
 }
