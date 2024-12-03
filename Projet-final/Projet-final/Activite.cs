@@ -13,6 +13,8 @@ namespace Projet_final
         public double CoutOrganisation { get; set; }
         public double PrixVente { get; set; }
 
+        public double MoyenneNote { get; set; }
+
         public Activite(string nom, string type, double coutOrganisation, double prixVente)
         {
             Nom = nom;

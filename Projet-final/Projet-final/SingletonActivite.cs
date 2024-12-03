@@ -65,6 +65,7 @@ namespace Projet_final
             }
             r.Close();
             con.Close();
+            setMoyennesActivites();
         }
 
 
@@ -180,6 +181,14 @@ namespace Projet_final
             Double.TryParse(commande.ExecuteScalar().ToString(), out i);
             con.Close();
             return i;
+        }
+
+        public void setMoyennesActivites()
+        {
+            foreach(Activite activite in liste_activites)
+            {
+                activite.MoyenneNote = moyenneNoteParActivite(activite.Nom, activite.Type);
+            }
         }
 
         public void supprimer(Activite activite)
