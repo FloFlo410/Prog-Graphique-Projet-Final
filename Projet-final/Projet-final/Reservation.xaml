@@ -42,14 +42,6 @@
                     <TextBlock x:Name="tbl_err_reservation" />
                 </StackPanel>
                 
-                
-
-
-
-
-
-
-
             </Grid>
 
         </StackPanel>
