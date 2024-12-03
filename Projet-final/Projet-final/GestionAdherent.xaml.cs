@@ -49,7 +49,7 @@ namespace Projet_final
 
         private void btn_modifier_Click(object sender, RoutedEventArgs e)
         {
-            if(lv_Adherent.SelectedItem != null)
+            if(lv_Adherent.SelectedItem != null && valide())
             {
                 string noIdentification = tbl_noIdentification.Text;
                 string prenom = tbx_prenom.Text;
@@ -73,6 +73,7 @@ namespace Projet_final
             Adherent adherent = (Adherent)lv_Adherent.SelectedItem;
             if (adherent != null)
             {
+                resetErr();
                 stck_infoAdherent.Visibility = Visibility.Visible;
                 tbl_noIdentification.Text = adherent.NoIdentification;
                 tbx_prenom.Text = adherent.Prenom;
@@ -95,6 +96,74 @@ namespace Projet_final
         private void btn_exporter_adherent_Click(object sender, RoutedEventArgs e)
         {
             SingletonAdherent.getInstance().exporterAdherentCsv();
+        }
+
+
+        private bool valide()
+        {
+            bool valide = true;
+            resetErr();
+
+            if (string.IsNullOrWhiteSpace(tbx_prenom.Text))
+            {
+                valide = false;
+                tbl_prenom_err.Text = "Le prénom ne peut pas être vide.";
+            }
+            if (string.IsNullOrWhiteSpace(tbx_nom.Text))
+            {
+                valide = false;
+                tbl_nom_err.Text = "Le nom ne peut pas être vide.";
+            }
+            if (string.IsNullOrWhiteSpace(tbx_adresse.Text))
+            {
+                valide = false;
+                tbl_adresse_err.Text = "L'adresse ne peut pas être vide.";
+            }
+            if (cldr_dateNaissance.Date == null)
+            {
+                valide = false;
+                tbl_dateNaissance_err.Text = "La date de naissance doit être une date valide.";
+            }
+            else if (DateTime.Now.Year - cldr_dateNaissance.Date.Value.Year < 18)
+            {
+                valide = false;
+                tbl_dateNaissance_err.Text = "Vous devez avoir 18 ans.";
+            }
+
+            if (string.IsNullOrWhiteSpace(tbx_email.Text))
+            {
+                valide = false;
+                tbl_email_err.Text = "L'email ne peut pas être vide.";
+            }
+
+            if (string.IsNullOrWhiteSpace(tbx_pseudo.Text))
+            {
+                valide = false;
+                tbl_pseudo_err.Text = "Le pseudo ne peut pas être vide.";
+            }
+            if (string.IsNullOrWhiteSpace(tbx_mdp.Password))
+            {
+                valide = false;
+                tbl_mdp_err.Text = "Le mot de passe ne peut pas être vide.";
+            }
+            if (string.IsNullOrWhiteSpace(tbx_role.Text))
+            {
+                valide = false;
+                tbl_role_err.Text = "Le rôle ne peut pas être vide.";
+            }
+            return valide;
+        }
+
+        private void resetErr()
+        {
+            tbl_prenom_err.Text = "";
+            tbl_nom_err.Text = "";
+            tbl_adresse_err.Text = "";
+            tbl_dateNaissance_err.Text = "";
+            tbl_email_err.Text = "";
+            tbl_pseudo_err.Text = "";
+            tbl_mdp_err.Text = "";
+            tbl_role_err.Text = "";
         }
     }
 }

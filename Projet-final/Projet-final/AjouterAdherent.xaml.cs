@@ -40,11 +40,15 @@ namespace Projet_final
                 DateTime dateNaissance = (DateTime) cldr_dateNaissance.Date.Value.DateTime;
                 string email = tbx_email.Text;
                 string pseudo = tbx_pseudo.Text;
-                string mdp = tbx_mdp.Text;
+                string mdp = tbx_mdp.Password;
                 string role = tbx_role.Text;
 
                 Adherent adherent = new Adherent(nom, prenom, adresse, dateNaissance, email, pseudo, mdp, role);
                 SingletonAdherent.getInstance().ajouterAdherent(adherent);
+
+                var mainwindow = SingletonAdherent.getInstance().getMainwindow();
+
+                mainwindow.Navigate(typeof(GestionAdherent));
             }
         }
 
@@ -72,6 +76,12 @@ namespace Projet_final
                 valide = false;
                 tbl_dateNaissance_err.Text = "La date de naissance doit être une date valide.";
             }
+            else if (DateTime.Now.Year - cldr_dateNaissance.Date.Value.Year < 18)
+            {
+                valide = false;
+                tbl_dateNaissance_err.Text = "Vous devez avoir 18 ans.";
+            }
+            
             if (string.IsNullOrWhiteSpace(tbx_email.Text))
             {
                 valide = false;
@@ -83,7 +93,7 @@ namespace Projet_final
                 valide = false;
                 tbl_pseudo_err.Text = "Le pseudo ne peut pas être vide.";
             }
-            if (string.IsNullOrWhiteSpace(tbx_mdp.Text))
+            if (string.IsNullOrWhiteSpace(tbx_mdp.Password))
             {
                 valide = false;
                 tbl_mdp_err.Text = "Le mot de passe ne peut pas être vide.";

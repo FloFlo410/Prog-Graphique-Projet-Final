@@ -59,7 +59,7 @@
 
         <StackPanel Orientation="Vertical"
                     Grid.Row="3" Grid.Column="1">
-            <TextBox x:Name="tbx_mdp" Header="Mot de passe:"/>
+            <PasswordBox x:Name="tbx_mdp" Header="Mot de passe:"/>
             <TextBlock x:Name="tbl_mdp_err"/>
         </StackPanel>
 
