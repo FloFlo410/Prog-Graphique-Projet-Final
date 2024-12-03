@@ -365,6 +365,9 @@ namespace Projet_final
             isConnect = false;
             mainWindow_Window.setNomAccueil();
             adherentConnect = null;
+            var mainwindow = SingletonAdherent.getInstance().getMainwindow();
+
+            mainwindow.Navigate(typeof(ListeActivitees));
         }
     }
 }
