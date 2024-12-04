@@ -34,27 +34,42 @@ namespace Projet_final
             tbl_nbTotalActivites.Text = "Nombre total d'activités: ";
             tbl_nbTotalActivites.Text += SingletonActivite.getInstance().nbTotalActivite();
 
-            nbAdherentActivites();
+            statActivites();
+            statAdherent();
 
         }
 
-        public void nbAdherentActivites()
+        public void statActivites()
         {
             ObservableCollection<Activite> liste_activites = SingletonActivite.getInstance().getListeActivites();
-
-
-
-
             foreach (Activite activite in liste_activites)
             {
                 string item = activite.Nom + "\t" + activite.Type + "\t Nombre participation: ";
                 item += SingletonAdherent.getInstance().nbTotalAdherentSelonActivite(activite.Nom, activite.Type);
                 item += "\t Note moyenne: ";
                 item += SingletonActivite.getInstance().moyenneNoteParActivite(activite.Nom, activite.Type);
+                item += "\t Revenu total: ";
+                item += SingletonActivite.getInstance().revenuTotalParActivite(activite.Nom, activite.Type);
 
-                lv_activites.Items.Add(item);
+                lv_adherents.Items.Add(item);
             }
 
         }
+
+        public void statAdherent()
+        {
+            ObservableCollection<Adherent> liste_adherents = SingletonAdherent.getInstance().Liste_Adherent;
+            foreach (Adherent adherent in liste_adherents)
+            {
+                string item = adherent.NoIdentification + "\t" + adherent.Prenom + "\t" + adherent.Nom + "\tMoyenne prix par activité: ";
+                item += SingletonAdherent.getInstance().prixMoyenActiviteAdherent(adherent.NoIdentification);
+                item += "\t Prix total dépensé: ";
+                item += SingletonAdherent.getInstance().prixTotalAdherent(adherent.NoIdentification);
+
+                lv_activites.Items.Add(item);
+            }
+        }
+
+       
     }
 }

@@ -327,6 +327,39 @@ namespace Projet_final
             return i;
         }
 
+        public double prixMoyenActiviteAdherent(string noIdentification)
+        {
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "SELECT prix_moyen FROM moyenne_prix_adhrents WHERE noIdentification = @noIdentification;";
+            commande.Parameters.AddWithValue("@noIdentification", noIdentification);
+            con.Open();
+            double i = 0;
+            if(commande.ExecuteScalar() is not null)
+             {
+                Double.TryParse(commande.ExecuteScalar().ToString(), out i);
+
+            }
+            con.Close();
+            return i;
+        }
+
+        public double prixTotalAdherent(string noIdentification)
+        {
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "SELECT SUM(prixVente) FROM participation p INNER JOIN seance s on p.idSeance = s.idSeance INNER JOIN activite ac on s.activiteNom = ac.nom and s.activiteType = ac.type INNER JOIN adherent ad on p.idAdherent = ad.noIdentification WHERE noIdentification = @noIdentification;";
+            commande.Parameters.AddWithValue("@noIdentification", noIdentification);
+            con.Open();
+            double i = 0;
+            if (commande.ExecuteScalar() is not null)
+            {
+                Double.TryParse(commande.ExecuteScalar().ToString(), out i);
+
+            }
+            con.Close();
+            return i;
+        }
 
         //Connexion/UserOnline
         public void Connexion(string username, string mot_de_passe)
