@@ -9,7 +9,61 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <Button FontSize="20" VerticalAlignment="Center" Grid.Row="0">Retour</Button>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+            <TextBlock  FontSize="60" HorizontalAlignment="Center">Ajout d'une séance</TextBlock>
+            <TextBlock x:Name="tblock_error" FontSize="20" Foreground="Red"></TextBlock>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <ComboBox x:Name="cbox_nom" Header="Nom de l'activité" Margin="0 20 30 0" FontSize="20" HorizontalAlignment="Stretch" ></ComboBox>
+            <TextBlock x:Name="tbox_nom_error" Foreground="Red"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <StackPanel  Orientation="Horizontal">
+                <ComboBox x:Name="cbox_categories" Header="Catégorie de l'activité" Margin="0 20 30 0" FontSize="20" HorizontalAlignment="Stretch" ></ComboBox>
+                <TextBox Header="Catégorie de l'activité" Margin="0 20 30 0" FontSize="20" HorizontalAlignment="Stretch" x:Name="tbox_categories" Visibility="Collapsed"  />
+            </StackPanel>
+
+            <TextBlock x:Name="cbox_categories_error" Foreground="Red"></TextBlock>
+
+        </StackPanel>
+
+
+
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <DatePicker x:Name="num_prix_org" Header="Prix pour l'organisation ($)" Margin="0 20 30 0"  FontSize="20" HorizontalAlignment="Stretch"/>
+            <TextBlock x:Name="num_prix_org_error" Foreground="Red"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+            <TimePicker></TimePicker>
+            <TextBlock x:Name="num_prix_client_error" Foreground="red"></TextBlock>
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="0 20 0 0">
+            <Button Margin="10" FontSize="20" x:Name="btn_ajout">Ajouter</Button>
+        </StackPanel>
+
+
 
     </Grid>
 </Page>
