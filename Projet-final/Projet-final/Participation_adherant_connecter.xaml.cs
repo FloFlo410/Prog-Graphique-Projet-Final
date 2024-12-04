@@ -75,5 +75,18 @@ namespace Projet_final
 
 
         }
+
+        private void mbtn_modifier_note_Click(object sender, RoutedEventArgs e)
+        {
+            int index = lv_participation.SelectedIndex;
+            if (index != -1)
+            {
+                double value = Math.Round(slider_note.Value,1);
+
+                SingletonParticipation.getInstance().changerNote(SingletonParticipation.getInstance().getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect)[index],value);
+
+
+            }
+        }
     }
 }
