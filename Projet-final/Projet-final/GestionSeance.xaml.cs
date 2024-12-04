@@ -27,6 +27,7 @@ namespace Projet_final
         {
             this.InitializeComponent();
             lv_seance.ItemsSource = SingletonSeance.getInstance().Liste_seances;
+            cbox_activite.ItemsSource = SingletonActivite.getInstance().getListeActivites();
         }
 
         private void lv_seance_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -41,7 +42,13 @@ namespace Projet_final
                 num_place_dispo.Value = seance.nbPlacesDispos;
                 date.SelectedDate = seance.DateHeure.Date;
                 timePicker_heure.SelectedTime = seance.DateHeure.TimeOfDay;
-
+                for(int i = 0; i < cbox_activite.Items.Count; i++)
+                {
+                    if(cbox_activite.Items[i].ToString().Contains(seance.activiteNom )  && cbox_activite.Items[i].ToString().Contains(seance.activiteType))
+                    {
+                        cbox_activite.SelectedIndex = i;
+                    }
+                }
 
             }
             else
