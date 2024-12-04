@@ -33,6 +33,7 @@ namespace Projet_final
         public App()
         {
             this.InitializeComponent();
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "fr-FR";
         }
 
         /// <summary>

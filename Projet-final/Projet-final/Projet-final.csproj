@@ -14,9 +14,11 @@
   <ItemGroup>
     <None Remove="AjoutActivite.xaml" />
     <None Remove="AjouterAdherent.xaml" />
+    <None Remove="AjoutSeance.xaml" />
     <None Remove="Connexion.xaml" />
     <None Remove="GestionActivite.xaml" />
     <None Remove="GestionAdherent.xaml" />
+    <None Remove="GestionSeance.xaml" />
     <None Remove="ListeActivitees.xaml" />
     <None Remove="Participation_adherant_connecter.xaml" />
     <None Remove="Reservation.xaml" />
@@ -47,6 +49,16 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AjoutSeance.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="GestionSeance.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Participation_adherant_connecter.xaml">

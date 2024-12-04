@@ -72,6 +72,10 @@ namespace Projet_final
                                 connexion.Visibility = Visibility.Collapsed;
                                 deconnexion.Visibility = Visibility.Visible;
                                 tblock_acceuil_name.Visibility = Visibility.Visible;
+                                if (SingletonAdherent.getInstance().AdhrentConnect.Role == "administrateur")
+                                {
+                                    menu_admin.Visibility = Visibility.Visible;
+                                }
                             }
                         }
                     }
@@ -85,6 +89,12 @@ namespace Projet_final
 
                 case "Gestion Activité":
                     mainWindow.Navigate(typeof(GestionActivite));
+                    nv.Header = null;
+                    break;
+
+
+                case "Gestion Séance":
+                    mainWindow.Navigate(typeof(GestionSeance));
                     nv.Header = null;
                     break;
 

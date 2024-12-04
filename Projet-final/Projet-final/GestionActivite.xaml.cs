@@ -58,9 +58,6 @@ namespace Projet_final
                 {
                     cbox_categories.SelectedItem = cbox_categories.Items[indexComboBox];
                 }
-
-
-
             }
             else
             {
@@ -106,7 +103,7 @@ namespace Projet_final
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(SingletonAdherent.getInstance().getMAin_mainWindows());
             WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
 
-            picker.SuggestedFileName = "Liste_Activite";
+            picker.SuggestedFileName = "Liste Activitées";
             picker.FileTypeChoices.Add("Csv", new List<string>() { ".csv" });
 
             //crée le fichier

@@ -22,6 +22,11 @@ namespace Projet_final
             liste_Seance = new ObservableCollection<Seance>();
             loadDataInList();
         }
+
+        public ObservableCollection<Seance> Liste_seances
+        {
+            get { return liste_Seance; }
+        }
         public static SingletonSeance getInstance()
         {
             if (instance == null)
