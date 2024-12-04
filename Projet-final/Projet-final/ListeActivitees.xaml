@@ -21,22 +21,20 @@
         <TextBlock FontSize="40" HorizontalAlignment="Center">Activités disponibles</TextBlock>
     </StackPanel>
 
-     <ScrollViewer Width="auto" Height="auto"  Background="White" VerticalScrollBarVisibility="Visible">
-        <GridView x:Name="gv_activite" Margin="20" Grid.Row="1" Height="650" >
-            <GridView.ItemTemplate  >
-                <DataTemplate x:DataType="local:Activite">
-                    <StackPanel Orientation="Vertical" Width="100" Height="auto" Margin="20">
-                        <TextBlock Text="{x:Bind Nom}" Width="auto" HorizontalAlignment="Center"/>
-                        <TextBlock Text="{x:Bind Type}" Width="auto" HorizontalAlignment="Center"/>
-                        <TextBlock Text="{x:Bind MoyenneNote}" Width="auto" HorizontalAlignment="Center"/>
-                    </StackPanel>
+        <ScrollViewer Width="auto" Height="auto"  Background="White" VerticalScrollBarVisibility="Visible">
+            <GridView x:Name="gv_activite" Margin="20" Grid.Row="1" Height="650" ItemClick="gv_activite_ItemClick" IsItemClickEnabled="False" >
+                <GridView.ItemTemplate  >
+                    <DataTemplate x:DataType="local:Activite" >
+                        <StackPanel Orientation="Vertical" Width="100" Height="auto" Margin="20">
+                            <TextBlock Text="{x:Bind Nom}" Width="auto" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{x:Bind Type}" Width="auto" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{x:Bind MoyenneNote}" Width="auto" HorizontalAlignment="Center"/>
+                        </StackPanel>
 
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
-     </ScrollViewer>
-
-        <Button x:Name="btn_reserver" Click="btn_reserver_Click">Réserver</Button>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </ScrollViewer>
 
 
 

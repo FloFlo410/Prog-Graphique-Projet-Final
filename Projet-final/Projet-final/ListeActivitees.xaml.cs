@@ -29,8 +29,10 @@ namespace Projet_final
             gv_activite.ItemsSource = SingletonActivite.getInstance().getListeActivites();
         }
 
-        private void btn_reserver_Click(object sender, RoutedEventArgs e)
+
+        private void gv_activite_ItemClick(object sender, ItemClickEventArgs e)
         {
+
             if (gv_activite.SelectedItem != null)
             {
                 SingletonActivite.getInstance().setActiviteSelectione((Activite)gv_activite.SelectedItem);
@@ -39,7 +41,6 @@ namespace Projet_final
 
                 mainwindow.Navigate(typeof(Reservation));
             }
-               
         }
     }
 }
