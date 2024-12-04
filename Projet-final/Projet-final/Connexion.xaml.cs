@@ -28,11 +28,29 @@ namespace Projet_final
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            SingletonAdherent.getInstance().Connexion(tbox_nomUtilisateur.Text, tbox_motDePasse.Password);
-            if (!SingletonAdherent.getInstance().IsConnect)
+            if (string.IsNullOrWhiteSpace(tbox_nomUtilisateur.Text) && string.IsNullOrWhiteSpace(tbox_motDePasse.Password))
             {
-                tbox_nomUtilisateur_error.Text = "Le pseudo ou le mot de passe n'est pas correct";
+                tbox_nomUtilisateur_error.Text = "Veuillez saisir un pseudo et un mot de passe.";
+
             }
+            else if (string.IsNullOrWhiteSpace(tbox_nomUtilisateur.Text))
+            {
+                tbox_nomUtilisateur_error.Text = "Veuillez saisir un pseudo.";
+
+            }
+            else if (string.IsNullOrWhiteSpace(tbox_motDePasse.Password))
+            {
+                tbox_nomUtilisateur_error.Text = "Veuillez saisir un mot de passe.";
+            }
+            else
+            {
+                SingletonAdherent.getInstance().Connexion(tbox_nomUtilisateur.Text, tbox_motDePasse.Password);
+                if (!SingletonAdherent.getInstance().IsConnect)
+                {
+                    tbox_nomUtilisateur_error.Text = "Le pseudo ou le mot de passe n'est pas correct";
+                }
+            }
+            
         }
 
         private void ContentDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
