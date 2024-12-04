@@ -101,10 +101,28 @@ namespace Projet_final
 
         public void supprimer(Participation participation)
         {
+            try
+            {
 
+            
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"DELETE FROM participation WHERE idParticipation=@idParticipation";
+            commande.Parameters.AddWithValue("@idParticipation", (int) participation.IdParticipant);
+            con.Open();
+            commande.Prepare();
 
+            commande.ExecuteNonQuery();
 
+                con.Close();
+                getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect);
 
+            }
+            catch(Exception ex)
+            {
+                con.Close();
+                Debug.WriteLine(ex.Message);
+            }
         }
 
 
