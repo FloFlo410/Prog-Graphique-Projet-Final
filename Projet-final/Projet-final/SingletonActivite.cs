@@ -191,6 +191,24 @@ namespace Projet_final
             }
         }
 
+        public  double revenuTotalParActivite(string nomActivite, string typeActivite)
+        {
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "SELECT (COUNT(*)* prixVente)FROM participation p INNER JOIN seance s on p.idSeance = s.idSeance INNER JOIN activite a on s.activiteNom = a.nom and s.activiteType = a.type WHERE activiteNom = @nomActivite AND activiteType = @typeActivite;";
+            commande.Parameters.AddWithValue("@nomActivite", nomActivite);
+            commande.Parameters.AddWithValue("@typeActivite", typeActivite);
+            con.Open();
+            double i = 0;
+            if (commande.ExecuteScalar() is not null)
+            {
+                Double.TryParse(commande.ExecuteScalar().ToString(), out i);
+
+            }
+            con.Close();
+            return i;
+        }
+
         public void supprimer(Activite activite)
         {
             try

@@ -242,7 +242,7 @@ LIMIT 1;
 DROP VIEW IF EXISTS moyenne_prix_adhrents;
 CREATE VIEW moyenne_prix_adhrents AS
 SELECT
-    prenom,
+    noIdentification,
     ROUND(AVG(prixVente),2) prix_moyen
 FROM adherent
 INNER JOIN participation p on adherent.noIdentification = p.idAdherent
