@@ -24,7 +24,7 @@
 
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
             <TextBlock HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="40">Vos participations</TextBlock>
-            <TextBlock  HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="20" Margin="0 10 0 0">Vous n'avez pas de participation</TextBlock>
+            <TextBlock x:Name="tblock_no_participation" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="20" Margin="0 10 0 0">Vous n'avez pas de participation</TextBlock>
         </StackPanel>
 
         <ListView x:Name="lv_participation" Grid.Row="1" Grid.Column="0" Margin="0 50 0 0" SelectionChanged="lv_participation_SelectionChanged"></ListView>
@@ -35,8 +35,12 @@
             <TextBlock x:Name="tblock_type_activite" Margin="0 0 0 20">test</TextBlock>
             <TextBlock x:Name="tblock_date_activite" Margin="0 0 0 20">test</TextBlock>
             <TextBlock x:Name="tblock_heure_activite" Margin="0 0 0 20">test</TextBlock>
-            <Button x:Name="btn_desinscrire" Click="btn_desinscrire_Click">Se désinscrire</Button>
-            
+            <Slider x:Name="slider_note" Width="200"  Minimum="0"  Maximum="5" HorizontalAlignment="Left" StepFrequency="0.1" Value="3" />
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btn_desinscrire" Click="btn_desinscrire_Click">Se désinscrire</Button>
+                <Button x:Name="mbtn_modifier_note" Click="mbtn_modifier_note_Click">Modifier note</Button> 
+            </StackPanel>
+
         </StackPanel>
         
         

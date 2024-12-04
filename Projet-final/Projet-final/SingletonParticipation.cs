@@ -42,7 +42,7 @@ namespace Projet_final
         {
 
             Participation participation;
-            
+
             liste_Participation.Clear();
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
@@ -58,9 +58,9 @@ namespace Projet_final
                 else
                 {
                     Debug.WriteLine(r[3].GetType());
-                   participation = new Participation((int)r[0], r[1].ToString(), (int)r[2], (double)r[3]);
+                    participation = new Participation((int)r[0], r[1].ToString(), (int)r[2], (double)r[3]);
                 }
-                
+
                 liste_Participation.Add(participation);
             }
             r.Close();
@@ -68,8 +68,9 @@ namespace Projet_final
         }
 
 
-        public ObservableCollection<Participation> getParticipationByAdherant(Adherent adherent){
-        
+        public ObservableCollection<Participation> getParticipationByAdherant(Adherent adherent)
+        {
+
             ObservableCollection<Participation> liste_Participants = new ObservableCollection<Participation>();
             Participation participation;
 
@@ -101,15 +102,61 @@ namespace Projet_final
 
         public void supprimer(Participation participation)
         {
+            try
+            {
+
+
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = $"DELETE FROM participation WHERE idParticipation=@idParticipation";
+                commande.Parameters.AddWithValue("@idParticipation", (int)participation.IdParticipant);
+                con.Open();
+                commande.Prepare();
+
+                commande.ExecuteNonQuery();
+
+                con.Close();
+                getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect);
+
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+
+        public void changerNote(Participation participation, double note)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = $"UPDATE participation SET note = @note WHERE idParticipation = @idParticipation";
+                commande.Parameters.AddWithValue("@note", note);
+                commande.Parameters.AddWithValue("@idParticipation", (int)participation.IdParticipant);
+
+                con.Open();
+                commande.Prepare();
+
+                commande.ExecuteNonQuery();
+
+                con.Close();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                Debug.WriteLine(ex.Message);
+            }
+
 
 
 
 
         }
-
-
-
-
-
     }
 }

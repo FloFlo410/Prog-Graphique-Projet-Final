@@ -28,16 +28,29 @@ namespace Projet_final
         {
             this.InitializeComponent();
             lv_participation.ItemsSource = SingletonParticipation.getInstance().getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect);
+
+            if (SingletonParticipation.getInstance().getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect).Count == 0)
+            {
+                tblock_no_participation.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tblock_no_participation.Visibility = Visibility.Collapsed;
+            }
+            
+
+            stp_participation.Visibility = Visibility.Collapsed;
         }
 
         private void lv_participation_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
             int index = lv_participation.SelectedIndex;
-
+            stp_participation.Visibility = Visibility.Collapsed;
 
             if (index != -1)
             {
+               
                 stp_participation.Visibility = Visibility.Visible;
                 Participation participation = SingletonParticipation.getInstance().getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect)[index];
 
@@ -57,8 +70,23 @@ namespace Projet_final
             int index = lv_participation.SelectedIndex;
             Participation participation = SingletonParticipation.getInstance().getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect)[index];
 
+            SingletonParticipation.getInstance().supprimer(participation);
+            lv_participation.ItemsSource = SingletonParticipation.getInstance().getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect);
 
 
+        }
+
+        private void mbtn_modifier_note_Click(object sender, RoutedEventArgs e)
+        {
+            int index = lv_participation.SelectedIndex;
+            if (index != -1)
+            {
+                double value = Math.Round(slider_note.Value,1);
+
+                SingletonParticipation.getInstance().changerNote(SingletonParticipation.getInstance().getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect)[index],value);
+
+
+            }
         }
     }
 }
