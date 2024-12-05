@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Background="#E5E1DA">
-            <TextBlock FontSize="70" HorizontalAlignment="Center" Foreground="Black" Margin="0 30 0 0">Activités disponibles</TextBlock>
+            <TextBlock FontSize="70" HorizontalAlignment="Center" Foreground="Black" Margin="0 30 0 0"  >Activités disponibles</TextBlock>
         </StackPanel>
 
         <ScrollViewer Width="auto" Height="auto" Background="#E5E1DA" VerticalScrollBarVisibility="Visible" Grid.Row="1">
@@ -27,6 +27,7 @@
                         <!-- Par défaut -->
                         <Setter Property="Background" Value="#B3C8CF" />
                         <Setter Property="BorderBrush" Value="#89A8B2" />
+                        <Setter Property="Margin" Value="20" />
                         <Setter Property="BorderThickness" Value="2" />
                     </Style>
                 </GridView.ItemContainerStyle>
