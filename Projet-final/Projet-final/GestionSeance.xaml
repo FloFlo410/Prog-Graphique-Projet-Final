@@ -63,6 +63,9 @@
                     <TextBlock x:Name="tblock_error" FontSize="20" Foreground="Red"></TextBlock>
                 </StackPanel>
 
+                <TextBlock x:Name="tblock_idSeance" Visibility="Collapsed"></TextBlock>
+            
+
                 <ComboBox Grid.Row="1" Grid.Column="0" x:Name="cbox_activite" Header="Activitées" Margin="0 20 30 0" FontSize="20" HorizontalAlignment="Stretch"></ComboBox>
                 <DatePicker x:Name="date" HorizontalAlignment="Stretch" Header="Date de la séance" Grid.Row="1" Grid.Column="1" Margin="0 20 30 0" FontSize="20"></DatePicker>
 
@@ -70,8 +73,8 @@
                 <TimePicker x:Name="timePicker_heure" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="1"  Header="Heure de la séance" Margin="0 20 30 0" FontSize="20"></TimePicker>
                 
                 <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="0 20 30 0">
-                    <Button Margin="10" FontSize="20" x:Name="btn_modif" >Modifier</Button>
-                    <Button Margin="10" FontSize="20"  x:Name="btn_sup">Supprimer</Button>
+                    <Button Margin="10" FontSize="20" x:Name="btn_modif" Click="btn_modif_Click" >Modifier</Button>
+                    <Button Margin="10" FontSize="20"  x:Name="btn_sup" Click="btn_sup_Click">Supprimer</Button>
                 </StackPanel>
             </Grid>
         </StackPanel>

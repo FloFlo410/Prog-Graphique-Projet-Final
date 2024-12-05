@@ -62,7 +62,7 @@ namespace Projet_final
                     else if (statut == -2)
                         tbl_err_reservation.Text = "Vous êtes déjà inscrit(e).";
                     else if (statut == -3)
-                        tbl_err_reservation.Text = "Il n'y a plus de place disponibles";
+                        tbl_err_reservation.Text = "Il n'y a plus de place disponibles.";
                     else
                         tbl_err_reservation.Text = "Une erreur s'est produite.";
 

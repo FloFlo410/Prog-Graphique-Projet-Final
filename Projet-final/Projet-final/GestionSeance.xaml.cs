@@ -38,6 +38,7 @@ namespace Projet_final
                 stp_detail.Visibility = Visibility.Visible;
                 Seance seance = SingletonSeance.getInstance().Liste_seances[index];
 
+                tblock_idSeance.Text = seance.idSeance.ToString();
                 tblock_nom.Text = seance.activiteNom + " : " + seance.activiteType;
                 num_place_dispo.Value = seance.nbPlacesDispos;
                 date.SelectedDate = seance.DateHeure.Date;
@@ -78,6 +79,32 @@ namespace Projet_final
         private void btn_ajoute_Click(object sender, RoutedEventArgs e)
         {
             SingletonAdherent.getInstance().getMainwindow().Navigate(typeof(AjoutSeance));
+        }
+
+        private void btn_modif_Click(object sender, RoutedEventArgs e)
+        {
+            if (valide())
+            {
+                int idSeance = Int32.Parse(tblock_idSeance.Text);
+                string activiteNom = cbox_activite.SelectedItem.ToString().Split('-')[0].Trim();
+                string activiteType = cbox_activite.SelectedItem.ToString().Split('-')[1].Trim();
+                DateTime dateHeure = new DateTime(date.Date.Year, date.Date.Month, date.Date.Day, timePicker_heure.Time.Hours, timePicker_heure.Time.Minutes, timePicker_heure.Time.Seconds);
+                int nbPlacesDispo = (int) num_place_dispo.Value;
+
+                SingletonSeance.getInstance().modifierSeance(new Seance(idSeance, activiteNom, activiteType, dateHeure, nbPlacesDispo));
+            }
+        }
+
+        private void btn_sup_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private bool valide()
+        {
+            bool valide = true;
+            //if(string.IsNullOrWhiteSpace(tb))
+             return valide;
         }
     }
 }
