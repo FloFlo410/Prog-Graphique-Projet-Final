@@ -9,35 +9,39 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-
-    <Grid>
+    <Grid Background="#E5E1DA">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        
-   
-    <StackPanel Grid.Row="0" Background="White">
-        <TextBlock FontSize="40" HorizontalAlignment="Center">Activités disponibles</TextBlock>
-            <RatingControl></RatingControl>
-    </StackPanel>
 
-        <ScrollViewer Width="auto" Height="auto"  Background="White" VerticalScrollBarVisibility="Visible" Grid.Row="1">
-            <GridView x:Name="gv_activite" Margin="20" Grid.Row="1" Height="650" ItemClick="gv_activite_ItemClick" IsItemClickEnabled="True" >
-                <GridView.ItemTemplate  >
-                    <DataTemplate x:DataType="local:Activite" >
+        <StackPanel Grid.Row="0" Background="#E5E1DA">
+            <TextBlock FontSize="70" HorizontalAlignment="Center" Foreground="Black" Margin="0 30 0 0">Activités disponibles</TextBlock>
+        </StackPanel>
+
+        <ScrollViewer Width="auto" Height="auto" Background="#E5E1DA" VerticalScrollBarVisibility="Visible" Grid.Row="1">
+            <GridView x:Name="gv_activite" Margin="20" Grid.Row="1" Height="650" ItemClick="gv_activite_ItemClick" IsItemClickEnabled="True">
+
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <!-- Par défaut -->
+                        <Setter Property="Background" Value="#B3C8CF" />
+                        <Setter Property="BorderBrush" Value="#89A8B2" />
+                        <Setter Property="BorderThickness" Value="2" />
+                    </Style>
+                </GridView.ItemContainerStyle>
+
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Activite">
                         <StackPanel Orientation="Vertical" Width="100" Height="auto" Margin="20">
-                            <TextBlock Text="{x:Bind Nom}" Width="auto" HorizontalAlignment="Center"/>
-                            <TextBlock Text="{x:Bind Type}" Width="auto" HorizontalAlignment="Center"/>
-                            <TextBlock Text="{x:Bind MoyenneNote}" Width="auto" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{x:Bind Nom}" Width="auto" HorizontalAlignment="Center" Foreground="Black"/>
+                            <TextBlock Text="{x:Bind Type}" Width="auto" HorizontalAlignment="Center" Foreground="Black"/>
+                            <TextBlock Text="{x:Bind MoyenneNote}" Width="auto" HorizontalAlignment="Center" Foreground="Black"/>
                         </StackPanel>
-
                     </DataTemplate>
                 </GridView.ItemTemplate>
+
             </GridView>
         </ScrollViewer>
-
-
-
     </Grid>
 </Page>

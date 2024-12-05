@@ -32,7 +32,7 @@ namespace Projet_final
             mainWindow.Navigate(typeof(ListeActivitees));
 
             SingletonAdherent.getInstance().setMainwindow(this.mainWindow);
-            SingletonAdherent.getInstance().setMainwindowWindow(this);
+            SingletonAdherent.getInstance().setMainwindowWindow(this);  
 
             setNomAccueil();
         }

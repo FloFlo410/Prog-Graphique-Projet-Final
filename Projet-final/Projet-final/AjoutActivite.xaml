@@ -27,7 +27,7 @@
         <Button FontSize="20" VerticalAlignment="Center" Grid.Row="0" Click="Button_Click">Retour</Button>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
             <TextBlock  FontSize="60" HorizontalAlignment="Center">Ajout d'une activité</TextBlock>
-            <TextBlock x:Name="tblock_error" FontSize="20" Foreground="Red"></TextBlock>
+            <TextBlock x:Name="tblock_error" FontSize="20" Foreground="Red" HorizontalAlignment="Center"></TextBlock>
         </StackPanel>
 
 

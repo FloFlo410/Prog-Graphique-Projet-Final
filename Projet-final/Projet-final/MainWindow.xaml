@@ -6,27 +6,34 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    
     >
 
-    <NavigationView x:Name="nv" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" PaneDisplayMode="Top" ItemInvoked="nvSample_ItemInvoked">
+    <NavigationView x:Name="nv" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" PaneDisplayMode="Top" ItemInvoked="nvSample_ItemInvoked" Background="#E5E1DA">
+        <NavigationView.Resources>
+            <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="#89A8B2"/>
+            <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White"/>
+            <SolidColorBrush x:Key="TopNavigationViewItemForegroundPointerOver" Color="White"/>
+        </NavigationView.Resources>
+       
+
+
 
         <NavigationView.Header>
             <TextBlock x:Name="tblock_acceuil_name" Margin="10" FontSize="20">Bonjour, Justin</TextBlock>
         </NavigationView.Header>
 
         <NavigationView.MenuItems>
-            <NavigationViewItem Icon="List" Content="Liste Activités" x:Name="liste_activitees" />
-            
+            <NavigationViewItem Icon="List" Content="Liste Activités" x:Name="liste_activitees" FontSize="20"/>
 
-            <NavigationViewItem Icon="CalendarDay" Content="Mes participations" x:Name="participation" />
 
-            <NavigationViewItem Content="Administrateur" Icon="Admin" ToolTipService.ToolTip="Account" Visibility="Collapsed" x:Name="menu_admin" >
-                <NavigationViewItem.MenuItems>
-                    <NavigationViewItem Icon="Document" Content="Statistiques" x:Name="statistiques" />
-                    <NavigationViewItem Content="Gestion Activité" Icon="Folder" ToolTipService.ToolTip="Mail" />
-                    <NavigationViewItem Content="Gestion utilisateur" Icon="Contact2" ToolTipService.ToolTip="Calendar" />
-                    <NavigationViewItem Content="Gestion Séance" Icon="Calendar" ToolTipService.ToolTip="Calendar" />
+            <NavigationViewItem Icon="CalendarDay" Content="Mes participations" x:Name="participation" FontSize="20"/>
+
+            <NavigationViewItem Content="Administrateur" Icon="Admin" ToolTipService.ToolTip="Account" Visibility="Collapsed" x:Name="menu_admin" FontSize="20" >
+                <NavigationViewItem.MenuItems >
+                    <NavigationViewItem Icon="Document" Content="Statistiques" x:Name="statistiques" FontSize="20"/>
+                    <NavigationViewItem Content="Gestion Activité" Icon="Folder" ToolTipService.ToolTip="Mail" FontSize="20" />
+                    <NavigationViewItem Content="Gestion utilisateur" Icon="Contact2" ToolTipService.ToolTip="Calendar"  FontSize="20"/>
+                    <NavigationViewItem Content="Gestion Séance" Icon="Calendar" ToolTipService.ToolTip="Calendar" FontSize="20" />
                 </NavigationViewItem.MenuItems>
             </NavigationViewItem>
         </NavigationView.MenuItems>
