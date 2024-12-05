@@ -344,12 +344,11 @@ CREATE PROCEDURE ajouter_activite(IN _nom varchar(155), IN _type varchar(155), I
 BEGIN
     DECLARE CONTINUE HANDLER FOR 1062
     BEGIN
-       SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Ce nom d\'activité existe déjà pour cette catégorie';
+       SIGNAL SQLSTATE '23000' SET MESSAGE_TEXT ='Ce nom d\'activité existe déjà pour cette catégorie';
     end ;
      INSERT INTO activite (nom, type, coutOrganisation, prixVente) VALUES (_nom, _type, _coutOrganisation, _prixVente);
 end //
 DELIMITER ;
-
 
 
 
