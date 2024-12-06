@@ -36,40 +36,37 @@
                 <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="4" Margin="0 20 30 0">
                     <TextBlock Foreground="Black" HorizontalAlignment="Center" FontSize="40" FontFamily="Arial Rounded MT">Séance disponible</TextBlock>
                     <StackPanel Orientation="Vertical">
-                    <GridView x:Name="gv_seance" HorizontalAlignment="Center">
-                        <GridView.ItemTemplate>
-                            <DataTemplate x:DataType="local:Seance">
-                               <Grid Background="White">
-                                <Grid.RowDefinitions>
-                                  <RowDefinition Height="auto"/>
+                        <GridView x:Name="gv_seance" HorizontalAlignment="Center">
+                            <GridView.ItemTemplate>
+                                <DataTemplate x:DataType="local:Seance">
+                                    <Grid Background="White">
+                                        <Grid.RowDefinitions>
                                             <RowDefinition Height="auto"/>
                                             <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
 
-                               <Grid.ColumnDefinitions>
-                                 <ColumnDefinition Width="*"/>
-                                 <ColumnDefinition Width="*"/>
-                               </Grid.ColumnDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
 
                                         <FontIcon Glyph="&#xEA89;" Foreground="black" Margin="10" FontSize="30" />
-                                        <TextBlock Text="{x:Bind Journee}"/>
+                                        <FontIcon Glyph="&#xE823;" Grid.Row="1" Foreground="black" Margin="10" FontSize="30"/>
+                                        <TextBlock Text="{x:Bind Journee}" Grid.Column="1" Margin="10" Foreground="Black" FontSize="20" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{x:Bind DateHeure.TimeOfDay}" Margin="10" Grid.Row="1" Grid.Column="1" Foreground="Black" VerticalAlignment="Center" FontSize="20"/>
+                                        ­
+                                        <Button x:Name="btn_reservation" Content="Réserver" Grid.Row="2"/>
 
 
+                                    </Grid>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
 
-                                    </Grid>                              
-                            </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
-                    
-                        
+
                     </StackPanel>
 
-
-
-                    <Button Foreground="Black" Background="#89A8B2" x:Name="btn_reserver_seance" Click="btn_reserver_seance_Click" Content="Choisir cette session" BorderBrush="#89A8B2" BorderThickness="2" PointerExited="btn_reserver_seance_PointerExited" PointerEntered="btn_reserver_seance_PointerEntered">
-                       
-                    </Button>
-                    
                     <TextBlock x:Name="tbl_err_reservation" Foreground="red" />
                 </StackPanel>
                 

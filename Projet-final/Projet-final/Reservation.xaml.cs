@@ -82,17 +82,5 @@ namespace Projet_final
             }
 
         }
-
-        private void btn_reserver_seance_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            btn_reserver_seance.Background = new SolidColorBrush(Colors.Blue);
-            btn_reserver_seance.Foreground = new SolidColorBrush(Colors.White);
-        }
-
-        private void btn_reserver_seance_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            btn_reserver_seance.Background = new SolidColorBrush(Colors.Turquoise);
-            btn_reserver_seance.Foreground = new SolidColorBrush(Colors.Green);
-        }
     }
-}
+ }

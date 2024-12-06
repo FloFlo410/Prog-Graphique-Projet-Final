@@ -67,6 +67,7 @@ namespace Projet_final
             get { return DateHeure.ToString("dddd d MMMM yyy"); }
         }
 
+
         public override string ToString()
         {
             return $"{ActiviteNom} - {DateHeure} - Places Restantes: {NbPlacesDispos}";
