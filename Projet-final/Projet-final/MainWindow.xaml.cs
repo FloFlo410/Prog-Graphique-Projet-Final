@@ -133,6 +133,15 @@ namespace Projet_final
             }
         }
 
+        private void nv_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            if (mainWindow.CanGoBack)
+            {
+                mainWindow.GoBack();
+
+            }
+        }
+
         //public void setNomAccueil()
         //{
         //    if (SingletonAdherent.getInstance().IsConnect)

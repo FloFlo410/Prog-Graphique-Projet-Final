@@ -10,38 +10,21 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="#E5E1DA">
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>-->
 
-        <!--<StackPanel Grid.Row="0" Background="#E5E1DA">
-            <TextBlock FontSize="70" HorizontalAlignment="Center" Foreground="Black" Margin="0 30 0 0"  >Activités disponibles</TextBlock>
-        </StackPanel>-->
 
         
             <GridView x:Name="gv_activite" Margin="20"   SelectionChanged="gv_activite_SelectionChanged" >
             <GridView.Header>
-                <TextBlock Text="Liste des activittés" FontSize="35" HorizontalAlignment="Center" Foreground="Black" />
+                <TextBlock Text="Liste des activitées" FontSize="60" HorizontalAlignment="Center" Foreground="Black" FontFamily="Arial Rounded MT" />
             </GridView.Header>
 
-                <!--<GridView.ItemContainerStyle>
-                    <Style TargetType="GridViewItem">
-                        --><!-- Par défaut --><!--
-                        <Setter Property="Background" Value="#B3C8CF" />
-                        <Setter Property="BorderBrush" Value="#89A8B2" />
-                        <Setter Property="Margin" Value="20" />
-                        <Setter Property="BorderThickness" Value="2" />
-                    </Style>
-                </GridView.ItemContainerStyle>-->
 
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="local:Activite">
-                        <StackPanel Orientation="Vertical" Width="300" Height="auto" Margin="20" Background="White" Padding="10" >
-                        <Image Source="https://www.lorrainemag.com/wp-content/uploads/2016/09/11860.jpg" />
-                        <TextBlock Text="{x:Bind Nom}" Width="auto" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="24"/>
-                            <TextBlock Text="{x:Bind Type}" Width="auto" HorizontalAlignment="Center" Foreground="Black"/>
-                            <!--<TextBlock Text="{x:Bind MoyenneNote}" Width="auto" HorizontalAlignment="Center" Foreground="Black"/>-->
+                        <StackPanel Orientation="Vertical" Width="auto" Height="250" Margin="20" Background="White" Padding="10" CornerRadius="20" >
+                        <Image Source="{x:Bind Url_img}" MaxHeight="150" Width="250" />
+                        <TextBlock Text="{x:Bind Nom}" Width="auto" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="24" FontFamily="Arial Rounded MT"/>
+                        <TextBlock Text="{x:Bind Type}" Width="auto" HorizontalAlignment="Center" Foreground="Black" FontFamily="Arial Rounded MT"/>
                         <RatingControl Value="{x:Bind MoyenneNote}" IsReadOnly="True" />
                     </StackPanel>
                     </DataTemplate>

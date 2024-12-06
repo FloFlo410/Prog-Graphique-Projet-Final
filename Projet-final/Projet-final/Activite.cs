@@ -12,7 +12,6 @@ namespace Projet_final
         public string Type { get; set; }
         public double CoutOrganisation { get; set; }
         public double PrixVente { get; set; }
-
         public string Url_img { get; set; }
 
         public double MoyenneNote { get; set; }

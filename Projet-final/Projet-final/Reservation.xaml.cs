@@ -47,7 +47,7 @@ namespace Projet_final
         {
             Activite activite = SingletonActivite.getInstance().getActiviteSelectione();
             ObservableCollection<Seance> seances = SingletonActivite.getInstance().getSeancesPourActivite(activite.Nom, activite.Type);
-            lv_seance.ItemsSource = seances;
+            gv_seance.ItemsSource = seances;
         }
 
         private void btn_reserver_seance_Click(object sender, RoutedEventArgs e)
@@ -55,9 +55,9 @@ namespace Projet_final
             if (SingletonAdherent.getInstance().IsConnect)
             {
                 Adherent adherent = SingletonAdherent.getInstance().AdhrentConnect;
-                if (lv_seance.SelectedItem != null)
+                if (gv_seance.SelectedItem != null)
                 {
-                    Seance seance = lv_seance.SelectedItem as Seance;
+                    Seance seance = gv_seance.SelectedItem as Seance;
                     int statut = SingletonActivite.getInstance().reserverSeanceActivite(adherent.NoIdentification, seance.IdSeance);
                     if(statut == 0) 
                         tbl_err_reservation.Text = "Vous avez réserver cette séance.";

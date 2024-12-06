@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     >
 
-    <NavigationView x:Name="nv" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" PaneDisplayMode="Top" ItemInvoked="nvSample_ItemInvoked" Background="#E5E1DA">
+    <NavigationView x:Name="nv" IsBackButtonVisible="Visible" IsBackEnabled="True" IsSettingsVisible="False" PaneDisplayMode="Top" ItemInvoked="nvSample_ItemInvoked" Background="#E5E1DA" BackRequested="nv_BackRequested">
         <NavigationView.Resources>
             <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="#89A8B2"/>
             <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White"/>
@@ -16,7 +16,7 @@
         </NavigationView.Resources>
 
         <NavigationView.PaneCustomContent>
-            <TextBlock Text="Bonjour Justin" VerticalAlignment="Center"  HorizontalAlignment="Center" Foreground="Yellow" FontFamily="Britannic" FontSize="24"/>
+            <TextBlock Text="Bonjour Justin" VerticalAlignment="Center"  HorizontalAlignment="Center"  FontFamily="Arial Rounded MT" FontSize="24"/>
         </NavigationView.PaneCustomContent>
 
         <NavigationView.MenuItems>
@@ -25,19 +25,19 @@
 
             <NavigationViewItem Icon="CalendarDay" Content="Mes participations" x:Name="participation" FontSize="20"/>
 
-            <NavigationViewItem Content="Administrateur" Icon="Admin" ToolTipService.ToolTip="Account" Visibility="Collapsed" x:Name="menu_admin" FontSize="20" >
+            <NavigationViewItem Content="Administrateur" Icon="Admin" ToolTipService.ToolTip="Account" Visibility="Collapsed" x:Name="menu_admin" FontSize="20"  >
                 <NavigationViewItem.MenuItems >
-                    <NavigationViewItem Icon="Document" Content="Statistiques" x:Name="statistiques" FontSize="20"/>
-                    <NavigationViewItem Content="Gestion Activité" Icon="Folder" ToolTipService.ToolTip="Mail" FontSize="20" />
-                    <NavigationViewItem Content="Gestion utilisateur" Icon="Contact2" ToolTipService.ToolTip="Calendar"  FontSize="20"/>
-                    <NavigationViewItem Content="Gestion Séance" Icon="Calendar" ToolTipService.ToolTip="Calendar" FontSize="20" />
+                    <NavigationViewItem Icon="Document" Content="Statistiques" x:Name="statistiques" FontSize="20" FontFamily="Arial Rounded MT"/>
+                    <NavigationViewItem Content="Gestion Activité" Icon="Folder" ToolTipService.ToolTip="Mail" FontSize="20" FontFamily="Arial Rounded MT"/>
+                    <NavigationViewItem Content="Gestion utilisateur" Icon="Contact2" ToolTipService.ToolTip="Calendar"  FontSize="20" FontFamily="Arial Rounded MT"/>
+                    <NavigationViewItem Content="Gestion Séance" Icon="Calendar" ToolTipService.ToolTip="Calendar" FontSize="20" FontFamily="Arial Rounded MT" />
                 </NavigationViewItem.MenuItems>
             </NavigationViewItem>
         </NavigationView.MenuItems>
 
         <NavigationView.FooterMenuItems>
-            <NavigationViewItem  Icon="Contact" Content="Connexion" Tag="liste_activitees" x:Name="connexion"/>
-            <NavigationViewItem Icon="Contact" Content="Déconnexion" Tag="liste_activitees" x:Name="deconnexion" Visibility="Collapsed" />
+            <NavigationViewItem  Icon="Contact" Content="Connexion" Tag="liste_activitees" x:Name="connexion"  FontFamily="Arial Rounded MT" FontSize="20"/>
+            <NavigationViewItem Icon="Contact" Content="Déconnexion" Tag="liste_activitees" x:Name="deconnexion" Visibility="Collapsed"  FontFamily="Arial Rounded MT" FontSize="20" />
         </NavigationView.FooterMenuItems>
 
         <Frame x:Name="mainWindow"/>
