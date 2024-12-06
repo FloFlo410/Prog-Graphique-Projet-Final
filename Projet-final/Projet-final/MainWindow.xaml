@@ -16,11 +16,11 @@
         </NavigationView.Resources>
 
         <NavigationView.PaneCustomContent>
-            <TextBlock Text="Bonjour Justin" VerticalAlignment="Center"  HorizontalAlignment="Center"  FontFamily="Arial Rounded MT" FontSize="24"/>
+            <TextBlock Text="Bonjour Justin" Foreground="White" VerticalAlignment="Center"  HorizontalAlignment="Center"  FontFamily="Arial Rounded MT" FontSize="24"/>
         </NavigationView.PaneCustomContent>
 
         <NavigationView.MenuItems>
-            <NavigationViewItem Icon="List" Content="Liste Activités" x:Name="liste_activitees" FontSize="20"/>
+            <NavigationViewItem Icon="List" Foreground="white" Content="Liste Activités" x:Name="liste_activitees" FontSize="20"/>
 
 
             <NavigationViewItem Icon="CalendarDay" Content="Mes participations" x:Name="participation" FontSize="20"/>
