@@ -52,13 +52,9 @@
                                </Grid.ColumnDefinitions>
 
                                         <FontIcon Glyph="&#xEA89;" Foreground="black" Margin="10" FontSize="30" />
+                                        <TextBlock Text="{x:Bind Journee}"/>
 
-                                        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" >
-                                            <TextBlock Text="{x:Bind DateHeure.Day}" Foreground="Black" VerticalAlignment="Center" Margin="10" FontFamily="Arial Rounded MT"/>
-                                            <TextBlock Text="{x:Bind DateHeure}" Foreground="Black" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="10" FontFamily="Arial Rounded MT"/>
-                                            <TextBlock Text="{x:Bind DateHeure.}" Foreground="Black" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="10" FontFamily="Arial Rounded MT"/>
-                                        </StackPanel>
-                                
+
 
                                     </Grid>                              
                             </DataTemplate>
