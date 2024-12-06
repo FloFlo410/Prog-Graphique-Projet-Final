@@ -48,6 +48,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
 
@@ -72,7 +73,9 @@
 
                 <NumberBox x:Name="num_prix_client" Header="Prix pour le client ($)" Margin="0 20 30 0" Grid.Row="2" Grid.Column="1" FontSize="20" SpinButtonPlacementMode="Compact" SmallChange="10"/>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="0 20 30 0">
+                <TextBox Header="Url de l'image" x:Name="tbox_url_img" Grid.Row="3" FontSize="20" Grid.ColumnSpan="2"  Margin="0 20 30 0"/>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="0 20 0 0">
                     <Button Margin="10" FontSize="20" x:Name="btn_modif" Click="btn_modif_Click">Modifier</Button>
                     <Button Margin="10" FontSize="20"  x:Name="btn_sup" Click="btn_sup_Click">Supprimer</Button>
                 </StackPanel>

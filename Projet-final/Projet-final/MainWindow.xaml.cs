@@ -34,7 +34,7 @@ namespace Projet_final
             SingletonAdherent.getInstance().setMainwindow(this.mainWindow);
             SingletonAdherent.getInstance().setMainwindowWindow(this);  
 
-            setNomAccueil();
+            //setNomAccueil();
         }
         private async void nvSample_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
@@ -52,7 +52,6 @@ namespace Projet_final
                     if (SingletonAdherent.getInstance().IsConnect)
                     {
                     mainWindow.Navigate(typeof(Participation_adherant_connecter));
-                    nv.Header = null;
                     }
                     else
                     {
@@ -71,7 +70,6 @@ namespace Projet_final
                             {
                                 connexion.Visibility = Visibility.Collapsed;
                                 deconnexion.Visibility = Visibility.Visible;
-                                tblock_acceuil_name.Visibility = Visibility.Visible;
                                 if (SingletonAdherent.getInstance().AdhrentConnect.Role == "administrateur")
                                 {
                                     menu_admin.Visibility = Visibility.Visible;
@@ -84,18 +82,15 @@ namespace Projet_final
 
                 case "Gestion utilisateur":
                     mainWindow.Navigate(typeof(GestionAdherent));
-                    nv.Header = null;
                break;
 
                 case "Gestion Activité":
                     mainWindow.Navigate(typeof(GestionActivite));
-                    nv.Header = null;
                     break;
 
 
                 case "Gestion Séance":
                     mainWindow.Navigate(typeof(GestionSeance));
-                    nv.Header = null;
                     break;
 
 
@@ -114,7 +109,6 @@ namespace Projet_final
                             if (SingletonAdherent.getInstance().IsConnect){ 
                                 connexion.Visibility = Visibility.Collapsed;
                                 deconnexion.Visibility = Visibility.Visible;
-                                tblock_acceuil_name.Visibility = Visibility.Visible;
                                 if (SingletonAdherent.getInstance().AdhrentConnect.Role == "administrateur")
                                 {
                                     menu_admin.Visibility = Visibility.Visible;
@@ -130,7 +124,6 @@ namespace Projet_final
 
                     connexion.Visibility = Visibility.Visible;
                     deconnexion.Visibility = Visibility.Collapsed;
-                    tblock_acceuil_name.Visibility = Visibility.Collapsed;
                     menu_admin.Visibility = Visibility.Collapsed;
                     break;
 
@@ -140,12 +133,12 @@ namespace Projet_final
             }
         }
 
-        public void setNomAccueil()
-        {
-            if (SingletonAdherent.getInstance().IsConnect)
-                tblock_acceuil_name.Text = "Bonjour, " + SingletonAdherent.getInstance().AdhrentConnect.Prenom;
-            else
-                tblock_acceuil_name.Text = "Bonjour";
-        }
+        //public void setNomAccueil()
+        //{
+        //    if (SingletonAdherent.getInstance().IsConnect)
+        //        //tblock_acceuil_name.Text = "Bonjour, " + SingletonAdherent.getInstance().AdhrentConnect.Prenom;
+        //    else
+        //        tblock_acceuil_name.Text = "Bonjour";
+        //}
     }
 }

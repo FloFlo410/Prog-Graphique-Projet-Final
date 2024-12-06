@@ -53,6 +53,7 @@ namespace Projet_final
                 tbox_nom.Text = activite.Nom;
                 num_prix_org.Value = activite.CoutOrganisation;
                 num_prix_client.Value = activite.PrixVente;
+                tbox_url_img.Text = activite.Url_img;
 
                 if (indexComboBox != -1)
                 {
@@ -69,7 +70,7 @@ namespace Projet_final
         {
 
             int index = lv_activites.SelectedIndex;
-            Activite newActivite = new Activite(tbox_nom.Text, cbox_categories.SelectedValue.ToString(), num_prix_org.Value, num_prix_client.Value);
+            Activite newActivite = new Activite(tbox_nom.Text, cbox_categories.SelectedValue.ToString(), num_prix_org.Value, num_prix_client.Value,tbox_url_img.Text);
             Activite oldActivite = SingletonActivite.getInstance().getListeActivites()[index];
             string result = SingletonActivite.getInstance().modifier(newActivite, oldActivite);
 

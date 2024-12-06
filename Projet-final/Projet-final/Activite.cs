@@ -13,14 +13,17 @@ namespace Projet_final
         public double CoutOrganisation { get; set; }
         public double PrixVente { get; set; }
 
+        public string Url_img { get; set; }
+
         public double MoyenneNote { get; set; }
 
-        public Activite(string nom, string type, double coutOrganisation, double prixVente)
+        public Activite(string nom, string type, double coutOrganisation, double prixVente, string url_img)
         {
             Nom = nom;
             Type = type;
             CoutOrganisation = coutOrganisation;
             PrixVente = prixVente;
+            Url_img = url_img;
         }
 
         public override string ToString()

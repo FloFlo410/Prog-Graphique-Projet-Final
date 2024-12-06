@@ -14,13 +14,10 @@
             <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White"/>
             <SolidColorBrush x:Key="TopNavigationViewItemForegroundPointerOver" Color="White"/>
         </NavigationView.Resources>
-       
 
-
-
-        <NavigationView.Header>
-            <TextBlock x:Name="tblock_acceuil_name" Margin="10" FontSize="20">Bonjour, Justin</TextBlock>
-        </NavigationView.Header>
+        <NavigationView.PaneCustomContent>
+            <TextBlock Text="Bonjour Justin" VerticalAlignment="Center"  HorizontalAlignment="Center" Foreground="Yellow" FontFamily="Britannic" FontSize="24"/>
+        </NavigationView.PaneCustomContent>
 
         <NavigationView.MenuItems>
             <NavigationViewItem Icon="List" Content="Liste Activités" x:Name="liste_activitees" FontSize="20"/>

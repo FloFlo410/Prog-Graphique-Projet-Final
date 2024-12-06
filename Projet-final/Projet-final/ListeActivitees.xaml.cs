@@ -29,11 +29,9 @@ namespace Projet_final
             gv_activite.ItemsSource = SingletonActivite.getInstance().getListeActivites();
         }
 
-
-        private void gv_activite_ItemClick(object sender, ItemClickEventArgs e)
+        private void gv_activite_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            if (gv_activite.SelectedItem != null)
+                if (gv_activite.SelectedItem != null)
             {
                 SingletonActivite.getInstance().setActiviteSelectione((Activite)gv_activite.SelectedItem);
 

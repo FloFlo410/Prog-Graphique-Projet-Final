@@ -60,7 +60,7 @@ namespace Projet_final
             MySqlDataReader r = commande.ExecuteReader();
             while (r.Read())
             {
-                Activite activite = new Activite(r[0].ToString(), r[1].ToString(), Double.Parse(r[2].ToString()), Int32.Parse(r[3].ToString()));
+                Activite activite = new Activite(r[0].ToString(), r[1].ToString(), Double.Parse(r[2].ToString()), Int32.Parse(r[3].ToString()), r[4].ToString());
                 liste_activites.Add(activite);
             }
             r.Close();
@@ -76,7 +76,7 @@ namespace Projet_final
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = $"update activite set nom ='{newActivite.Nom}', type = '{newActivite.Type}', coutOrganisation={newActivite.CoutOrganisation}, prixVente ={newActivite.PrixVente} where nom ='{oldActivite.Nom}' AND type = '{oldActivite.Type}' ";
+                commande.CommandText = $"update activite set nom ='{newActivite.Nom}', type = '{newActivite.Type}', coutOrganisation={newActivite.CoutOrganisation}, prixVente ={newActivite.PrixVente},url_img = '{newActivite.Url_img}'  where nom ='{oldActivite.Nom}' AND type = '{oldActivite.Type}' ";
 
                 con.Open();
                 int i = commande.ExecuteNonQuery();
@@ -242,6 +242,7 @@ namespace Projet_final
                 commande.Parameters.AddWithValue("_type", activite.Type);
                 commande.Parameters.AddWithValue("_coutOrganisation", activite.CoutOrganisation);
                 commande.Parameters.AddWithValue("_prixVente", activite.PrixVente);
+                commande.Parameters.AddWithValue("_url_img", activite.Url_img);
 
 
                 con.Open();

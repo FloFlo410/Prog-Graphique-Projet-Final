@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid >
+    <Grid  Background="#E5E1DA">
         <StackPanel>
             <Grid>
                 <Grid.RowDefinitions>
@@ -19,27 +19,45 @@
                 </Grid.RowDefinitions>
 
 
-                <Grid.ColumnDefinitions>
+                <!--<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>-->
 
                 <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="2">
-                    <TextBlock x:Name="tblock_nom" FontSize="40"></TextBlock>
+                    <TextBlock x:Name="tblock_nom" FontSize="60" Foreground="Black" HorizontalTextAlignment="Center"></TextBlock>
+                    <TextBlock Foreground="Black" x:Name="tbl_prix_client" Margin="0 20 30 0" HorizontalTextAlignment="Center"  FontSize="20"/>
                 </StackPanel>
 
-                <TextBlock x:Name="tbl_nom" Grid.Row="1" Grid.Column="0" Margin="0 20 30 0" FontSize="20"></TextBlock>
+                <!--<TextBlock Foreground="Black" x:Name="tbl_nom" Grid.Row="1" Grid.Column="0" Margin="0 20 30 0" FontSize="20"></TextBlock>-->
 
 
-                <TextBlock x:Name="tbl_prix_client" Margin="0 20 30 0" Grid.Row="2" FontSize="20"/>
 
-                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Margin="0 20 30 0">
-                    <TextBlock>Séance disponible</TextBlock>
-                    <ListView x:Name="lv_seance">
-                        
+                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="4" Margin="0 20 30 0">
+                    <FontIcon Glyph="&#xE700;" Foreground="Green" FontSize="35" />
+                    <TextBlock Foreground="Black" HorizontalAlignment="Center" FontSize="40">Séance disponible</TextBlock>
+                    <ListView x:Name="lv_seance" Foreground="Black" Background="AntiqueWhite">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="local:Seance">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="Aquamarine">
+                                        <TextBlock Text="Date :" Foreground="Black" FontSize="30" />
+                                        <TextBlock Text="{x:Bind DateHeure}" Foreground="Black" FontSize="30"/>
+                                    </StackPanel>
+
+                                    </StackPanel>
+                            </DataTemplate> 
+                        </ListView.ItemTemplate>
+
                     </ListView>
-                    <Button x:Name="btn_reserver_seance" Click="btn_reserver_seance_Click" >Choisir cette session</Button>
-                    <TextBlock x:Name="tbl_err_reservation" />
+
+
+
+                    <Button Foreground="Black" Background="#89A8B2" x:Name="btn_reserver_seance" Click="btn_reserver_seance_Click" Content="Choisir cette session" BorderBrush="#89A8B2" BorderThickness="2" PointerExited="btn_reserver_seance_PointerExited" PointerEntered="btn_reserver_seance_PointerEntered">
+                       
+                    </Button>
+                    
+                    <TextBlock x:Name="tbl_err_reservation" Foreground="red" />
                 </StackPanel>
                 
             </Grid>

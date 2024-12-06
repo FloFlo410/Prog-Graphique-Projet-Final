@@ -66,7 +66,7 @@ namespace Projet_final
                     categorie = cbox_categories.SelectedValue.ToString();
                 }
 
-                string result = SingletonActivite.getInstance().ajouter(new Activite(tbox_nom.Text, categorie, Convert.ToInt32(num_prix_org.Text), Convert.ToInt32(num_prix_client.Text)));
+                string result = SingletonActivite.getInstance().ajouter(new Activite(tbox_nom.Text, categorie, Convert.ToInt32(num_prix_org.Text), Convert.ToInt32(num_prix_client.Text),tbox_url.Text));
                 if (result == "réussi")
                 {
                     SingletonAdherent.getInstance().getMainwindow().Navigate(typeof(GestionActivite));
@@ -107,6 +107,12 @@ namespace Projet_final
             {
                 valide = false;
                 num_prix_org_error.Text = "Le nombre ne peut pas être vide";
+            }
+
+            if (string.IsNullOrWhiteSpace(tbox_url.Text))
+            {
+                valide = false;
+                tbox_url_error.Text = "L'url ne peut pas être vide";
             }
 
 

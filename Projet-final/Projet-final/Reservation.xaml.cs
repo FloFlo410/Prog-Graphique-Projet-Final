@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,7 +37,7 @@ namespace Projet_final
         {
             Activite activite = SingletonActivite.getInstance().getActiviteSelectione();
             tblock_nom.Text = activite.Nom;
-            tbl_nom.Text = activite.Nom;
+            //tbl_nom.Text = activite.Nom;
             tbl_prix_client.Text = activite.PrixVente.ToString() + "$/session";
 
             afficherSeances();
@@ -79,6 +81,18 @@ namespace Projet_final
                 tbl_err_reservation.Text = "Veuillez vous connecter avant de réserver une séance.";
             }
 
+        }
+
+        private void btn_reserver_seance_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            btn_reserver_seance.Background = new SolidColorBrush(Colors.Blue);
+            btn_reserver_seance.Foreground = new SolidColorBrush(Colors.White);
+        }
+
+        private void btn_reserver_seance_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            btn_reserver_seance.Background = new SolidColorBrush(Colors.Turquoise);
+            btn_reserver_seance.Foreground = new SolidColorBrush(Colors.Green);
         }
     }
 }
