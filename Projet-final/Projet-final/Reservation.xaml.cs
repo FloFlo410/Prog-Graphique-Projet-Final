@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -52,13 +53,17 @@ namespace Projet_final
 
         private void btn_reserver_seance_Click(object sender, RoutedEventArgs e)
         {
+            Button button = sender as Button;
+            Seance seance_select = button.DataContext as Seance;
+            gv_seance.SelectedItem = seance_select;
+
             if (SingletonAdherent.getInstance().IsConnect)
             {
                 Adherent adherent = SingletonAdherent.getInstance().AdhrentConnect;
                 if (gv_seance.SelectedItem != null)
                 {
-                    Seance seance = gv_seance.SelectedItem as Seance;
-                    int statut = SingletonActivite.getInstance().reserverSeanceActivite(adherent.NoIdentification, seance.IdSeance);
+                    //Seance seance = gv_seance.SelectedItem as Seance;
+                    int statut = SingletonActivite.getInstance().reserverSeanceActivite(adherent.NoIdentification, seance_select.IdSeance);
                     if(statut == 0) 
                         tbl_err_reservation.Text = "Vous avez réserver cette séance.";
                     else if (statut == -2)
