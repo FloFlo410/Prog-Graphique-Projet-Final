@@ -97,7 +97,11 @@ namespace Projet_final
 
         private void btn_sup_Click(object sender, RoutedEventArgs e)
         {
-
+            if(lv_seance.SelectedIndex >= 0)
+            {
+                Seance seance = lv_seance.SelectedItem as Seance;
+                SingletonSeance.getInstance().supprimerSeance(seance.idSeance);
+            }
         }
 
         private bool valide()

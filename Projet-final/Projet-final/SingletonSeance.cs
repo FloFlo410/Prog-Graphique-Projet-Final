@@ -88,9 +88,7 @@ namespace Projet_final
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                
-               
-               
+    
                     commande.CommandText = "UPDATE seance SET activiteNom = @activiteNom, activiteType = @activiteType, dateHeure = @dateHeure, nbPlacesDispos = @nbPlacesDispos WHERE idSeance = @idSeance";
                 
                 commande.Parameters.AddWithValue("@idSeance", idSeance);
@@ -113,6 +111,71 @@ namespace Projet_final
             {
                 con.Close();
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void ajouterSeance(Seance seance)
+        {
+            int idSeance = seance.idSeance;
+            string activiteNom = seance.activiteNom;
+            string activiteType = seance.activiteType;
+            DateTime dateHeure = seance.dateHeure;
+            int nbPlacesDispos = seance.nbPlacesDispos;
+
+
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+
+                commande.CommandText = "INSERT INTO seance (activiteNom, activiteType, dateHeure, nbPlacesDispos) VALUES (@activiteNom, @activiteType, @dateHeure, @nbPlacesDispos)\r\n";
+
+                commande.Parameters.AddWithValue("@idSeance", idSeance);
+
+                commande.Parameters.AddWithValue("@activiteNom", activiteNom);
+                commande.Parameters.AddWithValue("@activiteType", activiteType);
+                commande.Parameters.AddWithValue("@dateHeure", dateHeure.ToString());
+                commande.Parameters.AddWithValue("@nbPlacesDispos", nbPlacesDispos);
+
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+
+                loadDataInList();
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                Console.WriteLine(ex.Message);
+            }
+        
+        }
+
+        public void supprimerSeance(int idSeance)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "delete from seance where idSeance = @idSeance";
+                commande.Parameters.AddWithValue("@idSeance", idSeance);
+                con.Open();
+                commande.Prepare();
+
+                commande.ExecuteNonQuery();
+
+                con.Close();
+                loadDataInList();
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                Console.WriteLine(ex.Message);
+
             }
         }
 
