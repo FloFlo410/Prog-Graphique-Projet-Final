@@ -9,42 +9,67 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Margin="20">
+    <Grid Background="#E5E1DA">
 
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <ListView IsItemClickEnabled="False" x:Name="lv_participation" Grid.Row="1" Grid.Column="0" Margin="0 0 0 0">
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
-            <TextBlock HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="40">Vos participations</TextBlock>
-            <TextBlock x:Name="tblock_no_participation" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="20" Margin="0 10 0 0">Vous n'avez pas de participation</TextBlock>
-        </StackPanel>
+            <ListView.Header >
+                <StackPanel Orientation="Vertical" Margin="20">
+                    <TextBlock HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" >Vos participations</TextBlock>
+                    <TextBlock x:Name="tblock_no_participation" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="20" Margin="0 10 0 0">Vous n'avez pas de participation</TextBlock>
+                </StackPanel>
+            </ListView.Header>
 
-        <ListView x:Name="lv_participation" Grid.Row="1" Grid.Column="0" Margin="0 50 0 0" SelectionChanged="lv_participation_SelectionChanged"></ListView>
+            <ListView.ItemTemplate >
+                <DataTemplate x:DataType="local:Participation">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0 50 0 0" Orientation="Vertical" x:Name="stp_participation" >
 
-            <TextBlock x:Name="tblock_nom_activite" FontSize="30" HorizontalAlignment="Center" Margin="0 0 0 20">test</TextBlock>
-            <TextBlock x:Name="tblock_type_activite" Margin="0 0 0 20">test</TextBlock>
-            <TextBlock x:Name="tblock_date_activite" Margin="0 0 0 20">test</TextBlock>
-            <TextBlock x:Name="tblock_heure_activite" Margin="0 0 0 20">test</TextBlock>
-            <Slider x:Name="slider_note" Width="200"  Minimum="0"  Maximum="5" HorizontalAlignment="Left" StepFrequency="0.1" Value="3" />
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="btn_desinscrire" Click="btn_desinscrire_Click">Se désinscrire</Button>
-                <Button x:Name="mbtn_modifier_note" Click="mbtn_modifier_note_Click">Modifier note</Button> 
-            </StackPanel>
+                        <TextBlock FontSize="30" FontFamily="Arial Rounded MT" Text="{x:Bind Seance.ActiviteNom}" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <FontIcon Glyph="&#xEA89;" Foreground="black" Margin="10"  />
+                            <TextBlock FontFamily="Arial Rounded MT"  Text="{x:Bind Seance.Journee}" VerticalAlignment="center"/>
+                        </StackPanel>
+                        
 
-        </StackPanel>
-        
-        
-        
-        
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                           <FontIcon Glyph="&#xE823;"  Foreground="black" Margin="10"/> 
+                             <TextBlock FontFamily="Arial Rounded MT"  Text="{x:Bind Seance.DateHeure.TimeOfDay}" VerticalAlignment="center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="center">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                    <FontIcon Glyph="&#xE716;" Margin="10" />
+                                    <TextBlock Text="Nombre de places restantes: " VerticalAlignment="center" Margin=" 0 0 3 0"/>
+                                </StackPanel>
+
+                                <TextBlock Text="{x:Bind Seance.NbPlacesDispos}" Grid.Column="1" VerticalAlignment="center"/>
+                            </Grid>
+                            
+                        </StackPanel>
+                        <RatingControl x:Name="Rating_star" Value="{x:Bind Note}" Grid.Row="4" Grid.ColumnSpan="2"/>
+
+                        <StackPanel Margin=" 0 10 0 20" Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="center">
+                            <Button FontFamily="Arial Rounded MT"  Margin="0 0 15 0"  x:Name="mbtn_modifier_note" Click="mbtn_modifier_note_Click">Modifier note</Button>
+                            <Button FontFamily="Arial Rounded MT"  x:Name="btn_desinscrire" Click="btn_desinscrire_Click">Se désinscrire</Button>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

@@ -77,33 +77,3 @@
         </StackPanel>
     </Grid>
 </Page>
-
-
-
-<!--<GridView x:Name="gv_seance" HorizontalAlignment="Center">
-    <GridView.ItemTemplate>
-        <DataTemplate x:DataType="local:Seance">
-            <Grid Background="White">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <FontIcon Glyph="&#xEA89;" Foreground="black" Margin="10" FontSize="30" />
-                <FontIcon Glyph="&#xE823;" Grid.Row="1" Foreground="black" Margin="10" FontSize="30"/>
-                <TextBlock Text="{x:Bind Journee}" Grid.Column="1" Margin="10" Foreground="Black" FontSize="20" VerticalAlignment="Center"/>
-                <TextBlock Text="{x:Bind DateHeure.TimeOfDay}" Margin="10" Grid.Row="1" Grid.Column="1" Foreground="Black" VerticalAlignment="Center" FontSize="20"/>
-                ­
-                <Button x:Name="btn_reservation" Grid.Row="2"/>
-
-
-            </Grid>
-        </DataTemplate>
-    </GridView.ItemTemplate>
-</GridView>-->

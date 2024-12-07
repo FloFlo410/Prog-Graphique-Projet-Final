@@ -38,36 +38,17 @@ namespace Projet_final
                 tblock_no_participation.Visibility = Visibility.Collapsed;
             }
             
-
-            stp_participation.Visibility = Visibility.Collapsed;
-        }
-
-        private void lv_participation_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            int index = lv_participation.SelectedIndex;
-            stp_participation.Visibility = Visibility.Collapsed;
-
-            if (index != -1)
-            {
-               
-                stp_participation.Visibility = Visibility.Visible;
-                Participation participation = SingletonParticipation.getInstance().getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect)[index];
-
-                tblock_nom_activite.Text = participation.Seance.ActiviteNom;
-
-                tblock_type_activite.Text = participation.Seance.ActiteType;
-
-                tblock_date_activite.Text = participation.Seance.DateHeure.Date.ToString("D");
-
-                tblock_heure_activite.Text = participation.Seance.DateHeure.ToString("HH:mm:ss");
-
-            }
         }
 
         private void btn_desinscrire_Click(object sender, RoutedEventArgs e)
         {
+
+
+            Button button = sender as Button;
+            Participation particiaption = button.DataContext as Participation;
+            lv_participation.SelectedItem = particiaption;
             int index = lv_participation.SelectedIndex;
+
             Participation participation = SingletonParticipation.getInstance().getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect)[index];
 
             SingletonParticipation.getInstance().supprimer(participation);
@@ -78,14 +59,16 @@ namespace Projet_final
 
         private void mbtn_modifier_note_Click(object sender, RoutedEventArgs e)
         {
+            Button button = sender as Button;
+            Participation particiaption = button.DataContext as Participation;
+            lv_participation.SelectedItem = particiaption;
             int index = lv_participation.SelectedIndex;
+
+            RatingControl ratingControl = (RatingControl)((FrameworkElement)sender).FindName("Rating_star");
             if (index != -1)
             {
-                double value = Math.Round(slider_note.Value,1);
-
+                double value = ratingControl.Value;
                 SingletonParticipation.getInstance().changerNote(SingletonParticipation.getInstance().getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect)[index],value);
-
-
             }
         }
     }

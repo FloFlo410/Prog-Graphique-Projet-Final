@@ -8,7 +8,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
-    Closing="ContentDialog_Closing">
+    Closing="ContentDialog_Closing"
+    CornerRadius="10"
+    Background="#F1F0E8">
 
     <StackPanel CornerRadius="10">
         <TextBlock x:Name="tbox_nomUtilisateur_error" Foreground="red" Margin="5"></TextBlock>
