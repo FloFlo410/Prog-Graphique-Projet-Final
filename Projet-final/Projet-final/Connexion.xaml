@@ -10,7 +10,7 @@
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     Closing="ContentDialog_Closing">
 
-    <StackPanel>
+    <StackPanel CornerRadius="10">
         <TextBlock x:Name="tbox_nomUtilisateur_error" Foreground="red" Margin="5"></TextBlock>
         <TextBox x:Name="tbox_nomUtilisateur" Header="Nom d'utilisateur" Margin="5" ></TextBox>
         <PasswordBox  x:Name="tbox_motDePasse" Header="Mot de Passe" Margin="5" ></PasswordBox>

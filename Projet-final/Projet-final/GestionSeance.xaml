@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Margin="20">
+    <Grid Background="#F1F0E8">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="20">
             <TextBlock FontSize="50" >Gestion des séances</TextBlock>
 
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin=" 70 10 0 0">
@@ -38,7 +38,7 @@
             </StackPanel>
         </StackPanel>
 
-        <ScrollViewer Grid.Row="1" Margin=" 0 20 0 0">
+        <ScrollViewer Grid.Row="1" Margin=" 0 20 0 0" >
             <ListView x:Name="lv_seance" SelectionChanged="lv_seance_SelectionChanged"></ListView>
         </ScrollViewer>
 
