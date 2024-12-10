@@ -27,7 +27,7 @@ namespace Projet_final
             this.nomActivite = nomActivite;
             this.nombreParticipation = nombreParticipation;
             this.typeActivite = typeActivite;
-            this.noteMoyenne = noteMoyenne;
+            this.noteMoyenne = Math.Round(noteMoyenne,2);
             this.revenuTotal = revenuTotal;
         }
 

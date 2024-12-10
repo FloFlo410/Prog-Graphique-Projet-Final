@@ -20,7 +20,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
 
@@ -45,21 +44,82 @@
 
         </StackPanel>
 
-            <ListView x:Name="lv_activites" CornerRadius="10" Margin="20" Grid.Row="1" Grid.Column="0" Background="#B3C8CF">
+
+        <ScrollViewer Height="500" Grid.Row="1" Grid.Column="0">
+            <ListView x:Name="lv_activites" CornerRadius="10" Margin="20"  Background="#B3C8CF" SelectionMode="None">
 
             <ListView.Header>
                 <StackPanel Orientation="Vertical" >
-                    <TextBlock HorizontalAlignment="Center" FontSize="30">Revenu Total par activité</TextBlock>
-                </StackPanel>
+                        <TextBlock HorizontalAlignment="Center" FontSize="30" Margin=" 0 0 0 6">Statistique par activité</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" FontSize="15">$ Revenu total</TextBlock>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5 0 0">
+                            <FontIcon Glyph="&#xE734;" Margin="0 0 10 0" />
+                           <TextBlock HorizontalAlignment="Center" FontSize="15"> Note moyenne</TextBlock> 
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5 0 0">
+                            <FontIcon Glyph="&#xE716;"  Margin="0 0 10 0"/>
+                            <TextBlock HorizontalAlignment="Center" FontSize="15">Nombre de Participation</TextBlock>
+                        </StackPanel>
+
+                    </StackPanel>
             </ListView.Header>
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Statistique">
+                    <StackPanel Orientation="Vertical" Margin="15">
+                        <TextBlock Text="{x:Bind NomActivite}" FontSize="20" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{x:Bind TypeActivite}" FontSize="13" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="$ :" FontSize="20"/>
+                            <TextBlock Text="{x:Bind RevenuTotal}" FontSize="20"/>
+                        </StackPanel> 
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                <FontIcon Glyph="&#xE716;"  Margin="0 0 10 0"/>
+                                <TextBlock HorizontalAlignment="Center" FontSize="15" Text="{x:Bind NombreParticipation}"/>
+                            </StackPanel>
+                            <RatingControl Value="{x:Bind NoteMoyenne}" IsReadOnly="True"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="center">
+                                <TextBlock Text="{x:Bind NoteMoyenne}"></TextBlock>
+                                <TextBlock Text="/5"></TextBlock>
+                            </StackPanel>
+
+                        </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
+</ScrollViewer>
+
+
+
+
+        <ScrollViewer Height="500" Grid.Row="1" Grid.Column="1">
+            <ListView x:Name="lv_adherents" CornerRadius="10" Margin="20"  Background="#B3C8CF" SelectionMode="None">
+
+                <ListView.Header>
+                    <StackPanel Orientation="Vertical" >
+                        <TextBlock HorizontalAlignment="Center" FontSize="30" Margin=" 0 0 0 6">Statistique par adhérent</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" FontSize="15">$ Prix moyen dépensée</TextBlock>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5 0 0">
+                            <FontIcon Glyph="&#xE719;" Margin="0 0 10 0"/>
+                            <TextBlock HorizontalAlignment="Center" FontSize="15">Dépense total</TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Statistique">
+                        <TextBlock Text="test"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
 
 
 
 
 
-
-            <!--<StackPanel>
+        <!--<StackPanel>
             <StackPanel Orientation="Horizontal">
                 <ScrollViewer Grid.Row="1" Margin=" 0 20 0 0">
                     <ListView x:Name="lv_activites">
