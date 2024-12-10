@@ -65,6 +65,7 @@ namespace Projet_final
             int index = lv_participation.SelectedIndex;
 
             RatingControl ratingControl = (RatingControl)((FrameworkElement)sender).FindName("Rating_star");
+            TextBlock tbl_message_modif = (TextBlock)((FrameworkElement)sender).FindName("tbl_message_modif");
             if (index != -1)
             {
                 double value = ratingControl.Value;
