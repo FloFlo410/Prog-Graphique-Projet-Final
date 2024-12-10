@@ -36,6 +36,7 @@ namespace Projet_final
             if (index != -1)
             {
                 stp_detail.Visibility = Visibility.Visible;
+                stp_no_selection.Visibility = Visibility.Collapsed;
                 Seance seance = SingletonSeance.getInstance().Liste_seances[index];
 
                 tblock_idSeance.Text = seance.idSeance.ToString();
@@ -55,6 +56,7 @@ namespace Projet_final
             else
             {
                 stp_detail.Visibility = Visibility.Collapsed;
+                stp_no_selection.Visibility = Visibility.Visible;
             }
         }
 

@@ -28,6 +28,7 @@ namespace Projet_final
             this.InitializeComponent();
             lv_Adherent.ItemsSource = SingletonAdherent.getInstance().Liste_Adherent;
             stck_infoAdherent.Visibility = Visibility.Collapsed;
+            stp_no_selection.Visibility = Visibility.Visible;
 
         }
 
@@ -75,6 +76,7 @@ namespace Projet_final
             {
                 resetErr();
                 stck_infoAdherent.Visibility = Visibility.Visible;
+                stp_no_selection.Visibility = Visibility.Collapsed;
                 tbl_noIdentification.Text = adherent.NoIdentification;
                 tbx_prenom.Text = adherent.Prenom;
                 tbx_nom.Text = adherent.Nom;
@@ -90,6 +92,8 @@ namespace Projet_final
             else
             {
                 stck_infoAdherent.Visibility= Visibility.Collapsed;
+                stp_no_selection.Visibility = Visibility.Visible;
+
             }
         }
 

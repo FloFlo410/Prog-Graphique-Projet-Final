@@ -40,6 +40,9 @@
             <ListView x:Name="lv_activites" SelectionChanged="lv_activites_SelectionChanged"></ListView>
         </ScrollViewer>
 
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="20" Visibility="Visible" x:Name="stp_no_selection" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock FontSize="50">Veuillez sélectionner une activité</TextBlock>
+        </StackPanel>
         <StackPanel  Grid.Row="1" Grid.Column="1" Margin="20" Visibility="Collapsed" x:Name="stp_detail">
 
             <Grid>

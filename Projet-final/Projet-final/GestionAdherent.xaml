@@ -115,6 +115,9 @@
         <Button Grid.Row="1" x:Name="btn_ajouter_adherent" Click="btn_ajouter_adherent_Click">Ajouter Adhérent</Button>
         <Button Grid.Row="2" x:Name="btn_supprimer_adherent" Click="btn_supprimer_adherent_Click">Supprimer adhérent</Button>
         <Button Grid.Row="3" x:Name="btn_exporter_adherent" Click="btn_exporter_adherent_Click">Exporter adhérent</Button>
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="20" Visibility="Visible" x:Name="stp_no_selection" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock FontSize="50">Veuillez sélectionner un utilisateur</TextBlock>
+        </StackPanel>
 
     </Grid>
 </Page>

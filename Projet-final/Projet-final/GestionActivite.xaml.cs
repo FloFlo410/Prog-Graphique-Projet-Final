@@ -38,6 +38,7 @@ namespace Projet_final
             if (index != -1)
             {
                 stp_detail.Visibility = Visibility.Visible;
+                stp_no_selection.Visibility = Visibility.Collapsed;
                 Activite activite = SingletonActivite.getInstance().getListeActivites()[index];
 
                 for (int i = 0; i < cbox_categories.Items.Count; i++)
@@ -63,6 +64,7 @@ namespace Projet_final
             else
             {
                 stp_detail.Visibility = Visibility.Collapsed;
+                stp_no_selection.Visibility = Visibility.Visible;
             }
         }
 
