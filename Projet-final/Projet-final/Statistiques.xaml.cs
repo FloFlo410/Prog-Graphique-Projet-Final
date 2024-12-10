@@ -28,10 +28,10 @@ namespace Projet_final
         {
             this.InitializeComponent();
 
-            tbl_nbTotalAdherents.Text = "Nombre total d'adhérents: ";
+            tbl_nbTotalAdherents.Text = " : ";
             tbl_nbTotalAdherents.Text += SingletonAdherent.getInstance().nbTotalAdherent();
 
-            tbl_nbTotalActivites.Text = "Nombre total d'activités: ";
+            tbl_nbTotalActivites.Text = " : ";
             tbl_nbTotalActivites.Text += SingletonActivite.getInstance().nbTotalActivite();
 
             statActivites();
@@ -41,19 +41,13 @@ namespace Projet_final
 
         public void statActivites()
         {
-            ObservableCollection<Activite> liste_activites = SingletonActivite.getInstance().getListeActivites();
-            foreach (Activite activite in liste_activites)
+            ObservableCollection<Statistique> liste_stat = new ObservableCollection<Statistique>();
+            foreach (Activite activite in SingletonActivite.getInstance().getListeActivites())
             {
-                string item = activite.Nom + "\t" + activite.Type + "\t Nombre participation: ";
-                item += SingletonAdherent.getInstance().nbTotalAdherentSelonActivite(activite.Nom, activite.Type);
-                item += "\t Note moyenne: ";
-                item += SingletonActivite.getInstance().moyenneNoteParActivite(activite.Nom, activite.Type);
-                item += "\t Revenu total: ";
-                item += SingletonActivite.getInstance().revenuTotalParActivite(activite.Nom, activite.Type);
-
-                lv_adherents.Items.Add(item);
+                Statistique statistique = new Statistique(activite.Nom, activite.Type, SingletonAdherent.getInstance().nbTotalAdherentSelonActivite(activite.Nom, activite.Type), SingletonActivite.getInstance().moyenneNoteParActivite(activite.Nom, activite.Type), SingletonActivite.getInstance().revenuTotalParActivite(activite.Nom, activite.Type));
+                liste_stat.Add(statistique);
             }
-
+            lv_activites.ItemsSource = liste_stat;
         }
 
         public void statAdherent()
@@ -66,7 +60,7 @@ namespace Projet_final
                 item += "\t Prix total dépensé: ";
                 item += SingletonAdherent.getInstance().prixTotalAdherent(adherent.NoIdentification);
 
-                lv_activites.Items.Add(item);
+                //lv_activites.Items.Add(item);
             }
         }
 

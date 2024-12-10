@@ -72,11 +72,11 @@ namespace Projet_final
                 int succesModif = SingletonParticipation.getInstance().changerNote(SingletonParticipation.getInstance().getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect)[index],value);
                 if(succesModif != 0)
                 {
-                    tbl_message_modif.Text = "Une erreur s'est produite lors de la modification de la note.";
+                    //.Text = "Une erreur s'est produite lors de la modification de la note.";
                 }
                 else
                 {
-                    tbl_message_modif.Text = "La note a bien été modifiée.";
+                    //tbl_message_modif.Text = "La note a bien été modifiée.";
 
                 }
             }

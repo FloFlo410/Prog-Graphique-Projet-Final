@@ -8,10 +8,58 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <StackPanel>
-            <TextBlock x:Name="tbl_nbTotalAdherents"/>
-            <TextBlock x:Name="tbl_nbTotalActivites"/>
+    <Grid Background="#E5E1DA">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Background="#B3C8CF" CornerRadius="10" Margin="20">
+            <TextBlock HorizontalAlignment="Center" FontSize="35">Nombre total d'adhérents</TextBlock>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <FontIcon Glyph="&#xE776;" FontSize="30" />
+                <TextBlock x:Name="tbl_nbTotalAdherents" FontSize="30" />
+            </StackPanel>
+            
+        </StackPanel>
+
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Background="#B3C8CF" CornerRadius="10" Margin="20">
+            <TextBlock HorizontalAlignment="Center" FontSize="35">Nombre total d'activité</TextBlock>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <FontIcon Glyph="&#xEA86;" FontSize="30" />
+                <TextBlock x:Name="tbl_nbTotalActivites" FontSize="30" />
+            </StackPanel>
+
+        </StackPanel>
+
+            <ListView x:Name="lv_activites" CornerRadius="10" Margin="20" Grid.Row="1" Grid.Column="0" Background="#B3C8CF">
+
+            <ListView.Header>
+                <StackPanel Orientation="Vertical" >
+                    <TextBlock HorizontalAlignment="Center" FontSize="30">Revenu Total par activité</TextBlock>
+                </StackPanel>
+            </ListView.Header>
+        </ListView>
+
+
+
+
+
+
+            <!--<StackPanel>
             <StackPanel Orientation="Horizontal">
                 <ScrollViewer Grid.Row="1" Margin=" 0 20 0 0">
                     <ListView x:Name="lv_activites">
@@ -25,6 +73,6 @@
                 </ScrollViewer>
             </StackPanel>
             
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </Page>
