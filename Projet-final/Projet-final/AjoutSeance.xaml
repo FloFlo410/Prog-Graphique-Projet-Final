@@ -33,13 +33,26 @@
 
         <TextBlock x:Name="tblock_idSeance" Visibility="Collapsed"></TextBlock>
 
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <ComboBox  x:Name="cbox_activite" Header="Activitées" Margin="0 20 30 0" FontSize="20" HorizontalAlignment="Stretch"></ComboBox>
+            <TextBlock x:Name="tbl_err_cbActivite" Foreground="Red"></TextBlock>
+        </StackPanel>
 
-        <ComboBox Grid.Row="1" Grid.Column="0" x:Name="cbox_activite" Header="Activitées" Margin="0 20 30 0" FontSize="20" HorizontalAlignment="Stretch"></ComboBox>
-        <DatePicker x:Name="date" HorizontalAlignment="Stretch" Header="Date de la séance" Grid.Row="1" Grid.Column="1" Margin="0 20 30 0" FontSize="20"></DatePicker>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <DatePicker x:Name="date" HorizontalAlignment="Stretch" Header="Date de la séance"  Margin="0 20 30 0" FontSize="20"></DatePicker>
+            <TextBlock x:Name="tbl_err_date" Foreground="Red"></TextBlock>
+        </StackPanel>
 
-        <NumberBox x:Name="num_place_dispo" Header="Nombre de place disponible" Margin="0 20 30 0" Grid.Row="2" Grid.Column="0" FontSize="20" SpinButtonPlacementMode="Compact" SmallChange="5"/>
-        <TimePicker x:Name="timePicker_heure" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="1"  Header="Heure de la séance" Margin="0 20 30 0" FontSize="20"></TimePicker>
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <NumberBox x:Name="num_place_dispo" Header="Nombre de place disponible" Margin="0 20 30 0" Minimum="0" FontSize="20" SpinButtonPlacementMode="Compact" SmallChange="5"/>
+            <TextBlock x:Name="tbl_err_placeDispo" Foreground="Red"></TextBlock>
+        </StackPanel>
 
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TimePicker x:Name="timePicker_heure" HorizontalAlignment="Stretch"   Header="Heure de la séance" Margin="0 20 30 0" FontSize="20"></TimePicker>
+            <TextBlock x:Name="tbl_err_time" Foreground="Red"></TextBlock>
+
+        </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="0 20 0 0">
             <Button Margin="10" FontSize="20" x:Name="btn_ajout" Click="btn_ajout_Click">Ajouter</Button>

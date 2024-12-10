@@ -16,7 +16,7 @@
         </NavigationView.Resources>
 
         <NavigationView.PaneCustomContent>
-            <TextBlock Text="Bonjour Justin" Foreground="White" VerticalAlignment="Center"  HorizontalAlignment="Center"  FontFamily="Arial Rounded MT" FontSize="24"/>
+            <TextBlock x:Name="tblock_acceuil_name" Text="" Foreground="White" VerticalAlignment="Center"  HorizontalAlignment="Center"  FontFamily="Arial Rounded MT" FontSize="24"/>
         </NavigationView.PaneCustomContent>
 
         <NavigationView.MenuItems>

@@ -32,9 +32,41 @@ namespace Projet_final
 
         private bool valide()
         {
+            resetError();
             bool valide = true;
-            //if(string.IsNullOrWhiteSpace(tb))
+            if (cbox_activite.SelectedIndex < 0)
+            {
+                valide = false;
+                tbl_err_cbActivite.Visibility = Visibility.Visible;
+                tbl_err_cbActivite.Text = "L\'activité est obligatoire";
+            }
+            if (num_place_dispo.Value < 0 || string.IsNullOrWhiteSpace(num_place_dispo.Text))
+            {
+                valide = false;
+                tbl_err_placeDispo.Visibility = Visibility.Visible;
+                tbl_err_placeDispo.Text = "Le nombre de place disponible doit être un nombre positif.";
+            }
+            if (date.SelectedDate == null)
+            {
+                valide = false;
+                tbl_err_date.Visibility = Visibility.Visible;
+                tbl_err_date.Text = "La date doit être une date valide.";
+            }
+            if (timePicker_heure.SelectedTime == null)
+            {
+                valide = false;
+                tbl_err_time.Visibility = Visibility.Visible;
+                tbl_err_time.Text = "L'heure doit être une heure valide.";
+            }
             return valide;
+        }
+
+        private void resetError()
+        {
+            tbl_err_cbActivite.Visibility = Visibility.Collapsed;
+            tbl_err_date.Visibility = Visibility.Collapsed;
+            tbl_err_placeDispo.Visibility = Visibility.Collapsed;
+            tbl_err_time.Visibility = Visibility.Collapsed;
         }
 
         private void btn_ajout_Click(object sender, RoutedEventArgs e)
