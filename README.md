@@ -8,4 +8,4 @@ Florence Blackburn
 - [x] Message lors de la modification de la note
 - [x] Validation du form des séances
 - [ ] Validation du form des activite modifier
-- [ ] les boutons retours
+- [x] les boutons retours
