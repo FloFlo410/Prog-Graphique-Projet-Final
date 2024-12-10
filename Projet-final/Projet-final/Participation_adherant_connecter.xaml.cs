@@ -68,7 +68,16 @@ namespace Projet_final
             if (index != -1)
             {
                 double value = ratingControl.Value;
-                SingletonParticipation.getInstance().changerNote(SingletonParticipation.getInstance().getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect)[index],value);
+                int succesModif = SingletonParticipation.getInstance().changerNote(SingletonParticipation.getInstance().getParticipationByAdherant(SingletonAdherent.getInstance().AdhrentConnect)[index],value);
+                if(succesModif != 0)
+                {
+                    tbl_message_modif.Text = "Une erreur s'est produite lors de la modification de la note.";
+                }
+                else
+                {
+                    tbl_message_modif.Text = "La note a bien été modifiée.";
+
+                }
             }
         }
     }

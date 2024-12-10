@@ -127,7 +127,7 @@ namespace Projet_final
         }
 
 
-        public void changerNote(Participation participation, double note)
+        public int changerNote(Participation participation, double note)
         {
             try
             {
@@ -144,13 +144,14 @@ namespace Projet_final
 
                 con.Close();
 
-
+                return 0;
 
             }
             catch (Exception ex)
             {
                 con.Close();
                 Debug.WriteLine(ex.Message);
+                return -1;
             }
 
 
