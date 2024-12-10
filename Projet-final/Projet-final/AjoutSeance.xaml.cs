@@ -85,5 +85,11 @@ namespace Projet_final
                 mainwindow.Navigate(typeof(GestionSeance));
             }
         }
+
+        private void btn_retour_Click(object sender, RoutedEventArgs e)
+        {
+            SingletonAdherent.getInstance().getMainwindow().Navigate(typeof(GestionSeance));
+
+        }
     }
 }

@@ -63,9 +63,9 @@
                             
                         </StackPanel>
                         <RatingControl x:Name="Rating_star" Value="{x:Bind Note}" Grid.Row="4" Grid.ColumnSpan="2"/>
-                        <TextBlock x:Name="tbl_message_modif" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="tbl_message_modif" Grid.Row="5" HorizontalAlignment="Center"/>
 
-                        <StackPanel Margin=" 0 10 0 20" Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="center">
+                        <StackPanel Margin=" 0 10 0 20" Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="center">
                             <Button FontFamily="Arial Rounded MT"  Margin="0 0 15 0"  x:Name="mbtn_modifier_note" Click="mbtn_modifier_note_Click">Modifier note</Button>
                             <Button FontFamily="Arial Rounded MT"  x:Name="btn_desinscrire" Click="btn_desinscrire_Click">Se désinscrire</Button>
                         </StackPanel>

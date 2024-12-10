@@ -117,5 +117,11 @@ namespace Projet_final
             tbl_mdp_err.Text = "";
             tbl_role_err.Text = "";
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SingletonAdherent.getInstance().getMainwindow().Navigate(typeof(GestionAdherent));
+
+        }
     }
 }

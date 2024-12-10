@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <Button FontSize="20" VerticalAlignment="Center" Grid.Row="0">Retour</Button>
+        <Button FontSize="20" VerticalAlignment="Center" Grid.Row="0" x:Name="btn_retour" Click="btn_retour_Click">Retour</Button>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
             <TextBlock  FontSize="60" HorizontalAlignment="Center">Ajout d'une séance</TextBlock>
             <TextBlock x:Name="tblock_error" FontSize="20" Foreground="Red"></TextBlock>
