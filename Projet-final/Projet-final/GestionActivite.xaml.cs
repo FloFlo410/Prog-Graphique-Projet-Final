@@ -68,16 +68,19 @@ namespace Projet_final
 
         private void btn_modif_Click(object sender, RoutedEventArgs e)
         {
+            if (valide())
+            {
+                int index = lv_activites.SelectedIndex;
+                Activite newActivite = new Activite(tbox_nom.Text, cbox_categories.SelectedValue.ToString(), num_prix_org.Value, num_prix_client.Value, tbox_url_img.Text);
+                Activite oldActivite = SingletonActivite.getInstance().getListeActivites()[index];
+                string result = SingletonActivite.getInstance().modifier(newActivite, oldActivite);
 
-            int index = lv_activites.SelectedIndex;
-            Activite newActivite = new Activite(tbox_nom.Text, cbox_categories.SelectedValue.ToString(), num_prix_org.Value, num_prix_client.Value,tbox_url_img.Text);
-            Activite oldActivite = SingletonActivite.getInstance().getListeActivites()[index];
-            string result = SingletonActivite.getInstance().modifier(newActivite, oldActivite);
-
-            if (result == "réussi")
-                tblock_error.Text = string.Empty;
-            else
-                tblock_error.Text = result;
+                if (result == "réussi")
+                    tblock_error.Text = string.Empty;
+                else
+                    tblock_error.Text = result;
+            }
+            
 
         }
 
@@ -113,6 +116,53 @@ namespace Projet_final
             if (monFichier != null)
                 await Windows.Storage.FileIO.WriteLinesAsync(monFichier, SingletonActivite.getInstance().getListeActivites().ToList<Activite>().ConvertAll(x => x.ToString()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
 
+        }
+
+        private bool valide()
+        {
+            resetErr();
+            bool valide = true;
+            if (string.IsNullOrWhiteSpace(tbox_nom.Text))
+            {
+                valide = false;
+                tbl_err_nom.Visibility = Visibility.Visible;
+                tbl_err_nom.Text = "Le nom ne peut pas être vide.";
+            }
+            if(cbox_categories.SelectedIndex < 0)
+            {
+                valide = false;
+                tbl_err_cb_categories.Visibility = Visibility.Visible;
+                tbl_err_cb_categories.Text = "La catégorie ne peut pas être vide.";
+            }
+            if(num_prix_org.Value < 0 || string.IsNullOrWhiteSpace(num_prix_org.Text))
+            {
+                valide = false;
+                tbl_err_num_prix_org.Visibility = Visibility.Visible;
+                tbl_err_num_prix_org.Text = "Le prix d'organisation doit être un nombre positif.";
+            }
+            if (num_prix_client.Value < 0 || string.IsNullOrWhiteSpace(num_prix_client.Text))
+            {
+                valide = false;
+                tbl_err_num_prix_client.Visibility = Visibility.Visible;
+                tbl_err_num_prix_client.Text = "Le prix pour le client doit être un nombre positif.";
+            }
+            if(string.IsNullOrWhiteSpace(tbox_url_img.Text))
+            {
+                valide = false;
+                tbl_err_url.Visibility = Visibility.Visible;
+                tbl_err_url.Text = "L'url pour l'image ne peut pas être vide.";
+            }
+
+            return valide;
+        }
+
+        private void resetErr()
+        {
+            tbl_err_nom.Visibility = Visibility.Collapsed;
+            tbl_err_cb_categories.Visibility = Visibility.Collapsed;
+            tbl_err_num_prix_org.Visibility = Visibility.Collapsed;
+            tbl_err_num_prix_client.Visibility = Visibility.Collapsed;
+            tbl_err_url.Visibility = Visibility.Collapsed;
         }
     }
 }

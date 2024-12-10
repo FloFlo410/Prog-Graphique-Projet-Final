@@ -14,7 +14,7 @@
             <TextBlock  FontSize="60" HorizontalAlignment="Center">Ajout d'un adhérent</TextBlock>
             <TextBlock x:Name="tblock_error" FontSize="20" Foreground="Red" HorizontalAlignment="Center"></TextBlock>
         </StackPanel>
-        <Grid>
+        <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
