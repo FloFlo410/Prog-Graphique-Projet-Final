@@ -10,8 +10,7 @@ E5E1DA
 F1F0E8
 
 
-# Il manque ceci
-- [x] Message lors de la modification de la note
-- [x] Validation du form des séances
-- [x] Validation du form des activite modifier
-- [x] les boutons retours
+# Pour Fabrice
+Utilisateur admin | Nom d'utilisateur: FabAdmin MDP: Secret1234
+
+Utilisateur utilisateur | Nom d'utilisateur: FabAdherent MDP: Secret1234
