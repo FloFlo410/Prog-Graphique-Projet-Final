@@ -28,6 +28,7 @@ namespace Projet_final
             this.InitializeComponent();
             lv_seance.ItemsSource = SingletonSeance.getInstance().Liste_seances;
             cbox_activite.ItemsSource = SingletonActivite.getInstance().getListeActivites();
+            
         }
 
         private void lv_seance_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -127,6 +128,10 @@ namespace Projet_final
                 valide= false;
                 tbl_err_date.Visibility = Visibility.Visible;
                 tbl_err_date.Text = "La date doit être une date valide.";
+            }else if(date.SelectedDate<DateTime.Now) {
+                valide = false;
+                tbl_err_date.Visibility = Visibility.Visible;
+                tbl_err_date.Text = "La date doit être plus grande que aujourd'hui.";
             }
             if(timePicker_heure.SelectedTime == null)
             {

@@ -52,6 +52,12 @@ namespace Projet_final
                 tbl_err_date.Visibility = Visibility.Visible;
                 tbl_err_date.Text = "La date doit être une date valide.";
             }
+            else if (date.SelectedDate < DateTime.Now)
+            {
+                valide = false;
+                tbl_err_date.Visibility = Visibility.Visible;
+                tbl_err_date.Text = "La date doit être plus grande que aujourd'hui.";
+            }
             if (timePicker_heure.SelectedTime == null)
             {
                 valide = false;

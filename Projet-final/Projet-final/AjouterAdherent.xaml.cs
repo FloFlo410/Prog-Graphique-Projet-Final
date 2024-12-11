@@ -100,7 +100,7 @@ namespace Projet_final
             }
 
 
-            if (string.IsNullOrWhiteSpace(tbx_role.SelectedItem.ToString()))
+            if (tbx_role.SelectedItem == null)
             {
                 valide = false;
                 tbl_role_err.Text = "Le rôle ne peut pas être vide.";
