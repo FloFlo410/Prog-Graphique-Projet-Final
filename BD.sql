@@ -108,6 +108,7 @@ delimiter ;
  Sinon, il affiche un message d’erreur avisant qu’il ne reste plus de places disponibles pour la
  séance choisie.
  */
+DROP TRIGGER IF EXISTS verifier_dispos
 DELIMITER //
 CREATE TRIGGER verifier_dispos BEFORE INSERT ON participation FOR EACH ROW
     BEGIN
@@ -121,6 +122,7 @@ delimiter ;
 
 
 -- Supprimer tout les enfants d'une activité relier
+DROP TRIGGER IF EXISTS supprimer_activite
 DELIMITER //
 CREATE TRIGGER supprimer_activite
     BEFORE DELETE
@@ -133,6 +135,19 @@ CREATE TRIGGER supprimer_activite
 
         DELETE FROM seance WHERE activiteNom = OLD.nom AND activiteType = OLD.type;
 
+    end //
+DELIMITER ;
+
+
+--Supprimer tout les enfants relier à une séance
+DROP TRIGGER IF EXISTS supprimer_seance;
+DELIMITER //
+CREATE TRIGGER supprimer_seance
+BEFORE DELETE
+    ON seance
+    FOR EACH ROW
+    BEGIN
+        DELETE FROM participation WHERE idSeance = OLD.idSeance;
     end //
 DELIMITER ;
 
