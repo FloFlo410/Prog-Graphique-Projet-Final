@@ -71,54 +71,54 @@
 
 
                 <StackPanel Grid.Row="1"
-                    Orientation="Vertical">
-                    <TextBox x:Name="tbx_prenom" Header="Prenom:"/>
+                    Orientation="Vertical" Margin="10">
+                    <TextBox x:Name="tbx_prenom" Header="Prénom:"/>
                     <TextBlock x:Name="tbl_prenom_err"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"
-                    Grid.Row="1" Grid.Column="1">
+                    Grid.Row="1" Grid.Column="1" Margin="10">
                     <TextBox x:Name="tbx_nom" Header="Nom:"/>
                     <TextBlock x:Name="tbl_nom_err"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"
-                    Grid.Row="2" Grid.Column="0">
+                    Grid.Row="2" Grid.Column="0" Margin="10"> 
                     <CalendarDatePicker x:Name="cldr_dateNaissance" Header="Date de naissance:"/>
-                    <TextBlock x:Name="tbl_dateNaissance_err"/>
+                    <TextBlock x:Name="tbl_dateNaissance_err" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"
-                    Grid.Row="2" Grid.Column="1">
+                    Grid.Row="2" Grid.Column="1" Margin="10" HorizontalAlignment="center">
                     <TextBlock x:Name="tbl_age"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"
-                    Grid.Row="3" Grid.Column="0">
+                    Grid.Row="3" Grid.Column="0" Margin="10">
                     <TextBox x:Name="tbx_adresse" Header="Adresse:"/>
                     <TextBlock x:Name="tbl_adresse_err"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"
-                    Grid.Row="3" Grid.Column="1">
+                    Grid.Row="3" Grid.Column="1" Margin="10">
                     <TextBox x:Name="tbx_email" Header="Email:"/>
                     <TextBlock x:Name="tbl_email_err"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"
-                    Grid.Row="4" Grid.Column="0">
+                    Grid.Row="4" Grid.Column="0" Margin="10">
                     <TextBox x:Name="tbx_pseudo" Header="Pseudo"/>
                     <TextBlock x:Name="tbl_pseudo_err"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"
-                    Grid.Row="4" Grid.Column="1">
+                    Grid.Row="4" Grid.Column="1" Margin="10">
                     <PasswordBox x:Name="tbx_mdp" Header="Mot de passe:"/>
                     <TextBlock x:Name="tbl_mdp_err"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"
-                    Grid.Row="5" Grid.Column="0">
+                    Grid.Row="5" Grid.Column="0" Margin="10">
                     <ComboBox x:Name="tbx_role" Header="Rôle:" HorizontalAlignment="Stretch">
                         <x:String>utilisateur</x:String>
                         <x:String>administrateur</x:String>

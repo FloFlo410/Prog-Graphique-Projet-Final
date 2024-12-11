@@ -15,7 +15,7 @@
         
             <GridView x:Name="gv_activite" Margin="20"   SelectionChanged="gv_activite_SelectionChanged" >
             <GridView.Header>
-                <TextBlock Text="Liste des activitées" FontSize="60" HorizontalAlignment="Center" Foreground="Black" FontFamily="Arial Rounded MT" />
+                <TextBlock Text="Liste des activités" FontSize="60" HorizontalAlignment="Center" Foreground="Black" FontFamily="Arial Rounded MT" />
             </GridView.Header>
 
 

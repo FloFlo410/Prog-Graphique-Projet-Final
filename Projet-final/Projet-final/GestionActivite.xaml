@@ -22,7 +22,7 @@
 
 
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-            <TextBlock FontSize="50" FontFamily="Arial Rounded MT">Gestion des Activitées</TextBlock>
+            <TextBlock FontSize="50" FontFamily="Arial Rounded MT">Gestion des Activités</TextBlock>
 
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin=" 70 10 0 0">
                 <TextBlock HorizontalAlignment="Center" FontSize="17" Margin=" 0 0 0 7" FontFamily="Arial Rounded MT">Ajouter une activité</TextBlock>

@@ -35,13 +35,13 @@
 
 
                 <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="4" Margin="0 20 30 0">
-                    <TextBlock Foreground="Black" HorizontalAlignment="Center" FontSize="40" FontFamily="Arial Rounded MT">Séance disponible</TextBlock>
+                    <TextBlock Foreground="Black" HorizontalAlignment="Center" FontSize="40" FontFamily="Arial Rounded MT">Séances disponibles</TextBlock>
                     <TextBlock x:Name="tbl_err_reservation" Foreground="red" HorizontalAlignment="Center" FontFamily="Arial Rounded MT" />
                     <StackPanel Orientation="Vertical">
-                        <GridView x:Name="gv_seance" Margin="20">
+                        <GridView x:Name="gv_seance" Margin="20" SelectionMode="None">
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="local:Seance">
-                                    <Grid  Background="AliceBlue" >
+                                    <Grid  Background="AliceBlue" Width="300" >
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="auto"/>
                                             <RowDefinition Height="auto"/>
@@ -54,8 +54,8 @@
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
 
-                                        <FontIcon Glyph="&#xEA89;" Foreground="black" Margin="10" FontSize="30"/>
-                                        <FontIcon Glyph="&#xE823;" Grid.Row="1" Foreground="black" Margin="10" FontSize="30"/>
+                                        <FontIcon Glyph="&#xEA89;" Foreground="black" Margin="0 0 0 0" FontSize="30"/>
+                                        <FontIcon Glyph="&#xE823;" Grid.Row="1" Foreground="black" Margin=" 0 0 0 0" FontSize="30"/>
                                         <TextBlock Text="{x:Bind Journee}" Grid.Column="1" Margin="10" Foreground="Black" FontSize="20" VerticalAlignment="Center" FontFamily="Arial Rounded MT"/>
                                         <TextBlock Text="{x:Bind DateHeure.TimeOfDay}" Margin="10" Grid.Row="1" Grid.Column="1" Foreground="Black" VerticalAlignment="Center" FontSize="20" FontFamily="Arial Rounded MT"/>
                                         <Button FontFamily="Arial Rounded MT" x:Name="btn_reservation" Grid.Row="2" Margin="10" Background="#89A8B2" FontSize="20" HorizontalAlignment="Center" Grid.ColumnSpan="2" Click="btn_reserver_seance_Click">Réserver</Button>

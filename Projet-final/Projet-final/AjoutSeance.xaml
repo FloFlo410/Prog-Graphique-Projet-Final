@@ -34,7 +34,7 @@
         <TextBlock x:Name="tblock_idSeance" Visibility="Collapsed"></TextBlock>
 
         <StackPanel Grid.Row="1" Grid.Column="0">
-            <ComboBox  x:Name="cbox_activite" Header="Activitées" Margin="0 20 30 0" FontSize="20" HorizontalAlignment="Stretch"></ComboBox>
+            <ComboBox  x:Name="cbox_activite" Header="Activités" Margin="0 20 30 0" FontSize="20" HorizontalAlignment="Stretch"></ComboBox>
             <TextBlock x:Name="tbl_err_cbActivite" Foreground="Red"></TextBlock>
         </StackPanel>
 
