@@ -8,14 +8,14 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Background="#F1F0E8">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
             <Button  FontSize="20" Margin="20" VerticalAlignment="Center" Grid.Row="0" Click="Button_Click">Retour</Button>
-            <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="20">
                 <TextBlock  FontSize="60" HorizontalAlignment="Center">Ajout d'un adhérent</TextBlock>
                <TextBlock x:Name="tblock_error" FontSize="20" Foreground="Red" HorizontalAlignment="Center"></TextBlock>
             </StackPanel>
@@ -34,49 +34,49 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Vertical" Margin="10">
+            <StackPanel Orientation="Vertical" Margin="5">
             <TextBox x:Name="tbx_prenom" Header="Prenom:"/>
                 <TextBlock x:Name="tbl_prenom_err" Foreground="Red"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
-                    Grid.Row="0" Grid.Column="1" Margin="10">
+                    Grid.Row="0" Grid.Column="1" Margin="5">
             <TextBox x:Name="tbx_nom" Header="Nom:"/>
                 <TextBlock x:Name="tbl_nom_err" Foreground="Red"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
-                    Grid.Row="1" Grid.Column="0">
+                    Grid.Row="1" Grid.Column="0" Margin="5">
             <CalendarDatePicker x:Name="cldr_dateNaissance" Header="Date de naissance:"/>
                 <TextBlock x:Name="tbl_dateNaissance_err" Foreground="Red"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
-                    Grid.Row="2" Grid.Column="0">
+                    Grid.Row="2" Grid.Column="0" Margin="5">
             <TextBox x:Name="tbx_adresse" Header="Adresse:"/>
                 <TextBlock x:Name="tbl_adresse_err" Foreground="Red"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
-                    Grid.Row="2" Grid.Column="1">
+                    Grid.Row="2" Grid.Column="1" Margin="5">
             <TextBox x:Name="tbx_email" Header="Email:"/>
                 <TextBlock x:Name="tbl_email_err" Foreground="Red"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
-                    Grid.Row="3" Grid.Column="0">
+                    Grid.Row="3" Grid.Column="0" Margin="5">
             <TextBox x:Name="tbx_pseudo" Header="Pseudo"/>
                 <TextBlock x:Name="tbl_pseudo_err" Foreground="Red"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
-                    Grid.Row="3" Grid.Column="1">
+                    Grid.Row="3" Grid.Column="1" Margin="5">
             <PasswordBox x:Name="tbx_mdp" Header="Mot de passe:"/>
                 <TextBlock x:Name="tbl_mdp_err" Foreground="Red"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
-                    Grid.Row="4" Grid.Column="0">
+                    Grid.Row="4" Grid.Column="0" Margin="5">
             <TextBox x:Name="tbx_role" Header="Rôle:"/>
                 <TextBlock x:Name="tbl_role_err" Foreground="Red"/>
         </StackPanel>
@@ -84,7 +84,7 @@
         <Button
             Grid.Row="5" Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
-            x:Name="btn_ajouter" Click="btn_ajouter_Click">Ajouter</Button>
+            x:Name="btn_ajouter" Click="btn_ajouter_Click" FontSize="20">Ajouter</Button>
     </Grid>
     </Grid>
 
