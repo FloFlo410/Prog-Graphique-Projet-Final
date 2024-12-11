@@ -109,7 +109,19 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:Statistique">
-                        <TextBlock Text="test"/>
+                        <StackPanel Orientation="Vertical" Margin="10">
+                            <TextBlock Text="{x:Bind NomAdherent}" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock FontSize="20">$ :</TextBlock>
+                                <TextBlock Text="{x:Bind PrixMoyen}" FontSize="20"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="center">
+                                <FontIcon Glyph="&#xE719;" Margin="0 0 10 0" FontSize="20"/>
+                                <TextBlock Text="{x:Bind DepenseTotal}" FontSize="20"></TextBlock>
+                            </StackPanel>
+                            
+                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

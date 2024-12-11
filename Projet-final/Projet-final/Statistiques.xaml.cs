@@ -52,16 +52,14 @@ namespace Projet_final
 
         public void statAdherent()
         {
-            ObservableCollection<Adherent> liste_adherents = SingletonAdherent.getInstance().Liste_Adherent;
-            foreach (Adherent adherent in liste_adherents)
+            ObservableCollection<Statistique> liste_stat = new ObservableCollection<Statistique>();
+            foreach (Adherent adherent in SingletonAdherent.getInstance().Liste_Adherent)
             {
-                string item = adherent.NoIdentification + "\t" + adherent.Prenom + "\t" + adherent.Nom + "\tMoyenne prix par activité: ";
-                item += SingletonAdherent.getInstance().prixMoyenActiviteAdherent(adherent.NoIdentification);
-                item += "\t Prix total dépensé: ";
-                item += SingletonAdherent.getInstance().prixTotalAdherent(adherent.NoIdentification);
 
-                //lv_activites.Items.Add(item);
+                Statistique statistique = new Statistique(adherent.Prenom + adherent.Nom, SingletonAdherent.getInstance().prixMoyenActiviteAdherent(adherent.NoIdentification), SingletonAdherent.getInstance().prixTotalAdherent(adherent.NoIdentification));
+                liste_stat.Add(statistique );
             }
+            lv_adherents.ItemsSource = liste_stat;  
         }
 
        
