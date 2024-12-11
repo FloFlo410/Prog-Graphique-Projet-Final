@@ -22,17 +22,17 @@
 
 
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-            <TextBlock FontSize="50" >Gestion des Activitées</TextBlock>
+            <TextBlock FontSize="50" FontFamily="Arial Rounded MT">Gestion des Activitées</TextBlock>
 
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin=" 70 10 0 0">
-                <TextBlock HorizontalAlignment="Center" FontSize="17" Margin=" 0 0 0 7">Ajouter une activité</TextBlock>
-                <Button x:Name="btn_ajoute" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" Click="btn_ajoute_Click">+ ajouter</Button>
+                <TextBlock HorizontalAlignment="Center" FontSize="17" Margin=" 0 0 0 7" FontFamily="Arial Rounded MT">Ajouter une activité</TextBlock>
+                <Button FontFamily="Arial Rounded MT" x:Name="btn_ajoute" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" Click="btn_ajoute_Click">+ ajouter</Button>
             </StackPanel>
 
 
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin=" 70 10 0 0">
-                <TextBlock HorizontalAlignment="Center" FontSize="17" Margin=" 0 0 0 7">Exporté CSV</TextBlock>
-                <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" x:Name="export_csv" Click="export_csv_Click">Exporté</Button>
+                <TextBlock HorizontalAlignment="Center" FontSize="17" Margin=" 0 0 0 7" FontFamily="Arial Rounded MT">Exporté CSV</TextBlock>
+                <Button FontFamily="Arial Rounded MT" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" x:Name="export_csv" Click="export_csv_Click">Exporté</Button>
             </StackPanel>
         </StackPanel>
 
@@ -41,7 +41,7 @@
         </ScrollViewer>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="20" Visibility="Visible" x:Name="stp_no_selection" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock FontSize="50">Veuillez sélectionner une activité</TextBlock>
+            <TextBlock FontSize="50" FontFamily="Arial Rounded MT">Veuillez sélectionner une activité</TextBlock>
         </StackPanel>
         <StackPanel  Grid.Row="1" Grid.Column="1" Margin="20" Visibility="Collapsed" x:Name="stp_detail">
 
@@ -61,36 +61,36 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="2">
-                    <TextBlock x:Name="tblock_error" FontSize="20" Foreground="Red"></TextBlock>
-                    <TextBlock x:Name="tblock_nom" FontSize="40"></TextBlock>
-                    <TextBlock x:Name="tbl_err_nom"  Foreground="Red"></TextBlock>
+                    <TextBlock  FontFamily="Arial Rounded MT" x:Name="tblock_error" FontSize="20" Foreground="Red"></TextBlock>
+                    <TextBlock FontFamily="Arial Rounded MT" x:Name="tblock_nom" FontSize="40"></TextBlock>
+                    <TextBlock FontFamily="Arial Rounded MT" x:Name="tbl_err_nom"  Foreground="Red"></TextBlock>
                 </StackPanel>
 
                 <TextBox x:Name="tbox_nom" Header="Nom de l'activité" Grid.Row="1" Grid.Column="0" Margin="0 20 30 0" FontSize="20"></TextBox>
 
                 <StackPanel Grid.Row="1" Grid.Column="1">
-                    <ComboBox x:Name="cbox_categories" Header="Catégorie de l'activité" Margin="0 20 30 0" FontSize="20"></ComboBox>
-                    <TextBlock x:Name="tbl_err_cb_categories" Foreground="Red"/>
+                    <ComboBox FontFamily="Arial Rounded MT" x:Name="cbox_categories" Header="Catégorie de l'activité" Margin="0 20 30 0" FontSize="20"></ComboBox>
+                    <TextBlock FontFamily="Arial Rounded MT" x:Name="tbl_err_cb_categories" Foreground="Red"/>
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" Grid.Column="0">
-                    <NumberBox x:Name="num_prix_org" Header="Prix pour l'organisation ($)" Margin="0 20 30 0"  FontSize="20" SpinButtonPlacementMode="Compact" SmallChange="10"/>
-                    <TextBlock x:Name="tbl_err_num_prix_org" Foreground="Red"/>
+                    <NumberBox FontFamily="Arial Rounded MT" x:Name="num_prix_org" Header="Prix pour l'organisation ($)" Margin="0 20 30 0"  FontSize="20" SpinButtonPlacementMode="Compact" SmallChange="10"/>
+                    <TextBlock FontFamily="Arial Rounded MT" x:Name="tbl_err_num_prix_org" Foreground="Red"/>
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" Grid.Column="1">
-                    <NumberBox x:Name="num_prix_client" Header="Prix pour le client ($)" Margin="0 20 30 0"  FontSize="20" SpinButtonPlacementMode="Compact" SmallChange="10"/>
-                    <TextBlock x:Name="tbl_err_num_prix_client" Foreground="Red"/>
+                    <NumberBox FontFamily="Arial Rounded MT" x:Name="num_prix_client" Header="Prix pour le client ($)" Margin="0 20 30 0"  FontSize="20" SpinButtonPlacementMode="Compact" SmallChange="10"/>
+                    <TextBlock FontFamily="Arial Rounded MT" x:Name="tbl_err_num_prix_client" Foreground="Red"/>
                 </StackPanel>
 
                 <StackPanel Grid.Row="3" Grid.ColumnSpan="2">
-                    <TextBox Header="Url de l'image" x:Name="tbox_url_img"  FontSize="20"   Margin="0 20 30 0"/>
-                    <TextBlock x:Name="tbl_err_url" Foreground="Red"/>
+                    <TextBox FontFamily="Arial Rounded MT" Header="Url de l'image" x:Name="tbox_url_img"  FontSize="20"   Margin="0 20 30 0"/>
+                    <TextBlock FontFamily="Arial Rounded MT" x:Name="tbl_err_url" Foreground="Red"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="0 20 0 0">
-                    <Button Margin="10" FontSize="20" x:Name="btn_modif" Click="btn_modif_Click">Modifier</Button>
-                    <Button Margin="10" FontSize="20"  x:Name="btn_sup" Click="btn_sup_Click">Supprimer</Button>
+                    <Button FontFamily="Arial Rounded MT" Margin="10" FontSize="20" x:Name="btn_modif" Click="btn_modif_Click">Modifier</Button>
+                    <Button FontFamily="Arial Rounded MT" Margin="10" FontSize="20"  x:Name="btn_sup" Click="btn_sup_Click">Supprimer</Button>
                 </StackPanel>
             </Grid>
         </StackPanel>

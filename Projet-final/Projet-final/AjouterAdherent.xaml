@@ -35,7 +35,7 @@
         </Grid.ColumnDefinitions>
 
             <StackPanel Orientation="Vertical" Margin="5">
-            <TextBox x:Name="tbx_prenom" Header="Prenom:"/>
+            <TextBox  x:Name="tbx_prenom" Header="Prenom:"/>
                 <TextBlock x:Name="tbl_prenom_err" Foreground="Red"/>
         </StackPanel>
 
