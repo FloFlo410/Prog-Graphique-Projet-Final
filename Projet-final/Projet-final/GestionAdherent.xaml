@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Background="#F1F0E8">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -16,11 +16,26 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
 
-        <ListView x:Name="lv_Adherent" SelectionChanged="lv_Adherent_SelectionChanged">
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="20">
+            <TextBlock FontSize="50" >Gestion des adhérents</TextBlock>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin=" 70 10 0 0">
+                <TextBlock HorizontalAlignment="Center" FontSize="17" Margin=" 0 0 0 7">Ajouter une activité</TextBlock>
+                <Button x:Name="btn_ajouter_adherent" Click="btn_ajouter_adherent_Click">Ajouter Adhérent</Button>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin=" 70 10 0 0">
+                <TextBlock HorizontalAlignment="Center" FontSize="17" Margin=" 0 0 0 7">Exporté CSV</TextBlock>
+                <Button  x:Name="btn_exporter_adherent" Click="btn_exporter_adherent_Click">Exporter adhérent</Button>
+            </StackPanel>
+        </StackPanel>
+
+        <ListView x:Name="lv_Adherent" SelectionChanged="lv_Adherent_SelectionChanged" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Adherent">
                     <StackPanel Orientation="Horizontal">
@@ -31,10 +46,11 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel 
-            x:Name="stck_infoAdherent"
-            Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Background="AliceBlue">
+        <StackPanel x:Name="stck_infoAdherent" Grid.Row="1" Grid.Column="1">
             <TextBlock FontSize="35" HorizontalAlignment="Center" FontWeight="Bold">Adhérent</TextBlock>
+            
+            
+            
             <Grid Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
@@ -110,12 +126,13 @@
             Grid.Row="6" Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
             x:Name="btn_modifier" Click="btn_modifier_Click">Modifier</Button>
+            <Button Grid.Row="6" x:Name="btn_supprimer_adherent" Click="btn_supprimer_adherent_Click">Supprimer adhérent</Button>
+                
             </Grid>
         </StackPanel>
-        <Button Grid.Row="1" x:Name="btn_ajouter_adherent" Click="btn_ajouter_adherent_Click">Ajouter Adhérent</Button>
-        <Button Grid.Row="2" x:Name="btn_supprimer_adherent" Click="btn_supprimer_adherent_Click">Supprimer adhérent</Button>
-        <Button Grid.Row="3" x:Name="btn_exporter_adherent" Click="btn_exporter_adherent_Click">Exporter adhérent</Button>
-        <StackPanel Grid.Row="0" Grid.Column="1" Margin="20" Visibility="Visible" x:Name="stp_no_selection" HorizontalAlignment="Center" VerticalAlignment="Center">
+        
+        
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="20" Visibility="Visible" x:Name="stp_no_selection" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock FontSize="50">Veuillez sélectionner un utilisateur</TextBlock>
         </StackPanel>
 

@@ -56,7 +56,7 @@ namespace Projet_final
             foreach (Adherent adherent in SingletonAdherent.getInstance().Liste_Adherent)
             {
 
-                Statistique statistique = new Statistique(adherent.Prenom + adherent.Nom, SingletonAdherent.getInstance().prixMoyenActiviteAdherent(adherent.NoIdentification), SingletonAdherent.getInstance().prixTotalAdherent(adherent.NoIdentification));
+                Statistique statistique = new Statistique(adherent.Prenom + " " + adherent.Nom, SingletonAdherent.getInstance().prixMoyenActiviteAdherent(adherent.NoIdentification), SingletonAdherent.getInstance().prixTotalAdherent(adherent.NoIdentification));
                 liste_stat.Add(statistique );
             }
             lv_adherents.ItemsSource = liste_stat;  

@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="#F1F0E8">
 
     <Grid Margin="20">
 
@@ -38,8 +38,8 @@
             <TextBlock x:Name="tbl_err_cbActivite" Foreground="Red"></TextBlock>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <DatePicker x:Name="date" HorizontalAlignment="Stretch" Header="Date de la séance"  Margin="0 20 30 0" FontSize="20"></DatePicker>
+        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" >
+            <DatePicker x:Name="date" Header="Date de la séance"  Margin="0 20 30 0" FontSize="20"></DatePicker>
             <TextBlock x:Name="tbl_err_date" Foreground="Red"></TextBlock>
         </StackPanel>
 
@@ -48,8 +48,8 @@
             <TextBlock x:Name="tbl_err_placeDispo" Foreground="Red"></TextBlock>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.Column="1">
-            <TimePicker x:Name="timePicker_heure" HorizontalAlignment="Stretch"   Header="Heure de la séance" Margin="0 20 30 0" FontSize="20"></TimePicker>
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
+            <TimePicker  x:Name="timePicker_heure" HorizontalAlignment="Stretch"   Header="Heure de la séance" Margin="0 20 30 0" FontSize="20"></TimePicker>
             <TextBlock x:Name="tbl_err_time" Foreground="Red"></TextBlock>
 
         </StackPanel>
@@ -57,8 +57,6 @@
         <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="0 20 0 0">
             <Button Margin="10" FontSize="20" x:Name="btn_ajout" Click="btn_ajout_Click">Ajouter</Button>
         </StackPanel>
-
-
 
     </Grid>
 </Page>

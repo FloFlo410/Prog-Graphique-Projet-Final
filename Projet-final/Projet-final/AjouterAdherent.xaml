@@ -8,13 +8,19 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel>
-        <Button FontSize="20" VerticalAlignment="Center" Grid.Row="0" Click="Button_Click">Retour</Button>
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
-            <TextBlock  FontSize="60" HorizontalAlignment="Center">Ajout d'un adhérent</TextBlock>
-            <TextBlock x:Name="tblock_error" FontSize="20" Foreground="Red" HorizontalAlignment="Center"></TextBlock>
-        </StackPanel>
-        <Grid Margin="10">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+            <Button  FontSize="20" Margin="20" VerticalAlignment="Center" Grid.Row="0" Click="Button_Click">Retour</Button>
+            <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock  FontSize="60" HorizontalAlignment="Center">Ajout d'un adhérent</TextBlock>
+               <TextBlock x:Name="tblock_error" FontSize="20" Foreground="Red" HorizontalAlignment="Center"></TextBlock>
+            </StackPanel>
+
+        <Grid Margin="10" Grid.Row="1">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -28,51 +34,51 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical" Margin="10">
             <TextBox x:Name="tbx_prenom" Header="Prenom:"/>
-            <TextBlock x:Name="tbl_prenom_err"/>
+                <TextBlock x:Name="tbl_prenom_err" Foreground="Red"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
-                    Grid.Row="0" Grid.Column="1">
+                    Grid.Row="0" Grid.Column="1" Margin="10">
             <TextBox x:Name="tbx_nom" Header="Nom:"/>
-            <TextBlock x:Name="tbl_nom_err"/>
+                <TextBlock x:Name="tbl_nom_err" Foreground="Red"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
                     Grid.Row="1" Grid.Column="0">
             <CalendarDatePicker x:Name="cldr_dateNaissance" Header="Date de naissance:"/>
-            <TextBlock x:Name="tbl_dateNaissance_err"/>
+                <TextBlock x:Name="tbl_dateNaissance_err" Foreground="Red"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
                     Grid.Row="2" Grid.Column="0">
             <TextBox x:Name="tbx_adresse" Header="Adresse:"/>
-            <TextBlock x:Name="tbl_adresse_err"/>
+                <TextBlock x:Name="tbl_adresse_err" Foreground="Red"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
                     Grid.Row="2" Grid.Column="1">
             <TextBox x:Name="tbx_email" Header="Email:"/>
-            <TextBlock x:Name="tbl_email_err"/>
+                <TextBlock x:Name="tbl_email_err" Foreground="Red"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
                     Grid.Row="3" Grid.Column="0">
             <TextBox x:Name="tbx_pseudo" Header="Pseudo"/>
-            <TextBlock x:Name="tbl_pseudo_err"/>
+                <TextBlock x:Name="tbl_pseudo_err" Foreground="Red"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
                     Grid.Row="3" Grid.Column="1">
             <PasswordBox x:Name="tbx_mdp" Header="Mot de passe:"/>
-            <TextBlock x:Name="tbl_mdp_err"/>
+                <TextBlock x:Name="tbl_mdp_err" Foreground="Red"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
                     Grid.Row="4" Grid.Column="0">
             <TextBox x:Name="tbx_role" Header="Rôle:"/>
-            <TextBlock x:Name="tbl_role_err"/>
+                <TextBlock x:Name="tbl_role_err" Foreground="Red"/>
         </StackPanel>
 
         <Button
@@ -80,6 +86,6 @@
             HorizontalAlignment="Center"
             x:Name="btn_ajouter" Click="btn_ajouter_Click">Ajouter</Button>
     </Grid>
-    </StackPanel>
+    </Grid>
 
 </Page>
