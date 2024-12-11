@@ -80,7 +80,7 @@ namespace Projet_final
 
                     break;
 
-                case "Gestion utilisateur":
+                case "Gestion adhérent":
                     mainWindow.Navigate(typeof(GestionAdherent));
                break;
 

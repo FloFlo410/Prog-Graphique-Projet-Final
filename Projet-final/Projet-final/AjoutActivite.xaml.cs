@@ -97,16 +97,27 @@ namespace Projet_final
 
             }
 
-            if (string.IsNullOrWhiteSpace(num_prix_client.Text))
+            if (string.IsNullOrWhiteSpace(num_prix_org.Text) || num_prix_org.Value<0)
             {
                 valide = false;
-                num_prix_client_error.Text = "Le nombre ne peut pas être vide";
+                num_prix_org_error.Text = "Le nombre ne peut pas être plus petit que 0";
+            }
+            else if (num_prix_org.Value >= num_prix_client.Value)
+            {
+
+                valide = false;
+                num_prix_org_error.Visibility = Visibility.Visible;
+                num_prix_client_error.Visibility = Visibility.Visible;
+                num_prix_org_error.Text = "Le prix d'organisation doit être plus petit que le prix pour le client.";
+                num_prix_client_error.Text = "Le prix d'organisation doit être plus petit que le prix pour le client.";
 
             }
-            if (string.IsNullOrWhiteSpace(num_prix_org.Text))
+
+            if (string.IsNullOrWhiteSpace(num_prix_client.Text) || num_prix_client.Value<0)
             {
                 valide = false;
-                num_prix_org_error.Text = "Le nombre ne peut pas être vide";
+                num_prix_client_error.Text = "Le nombre ne peut pas être plus petit que 0";
+
             }
 
             if (string.IsNullOrWhiteSpace(tbox_url.Text))

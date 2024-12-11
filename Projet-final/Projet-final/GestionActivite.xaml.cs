@@ -141,6 +141,17 @@ namespace Projet_final
                 valide = false;
                 tbl_err_num_prix_org.Visibility = Visibility.Visible;
                 tbl_err_num_prix_org.Text = "Le prix d'organisation doit être un nombre positif.";
+
+
+
+            }else if(num_prix_org.Value >= num_prix_client.Value) {
+
+                valide = false;
+                tbl_err_num_prix_org.Visibility = Visibility.Visible;
+                tbl_err_num_prix_client.Visibility = Visibility.Visible;
+                tbl_err_num_prix_org.Text = "Le prix d'organisation doit être plus petit que le prix pour le client.";
+                tbl_err_num_prix_client.Text = "Le prix d'organisation doit être plus petit que le prix pour le client.";
+
             }
             if (num_prix_client.Value < 0 || string.IsNullOrWhiteSpace(num_prix_client.Text))
             {

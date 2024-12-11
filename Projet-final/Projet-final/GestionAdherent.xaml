@@ -39,8 +39,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Adherent">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{x:Bind Prenom}"/>
-                        <TextBlock Text="{x:Bind Nom}"/>
+                        <TextBlock Text="{x:Bind Prenom}" Margin=" 0 0 4 0"/>
+                        <TextBlock Text="{x:Bind Nom}" Margin="0 0 4 0"/>
+                        <TextBlock Text="| âge: " Margin="0 0 4 0"/>
                         <TextBlock Text="{x:Bind Age}"/>
                     </StackPanel>
                 </DataTemplate>
@@ -118,7 +119,10 @@
 
                 <StackPanel Orientation="Vertical"
                     Grid.Row="5" Grid.Column="0">
-                    <TextBox x:Name="tbx_role" Header="Rôle:"/>
+                    <ComboBox x:Name="tbx_role" Header="Rôle:" HorizontalAlignment="Stretch">
+                        <x:String>utilisateur</x:String>
+                        <x:String>administrateur</x:String>
+                    </ComboBox>
                     <TextBlock x:Name="tbl_role_err"/>
                 </StackPanel>
 

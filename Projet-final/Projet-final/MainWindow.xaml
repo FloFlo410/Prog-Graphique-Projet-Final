@@ -29,7 +29,7 @@
                 <NavigationViewItem.MenuItems >
                     <NavigationViewItem Icon="Document" Content="Statistiques" x:Name="statistiques" FontSize="20" FontFamily="Arial Rounded MT"/>
                     <NavigationViewItem Content="Gestion Activité" Icon="Folder" ToolTipService.ToolTip="Mail" FontSize="20" FontFamily="Arial Rounded MT"/>
-                    <NavigationViewItem Content="Gestion utilisateur" Icon="Contact2" ToolTipService.ToolTip="Calendar"  FontSize="20" FontFamily="Arial Rounded MT"/>
+                    <NavigationViewItem Content="Gestion adhérent" Icon="Contact2" ToolTipService.ToolTip="Calendar"  FontSize="20" FontFamily="Arial Rounded MT"/>
                     <NavigationViewItem Content="Gestion Séance" Icon="Calendar" ToolTipService.ToolTip="Calendar" FontSize="20" FontFamily="Arial Rounded MT" />
                 </NavigationViewItem.MenuItems>
             </NavigationViewItem>

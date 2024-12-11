@@ -41,7 +41,7 @@ namespace Projet_final
                 string email = tbx_email.Text;
                 string pseudo = tbx_pseudo.Text;
                 string mdp = tbx_mdp.Password;
-                string role = tbx_role.Text;
+                string role = tbx_role.SelectedItem.ToString().ToLower();
 
                 Adherent adherent = new Adherent(nom, prenom, adresse, dateNaissance, email, pseudo, mdp, role);
                 SingletonAdherent.getInstance().ajouterAdherent(adherent);
@@ -98,7 +98,9 @@ namespace Projet_final
                 valide = false;
                 tbl_mdp_err.Text = "Le mot de passe ne peut pas être vide.";
             }
-            if (string.IsNullOrWhiteSpace(tbx_role.Text))
+
+
+            if (string.IsNullOrWhiteSpace(tbx_role.SelectedItem.ToString()))
             {
                 valide = false;
                 tbl_role_err.Text = "Le rôle ne peut pas être vide.";

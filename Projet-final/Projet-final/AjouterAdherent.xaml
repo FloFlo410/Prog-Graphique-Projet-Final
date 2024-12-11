@@ -77,7 +77,10 @@
 
         <StackPanel Orientation="Vertical"
                     Grid.Row="4" Grid.Column="0" Margin="5">
-            <TextBox x:Name="tbx_role" Header="Rôle:"/>
+                <ComboBox x:Name="tbx_role" Header="Rôle:" HorizontalAlignment="Stretch" SelectedValuePath="Item1">
+                    <x:String>utilisateur</x:String>
+                    <x:String>administrateur</x:String>
+                </ComboBox>
                 <TextBlock x:Name="tbl_role_err" Foreground="Red"/>
         </StackPanel>
 

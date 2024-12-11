@@ -60,7 +60,7 @@ namespace Projet_final
                 string email = tbx_email.Text;
                 string pseudo = tbx_pseudo.Text;
                 string mdp = tbx_mdp.Password;
-                string role = tbx_role.Text;
+                string role = tbx_role.SelectedValue.ToString().ToLower();
 
                 Adherent adherent = new Adherent(noIdentification, nom, prenom, adresse, dateNaissance, email, pseudo, mdp, role);
 
@@ -86,7 +86,14 @@ namespace Projet_final
                 tbx_email.Text = adherent.Email;
                 tbx_pseudo.Text = adherent.Pseudo;
                 tbx_mdp.Password = adherent.Mdp;
-                tbx_role.Text = adherent.Role;
+
+
+                if (adherent.Role == "administrateur")
+                {
+                    tbx_role.SelectedIndex = 1;
+                }else
+                    tbx_role.SelectedIndex = 0;
+
 
             }
             else
@@ -150,7 +157,7 @@ namespace Projet_final
                 valide = false;
                 tbl_mdp_err.Text = "Le mot de passe ne peut pas être vide.";
             }
-            if (string.IsNullOrWhiteSpace(tbx_role.Text))
+            if (string.IsNullOrWhiteSpace(tbx_role.SelectedValue.ToString()))
             {
                 valide = false;
                 tbl_role_err.Text = "Le rôle ne peut pas être vide.";
